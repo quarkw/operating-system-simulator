@@ -26,23 +26,25 @@ public class DummyIntegrationTest {
         SystemCalls systemCalls = BootLoader.boot(cpu);
         
         System.out.println(systemCalls.processSummary());
-        for (int i = 0; i < 50; i++) {
-            cpu.advanceClock();
+        for (int i = 0; i < 25; i++) {
+            cpu.cycle();
         }
         
-        String program = "50\nCALCULATE 100";
+        String program = "50 \nIO \nCALCULATE 20";
+        System.out.println("Loading process1");
         systemCalls.loadProgram("process1", program);
         
         System.out.println(systemCalls.processSummary());
-        for (int i = 0; i < 50; i++) {
-            cpu.advanceClock();
+        for (int i = 0; i < 25; i++) {
+            cpu.cycle();
         }
         
         systemCalls.loadProgram("process2", program);
+        System.out.println("Loading process2");
         System.out.println(systemCalls.processSummary());
         
-        for (int i = 0; i < 400; i++) {
-            cpu.advanceClock();
+        for (int i = 0; i < 200; i++) {
+            cpu.cycle();
         }
         System.out.println(systemCalls.processSummary());
     }

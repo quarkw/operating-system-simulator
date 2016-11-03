@@ -15,7 +15,9 @@ public class BootLoader {
         String backgroundProgram = "20 \n" + "CALCULATE -1";
         system.loadProgram("backgroundProcess", backgroundProgram);
         cpu.runningPcbPointer = scheduler.getNextPcb();
-        cpu.programCounter = 0;
+        cpu.programCounter = -1; //TODO debugging
+        cpu.operationCounter = 0; //TODO debugging
+        cpu.system = system; //TODO this is a total hack
         
         return system;
     }

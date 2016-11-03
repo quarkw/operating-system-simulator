@@ -8,28 +8,23 @@ public class Operation {
     public static final int OUT = 4;
     public static final int END_OF_PROGRAM= 5;
     
+    public static final int AQUIRE = 10;
+    public static final int RELEASE = 11;
+    
     private final int type;
-    private int operationCounter;
+    private final int parameter;
     
     public Operation(int type, int counter) {
         this.type = type;
-        this.operationCounter = counter;
-    }
-    
-    public boolean isDone() {
-        return operationCounter == 0; //TODO: will run for a long time but not forever if -1
-    }
-    
-    public void doOneCycle() {
-        operationCounter--;
+        this.parameter = counter;
     }
 
     public int getType() {
         return type;
     }
 
-    public int getOperationCounter() {
-        return operationCounter;
+    public int getParameter() {
+        return parameter;
     }
     
 }

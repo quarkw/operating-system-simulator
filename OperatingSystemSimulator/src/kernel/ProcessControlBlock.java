@@ -12,6 +12,7 @@ public class ProcessControlBlock {
     public int cpuUsed;
     public ProcessState state;
     public int programCounter;
+    public int operationCounter; //Would not exist in a real machine, necessary because of simulator language.
     public ArrayList<Operation> program;
     
     public ProcessControlBlock(String processID, ArrayList<Operation> program, 
@@ -19,7 +20,8 @@ public class ProcessControlBlock {
         this.processID = processID;
         this.memoryAllocation = memoryRequirement;
         this.program = program;
-        this.programCounter = 0;
+        this.programCounter = -1;
+        this.operationCounter = 0;
         this.cpuUsed = 0;
         this.startTime = System.currentTimeMillis();
         this.state = ProcessState.NEW;

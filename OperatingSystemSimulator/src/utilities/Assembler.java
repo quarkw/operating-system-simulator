@@ -9,11 +9,13 @@ public class Assembler {
         ArrayList<Operation> newProgram = new ArrayList<>();
         for (String line : programText.split("\n")) {
             if (line.startsWith("OUT")) {
-                newProgram.add(new Operation (Operation.OUT, 1));
+                newProgram.add(new Operation (Operation.OUT, 0));
             } else if (line.startsWith("YIELD")) {
-                newProgram.add(new Operation (Operation.YIELD, 1));
+                newProgram.add(new Operation (Operation.YIELD, 0));
             } else if (line.startsWith("IO")) {
-                newProgram.add(new Operation (Operation.IO, 1));
+                newProgram.add(new Operation (Operation.AQUIRE, 0));
+                newProgram.add(new Operation (Operation.IO, 0));
+                newProgram.add(new Operation (Operation.RELEASE, 0));
             } else if (line.startsWith("CALCULATE")) {
                 String cyclesString = line.substring(1 + line.indexOf(' ')).trim();
                 int cycles = Integer.valueOf(cyclesString);

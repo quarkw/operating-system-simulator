@@ -16,9 +16,10 @@ public class InterruptHandler {
     public void handleInterrupt() {
         ProcessControlBlock oldPCB = cpu.runningPcbPointer;
         oldPCB.programCounter = cpu.programCounter;
+        oldPCB.operationCounter = cpu.operationCounter;
         System.out.println("Interrupted " + oldPCB.processID 
                 + " at " + cpu.programCounter + "/" 
-                + oldPCB.program.get(oldPCB.programCounter).getOperationCounter());
+                + oldPCB.operationCounter);
         if (oldPCB.state == ProcessState.READY) {
             scheduler.insertPCB(oldPCB);
         }
@@ -30,6 +31,7 @@ public class InterruptHandler {
         ProcessControlBlock nextPCB = scheduler.getNextPcb();
         cpu.runningPcbPointer = nextPCB;
         cpu.programCounter = nextPCB.programCounter;
+        cpu.operationCounter = nextPCB.operationCounter;
         cpu.interruptTimer = scheduler.getTimeLimit(nextPCB.processID);
     }
 }

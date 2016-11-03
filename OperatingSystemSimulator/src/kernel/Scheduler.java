@@ -6,12 +6,15 @@ public class Scheduler {
     
     private LinkedList<ProcessControlBlock> readyQueue = new LinkedList<>();
     
+    public MutexLock deviceOneLock = new MutexLock();
+    
+    
     public void insertPCB(ProcessControlBlock pcb) {
         readyQueue.add(pcb);
     }
     
     public int getTimeLimit(String processID) {
-        return 10;
+        return 5;
     }
     
     public ProcessControlBlock getNextPcb() {
