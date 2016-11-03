@@ -30,7 +30,6 @@ public class CPU {
     
     public CPU() {
         this.interruptProcessor = new InterruptProcessor();
-        this.interruptTimer = 5; //TODO debugging purposes only
     }
     
     public void cycle() {
@@ -68,13 +67,12 @@ public class CPU {
                 break;
             case Operation.AQUIRE:
                 if (!system.aquire("device 1")) {
-                    System.out.println("Process " + runningPcbPointer.processID + " failed to aquire");
+                    System.out.println("Process " + runningPcbPointer.processID + " failed to aquire resource");
                     programCounter--; //TODO this is pretty ugly
-                    
                     interruptTimer = 0;
                     //interruptProcessor.signalInterrupt();
                 } else {
-                    System.out.println("Process " + runningPcbPointer.processID + " AQUIRED");
+                    System.out.println("Process " + runningPcbPointer.processID + " aquired resource");
                 }
                 operationCounter = 1; //TODO find a better way to spin
                 break;

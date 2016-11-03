@@ -15,9 +15,9 @@ public class BootLoader {
         String backgroundProgram = "20 \n" + "CALCULATE -1";
         system.loadProgram("backgroundProcess", backgroundProgram);
         cpu.runningPcbPointer = scheduler.getNextPcb();
-        cpu.programCounter = -1; //TODO debugging
-        cpu.operationCounter = 0; //TODO debugging
-        cpu.system = system; //TODO this is a total hack
+        cpu.programCounter = -1;
+        cpu.operationCounter = 0; 
+        cpu.system = system; //TODO this is a total hack, need to represent "switching to kernel mode"
         
         return system;
     }
