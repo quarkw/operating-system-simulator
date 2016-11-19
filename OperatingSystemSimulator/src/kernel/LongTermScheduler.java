@@ -8,10 +8,6 @@ package kernel;
 import java.util.LinkedList;
 import simulator.CPU;
 
-/**
- *
- * @author pjhud
- */
 public class LongTermScheduler {
     
     private static final int MEMORY_FOR_USER_PROCS = 150;
