@@ -26,7 +26,7 @@ public class DummyIntegrationTest {
         SystemCalls systemCalls = BootLoader.boot(cpu);
         
         System.out.println(systemCalls.processSummary());
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 20; i++) {
             cpu.cycle();
         }
         
@@ -35,18 +35,21 @@ public class DummyIntegrationTest {
         systemCalls.loadProgram("process1", program);
         
         System.out.println(systemCalls.processSummary());
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 20; i++) {
             cpu.cycle();
         }
         
         systemCalls.loadProgram("process2", program);
         System.out.println("Loading process2");
-        System.out.println(systemCalls.processSummary());
         
-        for (int i = 0; i < 300; i++) {
-            cpu.cycle();
+        
+        for (int i = 0; i < 25; i++) {
+            for (int j = 0; j < 25; j++) {
+               cpu.cycle();
+            }
+            System.out.println(systemCalls.processSummary());
         }
-        System.out.println(systemCalls.processSummary());
+        //System.out.println(systemCalls.processSummary());
     }
 }
     

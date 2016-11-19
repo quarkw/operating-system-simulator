@@ -2,15 +2,15 @@ package kernel.interrupthandlers;
 
 import kernel.ProcessControlBlock;
 import kernel.ProcessState;
-import kernel.Scheduler;
+import kernel.ShortTermScheduler;
 import simulator.CPU;
 
 public class YieldHandler {
-    private Scheduler scheduler;
+    private ShortTermScheduler scheduler;
     
     private CPU cpu;
     
-    public YieldHandler(CPU cpu, Scheduler scheduler) {
+    public YieldHandler(CPU cpu, ShortTermScheduler scheduler) {
         this.cpu = cpu;
         this.scheduler = scheduler;
     }
@@ -27,7 +27,7 @@ public class YieldHandler {
                 + " at " + cpu.programCounter + "/" 
                 + oldPCB.operationCounter);
         if (oldPCB.state == ProcessState.READY) {
-            scheduler.insertPCB(oldPCB);
+            scheduler.insertReadyPCB(oldPCB);
         }
         
         if (scheduler.getReadyQueue().isEmpty()) {
