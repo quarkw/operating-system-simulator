@@ -6,10 +6,13 @@
 package simulator;
 
 import simulator.CPU;
+import user_interface.Shell;
 import utilities.BootLoader;
 import kernel.SystemCalls;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.io.IOException;
 
 /**
  *
@@ -25,11 +28,13 @@ public class DummyIntegrationTest {
     public void runTwoProcesses() {
         CPU cpu = new CPU();
         SystemCalls systemCalls = BootLoader.boot(cpu);
-        
+
+        System.out.println("CPU 25-cycle 1 start");
         System.out.println(systemCalls.processSummary());
         for (int i = 0; i < 20; i++) {
             cpu.cycle();
         }
+        System.out.println("CPU 25-cycle 1 end");
         
         String program = "50 \nIO \nCALCULATE 20";
         System.out.println("Loading process1");
@@ -47,7 +52,7 @@ public class DummyIntegrationTest {
         //System.out.println(systemCalls.processSummary());
     }
     
-    
+    @Ignore
     @Test
     public void runFiveProcesses() {
         CPU cpu = new CPU();
@@ -89,6 +94,11 @@ public class DummyIntegrationTest {
             }
         }
         System.out.println(system.processSummary());
+    }
+    @Test
+    public void runShellTest() throws IOException {
+        Shell shell = new Shell();
+        shell.executeInput("TEST");
     }
 }
     

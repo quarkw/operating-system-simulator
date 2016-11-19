@@ -5,10 +5,6 @@
  */
 package kernel;
 
-/**
- *
- * @author pjhud
- */
 public class MutexLock {
     
     private boolean inUse = false;
