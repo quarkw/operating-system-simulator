@@ -42,14 +42,18 @@ public class DummyIntegrationTest {
         systemCalls.loadProgram("process2", program);
         System.out.println("Loading process2");
         
-        
-        for (int i = 0; i < 25; i++) {
+        exec(325, cpu, systemCalls);
+        //System.out.println(systemCalls.processSummary());
+    }
+    
+    private void exec(int n, CPU cpu, SystemCalls system) {
+        for (int i = 0; i < n; i += 25) {
+            System.out.println(system.processSummary());
             for (int j = 0; j < 25; j++) {
                cpu.cycle();
             }
-            System.out.println(systemCalls.processSummary());
         }
-        //System.out.println(systemCalls.processSummary());
+        System.out.println(system.processSummary());
     }
 }
     

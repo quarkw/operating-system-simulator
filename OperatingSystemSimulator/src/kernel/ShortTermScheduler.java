@@ -3,7 +3,7 @@ package kernel;
 import java.util.LinkedList;
 
 public class ShortTermScheduler {
-    public static final int LT_SCHEDULE_INTERVAL = 50;
+    public static final int LT_SCHEDULE_INTERVAL = 10;
     public static final int ST_SCHEDULE_INTERVAL = 5;
     
     private LongTermScheduler longTermScheduler;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="0" tests="1" time="0.093" timestamp="2016-11-19T21:42:50">
+<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="0" tests="1" time="0.085" timestamp="2016-11-19T22:03:45">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -59,7 +59,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher3592115504903758587.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit5055822110234177233.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher5790397470158269055.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit1473294622651455566.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -99,7 +99,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null268991617" />
+    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null1805444665" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar" />
@@ -402,7 +402,7 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="simulator.DummyIntegrationTest" name="runTwoProcesses" time="0.032" />
+  <testcase classname="simulator.DummyIntegrationTest" name="runTwoProcesses" time="0.022" />
   <system-out><![CDATA[Running Process:
   Process: backgroundProcess, Program Counter: -1, Cpu Used: 0
 Ready Processes:
@@ -422,6 +422,11 @@ Interrupted backgroundProcess at 0/-21
 Interrupted backgroundProcess at 0/-26
 Interrupted backgroundProcess at 0/-31
 Loading process2
+Running Process:
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 33
+Ready Processes:
+Standby Processes:
+
 Interrupted backgroundProcess at 0/-36
 Interrupted backgroundProcess at 0/-41
 Interrupted backgroundProcess at 0/-46
@@ -429,260 +434,152 @@ Interrupted backgroundProcess at 0/-51
 Running Process:
   Process: backgroundProcess, Program Counter: 0, Cpu Used: 54
 Ready Processes:
+  Process: process1, Program Counter: -1, Cpu Used: 0
+  Process: process2, Program Counter: -1, Cpu Used: 0
 Standby Processes:
 
 Interrupted backgroundProcess at 0/-56
-Interrupted backgroundProcess at 0/-61
-Interrupted backgroundProcess at 0/-66
-Interrupted backgroundProcess at 0/-71
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 75
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-76
-Interrupted backgroundProcess at 0/-81
-Interrupted backgroundProcess at 0/-86
-Interrupted backgroundProcess at 0/-91
-Interrupted backgroundProcess at 0/-96
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 95
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-101
-Interrupted backgroundProcess at 0/-106
-Interrupted backgroundProcess at 0/-111
-Interrupted backgroundProcess at 0/-116
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 116
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-121
-Interrupted backgroundProcess at 0/-126
-Interrupted backgroundProcess at 0/-131
-Interrupted backgroundProcess at 0/-136
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 137
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-141
-Interrupted backgroundProcess at 0/-146
-Interrupted backgroundProcess at 0/-151
-Interrupted backgroundProcess at 0/-156
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 158
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-161
-Interrupted backgroundProcess at 0/-166
-Interrupted backgroundProcess at 0/-171
-Interrupted backgroundProcess at 0/-176
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 179
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-181
-Interrupted backgroundProcess at 0/-186
-Interrupted backgroundProcess at 0/-191
-Interrupted backgroundProcess at 0/-196
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 200
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-201
-Interrupted backgroundProcess at 0/-206
-Interrupted backgroundProcess at 0/-211
-Interrupted backgroundProcess at 0/-216
-Interrupted backgroundProcess at 0/-221
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 220
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-226
-Interrupted backgroundProcess at 0/-231
-Interrupted backgroundProcess at 0/-236
-Interrupted backgroundProcess at 0/-241
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 241
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-246
-Interrupted backgroundProcess at 0/-251
-Interrupted backgroundProcess at 0/-256
 Process process1 aquired resource
+Interrupted process1 at 1/37
+Process process2 failed to aquire resource
+Interrupted process2 at 0/1
+Interrupted backgroundProcess at 0/-61
 Interrupted process1 at 1/32
 Process process2 failed to aquire resource
 Running Process:
-  Process: process2, Program Counter: -1, Cpu Used: 1
+  Process: process2, Program Counter: 0, Cpu Used: 2
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 255
-  Process: process1, Program Counter: 1, Cpu Used: 4
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 60
+  Process: process1, Program Counter: 1, Cpu Used: 9
 Standby Processes:
 
 Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-261
+Interrupted backgroundProcess at 0/-66
 Interrupted process1 at 1/27
 Process process2 failed to aquire resource
 Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-266
+Interrupted backgroundProcess at 0/-71
 Running Process:
-  Process: process1, Program Counter: 1, Cpu Used: 12
+  Process: process1, Program Counter: 1, Cpu Used: 17
 Ready Processes:
-  Process: process2, Program Counter: 0, Cpu Used: 2
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 265
+  Process: process2, Program Counter: 0, Cpu Used: 3
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 70
 Standby Processes:
 
 Interrupted process1 at 1/22
 Process process2 failed to aquire resource
 Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-271
+Interrupted backgroundProcess at 0/-76
 Interrupted process1 at 1/17
 Process process2 failed to aquire resource
 Interrupted process2 at 0/1
 Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 274
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 79
 Ready Processes:
-  Process: process1, Program Counter: 1, Cpu Used: 19
-  Process: process2, Program Counter: 0, Cpu Used: 4
+  Process: process1, Program Counter: 1, Cpu Used: 24
+  Process: process2, Program Counter: 0, Cpu Used: 5
 Standby Processes:
 
-Interrupted backgroundProcess at 0/-276
+Interrupted backgroundProcess at 0/-81
 Interrupted process1 at 1/12
 Process process2 failed to aquire resource
 Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-281
+Interrupted backgroundProcess at 0/-86
 Interrupted process1 at 1/7
 Process process2 failed to aquire resource
 Running Process:
-  Process: process2, Program Counter: 0, Cpu Used: 6
+  Process: process2, Program Counter: 0, Cpu Used: 7
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 280
-  Process: process1, Program Counter: 1, Cpu Used: 29
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 85
+  Process: process1, Program Counter: 1, Cpu Used: 34
 Standby Processes:
 
 Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-286
+Interrupted backgroundProcess at 0/-91
 Interrupted process1 at 1/2
 Process process2 failed to aquire resource
 Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-291
+Interrupted backgroundProcess at 0/-96
 Running Process:
-  Process: process1, Program Counter: 1, Cpu Used: 37
+  Process: process1, Program Counter: 1, Cpu Used: 42
 Ready Processes:
-  Process: process2, Program Counter: 0, Cpu Used: 7
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 290
+  Process: process2, Program Counter: 0, Cpu Used: 8
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 95
 Standby Processes:
 
 Interrupted process1 at 3/19
 Process process2 aquired resource
-Interrupted process2 at 1/40
-Interrupted backgroundProcess at 0/-296
+Interrupted process2 at 1/37
+Interrupted backgroundProcess at 0/-101
 Interrupted process1 at 3/14
 Running Process:
-  Process: process2, Program Counter: 1, Cpu Used: 15
+  Process: process2, Program Counter: 1, Cpu Used: 16
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 295
-  Process: process1, Program Counter: 3, Cpu Used: 43
-Standby Processes:
-
-Interrupted process2 at 1/35
-Interrupted backgroundProcess at 0/-301
-Interrupted process1 at 3/9
-Interrupted process2 at 1/30
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 305
-Ready Processes:
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 100
   Process: process1, Program Counter: 3, Cpu Used: 48
-  Process: process2, Program Counter: 1, Cpu Used: 21
 Standby Processes:
 
-Interrupted backgroundProcess at 0/-306
+Interrupted process2 at 1/32
+Interrupted backgroundProcess at 0/-106
+Interrupted process1 at 3/9
+Interrupted process2 at 1/27
+Running Process:
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 110
+Ready Processes:
+  Process: process1, Program Counter: 3, Cpu Used: 53
+  Process: process2, Program Counter: 1, Cpu Used: 22
+Standby Processes:
+
+Interrupted backgroundProcess at 0/-111
 Interrupted process1 at 3/4
-Interrupted process2 at 1/25
-Interrupted backgroundProcess at 0/-311
+Interrupted process2 at 1/22
+Interrupted backgroundProcess at 0/-116
 Terminating process1
 Interrupted process1 at 4/0
 Running Process:
-  Process: process2, Program Counter: 1, Cpu Used: 26
+  Process: process2, Program Counter: 1, Cpu Used: 27
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 310
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 115
 Standby Processes:
 
-Interrupted process2 at 1/20
-Interrupted backgroundProcess at 0/-316
-Interrupted process2 at 1/15
-Interrupted backgroundProcess at 0/-321
+Interrupted process2 at 1/17
+Interrupted backgroundProcess at 0/-121
+Interrupted process2 at 1/12
+Interrupted backgroundProcess at 0/-126
 Running Process:
-  Process: process2, Program Counter: 1, Cpu Used: 37
+  Process: process2, Program Counter: 1, Cpu Used: 38
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 320
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 125
 Standby Processes:
 
-Interrupted process2 at 1/10
-Interrupted backgroundProcess at 0/-326
-Interrupted process2 at 1/5
-Interrupted backgroundProcess at 0/-331
+Interrupted process2 at 1/7
+Interrupted backgroundProcess at 0/-131
+Interrupted process2 at 1/2
+Interrupted backgroundProcess at 0/-136
 Running Process:
-  Process: process2, Program Counter: 1, Cpu Used: 48
+  Process: process2, Program Counter: 1, Cpu Used: 49
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 330
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 135
 Standby Processes:
 
-Interrupted process2 at 1/0
-Interrupted backgroundProcess at 0/-336
-Interrupted process2 at 3/17
-Interrupted backgroundProcess at 0/-341
+Interrupted process2 at 3/19
+Interrupted backgroundProcess at 0/-141
+Interrupted process2 at 3/14
+Interrupted backgroundProcess at 0/-146
 Running Process:
-  Process: process2, Program Counter: 3, Cpu Used: 58
+  Process: process2, Program Counter: 3, Cpu Used: 59
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 340
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 145
 Standby Processes:
 
-Interrupted process2 at 3/12
-Interrupted backgroundProcess at 0/-346
-Interrupted process2 at 3/7
-Interrupted backgroundProcess at 0/-351
+Interrupted process2 at 3/9
+Interrupted backgroundProcess at 0/-151
+Interrupted process2 at 3/4
+Interrupted backgroundProcess at 0/-156
 Running Process:
-  Process: process2, Program Counter: 3, Cpu Used: 69
+  Process: process2, Program Counter: 3, Cpu Used: 70
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 350
-Standby Processes:
-
-Interrupted process2 at 3/2
-Interrupted backgroundProcess at 0/-356
-Terminating process2
-Interrupted process2 at 4/0
-Interrupted backgroundProcess at 0/-361
-Interrupted backgroundProcess at 0/-366
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 366
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-371
-Interrupted backgroundProcess at 0/-376
-Interrupted backgroundProcess at 0/-381
-Interrupted backgroundProcess at 0/-386
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 387
-Ready Processes:
-Standby Processes:
-
-Interrupted backgroundProcess at 0/-391
-Interrupted backgroundProcess at 0/-396
-Interrupted backgroundProcess at 0/-401
-Interrupted backgroundProcess at 0/-406
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 408
-Ready Processes:
+  Process: backgroundProcess, Program Counter: 0, Cpu Used: 155
 Standby Processes:
 
 ]]></system-out>

@@ -32,6 +32,11 @@ public class LongTermScheduler {
     
     
     public void schedule() {
+        //System.out.println(
+        //        String.format("***SCHEDULE*** (%d/%d/%d",
+        //                newProcessQueue.size(),
+        //                standByQueue.size(),
+        //                shortTermScheduler.getReadyQueue().size()));
         while (!newProcessQueue.isEmpty()) {
             ProcessControlBlock newProcess = newProcessQueue.poll();
             newProcess.state = ProcessState.READY;
