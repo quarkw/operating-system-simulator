@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="0" tests="1" time="0.516" timestamp="2016-11-19T16:30:24">
+<testsuite errors="1" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="0" tests="1" time="0.102" timestamp="2016-11-19T19:45:56">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -59,7 +59,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher8658174326592809010.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit2637775935133651315.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher5315564002245779445.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit5641520104314333251.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -99,7 +99,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null1729007883" />
+    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null848966119" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar" />
@@ -114,6 +114,7 @@
     <property name="ant.file.OperatingSystemSimulator" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build.xml" />
     <property name="libs.jaxb.javadoc" value="C:\Program Files\NetBeans 8.1\ide\docs\jaxb-api-doc.zip" />
     <property name="libs.struts.classpath" value="C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\antlr-2.7.2.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\bsf-2.3.0.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-beanutils-1.8.0.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-chain-1.2.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-digester-1.8.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-fileupload-1.1.1.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-io-1.1.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-logging-1.0.4.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-validator-1.3.1.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\jstl-1.0.2.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\oro-2.0.8.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\standard-1.0.6.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-core-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-el-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-extras-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-faces-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-mailreader-dao-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-scripting-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-taglib-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-tiles-1.3.10.jar" />
+    <property name="org.openide.awt.SwingBrowserImpl.do-not-block-awt" value="false" />
     <property name="javac.includes.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\classes\simulator\DummyIntegrationTest.class" />
     <property name="ant.home" value="C:\Program Files\NetBeans 8.1\extide\ant" />
     <property name="libs.junit_4.src" value="C:\Program Files\NetBeans 8.1\platform\docs\junit-4.12-sources.jar" />
@@ -147,7 +148,7 @@
     <property name="libs.primefaces.javadoc" value="" />
     <property name="libs.spring-framework300.maven-pom" value="" />
     <property name="run.test.classpath" value=":build/classes:C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar:build/test/classes" />
-    <property name="ant.project.invoked-targets" value="test-single" />
+    <property name="ant.project.invoked-targets" value="debug-test" />
     <property name="test.binaryexcludes" value="" />
     <property name="libs.swing-layout.javadoc" value="C:\Program Files\NetBeans 8.1\platform\docs\swing-layout-1.0.4-doc.zip" />
     <property name="sun.java2d.dpiaware" value="true" />
@@ -156,6 +157,7 @@
     <property name="https.nonProxyHosts" value="localhost|127.0.0.1|DESKTOP-2MD63LK" />
     <property name="libs.PostgreSQLDriver.maven-pom" value="" />
     <property name="java.class.version" value="52.0" />
+    <property name="jpda.address" value="javadebug" />
     <property name="libs.hibernate4-persistencemodelgen.maven-pom" value="" />
     <property name="libs.javaee-endorsed-api-6.0.src" value="" />
     <property name="libs.eclipselink.javadoc" value="C:\Program Files\NetBeans 8.1\java\modules\ext\docs\javax.persistence-2.1.0-doc.zip" />
@@ -298,8 +300,8 @@
     <property name="libs.swing-layout.classpath" value="C:\Program Files\NetBeans 8.1\platform\modules\ext\swing-layout-1.0.4.jar" />
     <property name="libs.javaee-web-api-7.0.maven-pom" value="" />
     <property name="libs.restlib.src" value="" />
-    <property name="build.generated.dir" value="build/generated" />
     <property name="javac.source" value="1.8" />
+    <property name="build.generated.dir" value="build/generated" />
     <property name="line.separator" value="&#xd;&#xa;" />
     <property name="ant.file.OperatingSystemSimulator-impl" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\nbproject\build-impl.xml" />
     <property name="java.specification.version" value="1.8" />
@@ -312,63 +314,62 @@
     <property name="built-jar.properties" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\built-jar.properties" />
     <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="src.dir" value="src" />
-    <property name="annotation.processing.enabled" value="true" />
-    <property name="libs.jpa2-persistence.src" value="" />
     <property name="sun.awt.keepWorkingSetOnMinimize" value="true" />
+    <property name="libs.jpa2-persistence.src" value="" />
+    <property name="annotation.processing.enabled" value="true" />
     <property name="libs.jsf20.src" value="" />
     <property name="libs.jpa20-persistence.src" value="" />
     <property name="libs.DataBindingME-SVG.maven-pom" value="" />
     <property name="libs.jsf12.src" value="" />
     <property name="libs.struts.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\struts-1.3.10-javadoc.zip" />
-    <property name="ignore.failing.tests" value="true" />
     <property name="libs.javaee-web-api-7.0.src" value="" />
     <property name="libs.primefaces.src" value="" />
     <property name="dist.dir" value="dist" />
     <property name="libs.groovy-all.javadoc" value="" />
     <property name="testng.debug.mode" value="" />
-    <property name="javac.fork" value="true" />
     <property name="libs.groovy-all.classpath" value="C:\Program Files\NetBeans 8.1\groovy\modules\ext\groovy-all.jar" />
+    <property name="javac.fork" value="true" />
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
     <property name="default.javac.source" value="1.8" />
     <property name="debug-transport-by-os" value="dt_shmem" />
-    <property name="libs.MySQLDriver.src" value="" />
     <property name="sun.jnu.encoding" value="Cp1252" />
-    <property name="java.runtime.version" value="1.8.0_101-b13" />
+    <property name="libs.MySQLDriver.src" value="" />
     <property name="build.test.results.dir" value="build/test/results" />
+    <property name="java.runtime.version" value="1.8.0_101-b13" />
     <property name="default.javac.target" value="1.8" />
     <property name="libs.junit_4.classpath" value="C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar" />
     <property name="user.timezone" value="" />
     <property name="nb.junit.single" value="false" />
     <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
     <property name="netbeans.dirs" value="C:\Program Files\NetBeans 8.1\nb;C:\Program Files\NetBeans 8.1\ergonomics;C:\Program Files\NetBeans 8.1\ide;C:\Program Files\NetBeans 8.1\extide;C:\Program Files\NetBeans 8.1\java;C:\Program Files\NetBeans 8.1\apisupport;C:\Program Files\NetBeans 8.1\webcommon;C:\Program Files\NetBeans 8.1\websvccommon;C:\Program Files\NetBeans 8.1\enterprise;C:\Program Files\NetBeans 8.1\mobility;C:\Program Files\NetBeans 8.1\profiler;C:\Program Files\NetBeans 8.1\python;C:\Program Files\NetBeans 8.1\php;C:\Program Files\NetBeans 8.1\identity;C:\Program Files\NetBeans 8.1\harness;C:\Program Files\NetBeans 8.1\cnd;C:\Program Files\NetBeans 8.1\cndext;C:\Program Files\NetBeans 8.1\dlight;C:\Program Files\NetBeans 8.1\groovy;C:\Program Files\NetBeans 8.1\extra;C:\Program Files\NetBeans 8.1\javacard;C:\Program Files\NetBeans 8.1\javafx" />
-    <property name="libs.jsf20.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\javaee-doc-api.jar" />
     <property name="libs.jstl.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\javaee-doc-api.jar" />
+    <property name="libs.jsf20.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\javaee-doc-api.jar" />
     <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_101\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext" />
     <property name="libs.metro.src" value="" />
     <property name="libs.absolutelayout.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\AbsoluteLayout.jar" />
     <property name="excludes" value="" />
-    <property name="libs.restlib.maven-pom" value="" />
     <property name="libs.metro.classpath" value="C:\Program Files\NetBeans 8.1\ide\modules\ext\jaxb\activation.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\metro\webservices-api.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\metro\webservices-extra-api.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\metro\webservices-extra.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\metro\webservices-rt.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\metro\webservices-tools.jar" />
+    <property name="libs.restlib.maven-pom" value="" />
     <property name="libs.jpa2-persistence.javadoc" value="C:\Program Files\NetBeans 8.1\java\modules\ext\docs\javax.persistence-2.1.0-doc.zip" />
     <property name="libs.DataBindingME.javadoc" value="C:\Program Files\NetBeans 8.1\mobility\modules\docs\netbeans_databindingme-api.zip" />
-    <property name="apple.laf.useScreenMenuBar" value="true" />
     <property name="java.class.path" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\classes;C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar;C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar;C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\classes;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-launcher.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-junit.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-junit4.jar" />
+    <property name="apple.laf.useScreenMenuBar" value="true" />
     <property name="do.mkdist" value="true" />
     <property name="libs.absolutelayout.src" value="" />
     <property name="libs.jpa20-persistence.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar" />
     <property name="os.version" value="10.0" />
     <property name="application.args" value="" />
     <property name="libs.javaee-api-7.0.maven-pom" value="" />
-    <property name="sun.awt.enableExtraMouseButtons" value="true" />
     <property name="main.class.available" value="true" />
+    <property name="sun.awt.enableExtraMouseButtons" value="true" />
     <property name="sun.desktop" value="windows" />
     <property name="libs.hibernate4-persistence.src" value="" />
     <property name="libs.hibernate4-support.maven-pom" value="" />
     <property name="libs.restlib.javadoc" value="" />
     <property name="libs.JAXB-ENDORSED.classpath" value="C:\Program Files\NetBeans 8.1\ide\modules\ext\jaxb\api\jaxb-api.jar" />
-    <property name="nb.internal.action.name" value="test.single" />
-    <property name="libs.eclipselink.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\eclipselink.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
+    <property name="nb.internal.action.name" value="debug.test.single" />
     <property name="libs.javaee-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\javaee-doc-api.jar" />
+    <property name="libs.eclipselink.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\eclipselink.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
     <property name="libs.beans-binding.javadoc" value="C:\Program Files\NetBeans 8.1\java\docs\beansbinding-1.2.1-doc.zip" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
@@ -378,8 +379,8 @@
     <property name="libs.hamcrest.src" value="" />
     <property name="run.jvmargs" value="" />
     <property name="libs.hibernate4-persistence.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\antlr-2.7.7.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\c3p0-0.9.2.1.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\hibernate-c3p0-4.3.1.Final.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\mchange-commons-java-0.2.3.4.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\dom4j-1.6.1.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\ehcache-core-2.4.3.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\hibernate-ehcache-4.3.1.Final.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\hibernate-core-4.3.1.Final.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\jboss-logging-3.1.3.GA.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\hibernate-commons-annotations-4.0.4.Final.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\hibernate-entitymanager-4.3.1.Final.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\javassist-3.18.1-GA.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\jboss-transaction-api_1.2_spec-1.0.0.Final.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\slf4j-api-1.6.1.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\slf4j-simple-1.6.1.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\hibernate-jpa-2.1-api-1.0.0.Final.jar" />
-    <property name="dist.archive.excludes" value="" />
     <property name="libs.JAXB-ENDORSED.src" value="" />
+    <property name="dist.archive.excludes" value="" />
     <property name="libs.testng.javadoc" value="C:\Program Files\NetBeans 8.1\platform\docs\testng-6.8.1-javadoc.zip" />
     <property name="libs.DataBindingME-PIM.src" value="C:\Program Files\NetBeans 8.1\mobility\sources\netbeans_databindingme_pim-src.zip" />
     <property name="user.script" value="" />
@@ -388,12 +389,12 @@
     <property name="libs.hibernate4-persistencemodelgen.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\hibernate-jpamodelgen-4.3.1.Final.jar" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
     <property name="main.class" value="proto312.Proto312" />
-    <property name="build.dir" value="build" />
     <property name="libs.CopyLibs.src" value="" />
+    <property name="build.dir" value="build" />
     <property name="libs.jsp-compilation.classpath" value="C:\Program Files\NetBeans 8.1\extide\ant\lib\ant.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\jsf-2_2\javax.faces.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\jstl-api.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.4 compiled on April 29 2014" />
-    <property name="file.encoding" value="Cp1252" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
+    <property name="file.encoding" value="Cp1252" />
     <property name="jdkBug6558476" value="false" />
     <property name="javadoc.nonavbar" value="false" />
     <property name="libs.spring-webmvc4.0.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\spring-4\spring-webmvc-4.0.1.RELEASE.jar" />
@@ -401,288 +402,23 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="simulator.DummyIntegrationTest" name="runTwoProcesses" time="0.132" />
+  <testcase classname="simulator.DummyIntegrationTest" name="runTwoProcesses" time="0.023">
+    <error type="java.util.NoSuchElementException">java.util.NoSuchElementException
+	at java.util.LinkedList.removeFirst(LinkedList.java:270)
+	at java.util.LinkedList.remove(LinkedList.java:685)
+	at kernel.Scheduler.getNextPcb(Scheduler.java:19)
+	at kernel.interrupthandlers.YieldHandler.handleInterrupt(YieldHandler.java:37)
+	at simulator.InterruptProcessor.signalInterrupt(InterruptProcessor.java:45)
+	at simulator.CPU.cycle(CPU.java:41)
+	at simulator.DummyIntegrationTest.runTwoProcesses(DummyIntegrationTest.java:30)
+</error>
+  </testcase>
   <system-out><![CDATA[Running Process:
   Process: backgroundProcess, Program Counter: -1, Cpu Used: 0
 Ready Processes:
 
 Interrupted backgroundProcess at -1/0
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -1
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -2
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -3
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -4
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -5
-Interrupted backgroundProcess at 0/-6
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -6
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -7
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -8
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -9
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -10
-Interrupted backgroundProcess at 0/-11
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -11
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -12
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -13
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -14
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -15
-Interrupted backgroundProcess at 0/-16
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -16
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -17
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -18
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -19
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -20
-Interrupted backgroundProcess at 0/-21
-Loading process1
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 20
-Ready Processes:
-  Process: process1, Program Counter: -1, Cpu Used: 0
-
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -21
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -22
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -23
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -24
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -25
-Interrupted backgroundProcess at 0/-26
-Process process1 aquired resource
-Executing: process1 Program Ctr: 0 OpCounter: 1
-Executing: process1 Program Ctr: 1 OpCounter: 30
-Executing: process1 Program Ctr: 1 OpCounter: 29
-Executing: process1 Program Ctr: 1 OpCounter: 28
-Executing: process1 Program Ctr: 1 OpCounter: 27
-Interrupted process1 at 1/26
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -26
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -27
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -28
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -29
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -30
-Interrupted backgroundProcess at 0/-31
-Executing: process1 Program Ctr: 1 OpCounter: 26
-Executing: process1 Program Ctr: 1 OpCounter: 25
-Executing: process1 Program Ctr: 1 OpCounter: 24
-Executing: process1 Program Ctr: 1 OpCounter: 23
-Executing: process1 Program Ctr: 1 OpCounter: 22
-Interrupted process1 at 1/21
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -31
-Loading process2
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 31
-Ready Processes:
-  Process: process1, Program Counter: 1, Cpu Used: 10
-  Process: process2, Program Counter: -1, Cpu Used: 0
-
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -32
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -33
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -34
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -35
-Interrupted backgroundProcess at 0/-36
-Executing: process1 Program Ctr: 1 OpCounter: 21
-Executing: process1 Program Ctr: 1 OpCounter: 20
-Executing: process1 Program Ctr: 1 OpCounter: 19
-Executing: process1 Program Ctr: 1 OpCounter: 18
-Executing: process1 Program Ctr: 1 OpCounter: 17
-Interrupted process1 at 1/16
-Process process2 failed to aquire resource
-Executing: process2 Program Ctr: -1 OpCounter: 1
-Interrupted process2 at -1/0
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -36
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -37
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -38
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -39
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -40
-Interrupted backgroundProcess at 0/-41
-Executing: process1 Program Ctr: 1 OpCounter: 16
-Executing: process1 Program Ctr: 1 OpCounter: 15
-Executing: process1 Program Ctr: 1 OpCounter: 14
-Executing: process1 Program Ctr: 1 OpCounter: 13
-Executing: process1 Program Ctr: 1 OpCounter: 12
-Interrupted process1 at 1/11
-Process process2 failed to aquire resource
-Executing: process2 Program Ctr: -1 OpCounter: 1
-Interrupted process2 at -1/0
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -41
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -42
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -43
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -44
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -45
-Interrupted backgroundProcess at 0/-46
-Executing: process1 Program Ctr: 1 OpCounter: 11
-Executing: process1 Program Ctr: 1 OpCounter: 10
-Executing: process1 Program Ctr: 1 OpCounter: 9
-Executing: process1 Program Ctr: 1 OpCounter: 8
-Executing: process1 Program Ctr: 1 OpCounter: 7
-Interrupted process1 at 1/6
-Process process2 failed to aquire resource
-Executing: process2 Program Ctr: -1 OpCounter: 1
-Interrupted process2 at -1/0
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -46
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -47
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -48
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -49
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -50
-Interrupted backgroundProcess at 0/-51
-Executing: process1 Program Ctr: 1 OpCounter: 6
-Executing: process1 Program Ctr: 1 OpCounter: 5
-Executing: process1 Program Ctr: 1 OpCounter: 4
-Executing: process1 Program Ctr: 1 OpCounter: 3
-Executing: process1 Program Ctr: 1 OpCounter: 2
-Interrupted process1 at 1/1
-Process process2 failed to aquire resource
-Executing: process2 Program Ctr: -1 OpCounter: 1
-Interrupted process2 at -1/0
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -51
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -52
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -53
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -54
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -55
-Interrupted backgroundProcess at 0/-56
-Executing: process1 Program Ctr: 1 OpCounter: 1
-Executing: process1 Program Ctr: 2 OpCounter: 1
-Executing: process1 Program Ctr: 3 OpCounter: 20
-Executing: process1 Program Ctr: 3 OpCounter: 19
-Executing: process1 Program Ctr: 3 OpCounter: 18
-Interrupted process1 at 3/17
-Process process2 aquired resource
-Executing: process2 Program Ctr: 0 OpCounter: 1
-Executing: process2 Program Ctr: 1 OpCounter: 25
-Executing: process2 Program Ctr: 1 OpCounter: 24
-Executing: process2 Program Ctr: 1 OpCounter: 23
-Executing: process2 Program Ctr: 1 OpCounter: 22
-Interrupted process2 at 1/21
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -56
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -57
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -58
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -59
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -60
-Interrupted backgroundProcess at 0/-61
-Executing: process1 Program Ctr: 3 OpCounter: 17
-Executing: process1 Program Ctr: 3 OpCounter: 16
-Executing: process1 Program Ctr: 3 OpCounter: 15
-Executing: process1 Program Ctr: 3 OpCounter: 14
-Executing: process1 Program Ctr: 3 OpCounter: 13
-Interrupted process1 at 3/12
-Executing: process2 Program Ctr: 1 OpCounter: 21
-Executing: process2 Program Ctr: 1 OpCounter: 20
-Executing: process2 Program Ctr: 1 OpCounter: 19
-Executing: process2 Program Ctr: 1 OpCounter: 18
-Executing: process2 Program Ctr: 1 OpCounter: 17
-Interrupted process2 at 1/16
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -61
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -62
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -63
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -64
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -65
-Interrupted backgroundProcess at 0/-66
-Executing: process1 Program Ctr: 3 OpCounter: 12
-Executing: process1 Program Ctr: 3 OpCounter: 11
-Executing: process1 Program Ctr: 3 OpCounter: 10
-Executing: process1 Program Ctr: 3 OpCounter: 9
-Executing: process1 Program Ctr: 3 OpCounter: 8
-Interrupted process1 at 3/7
-Executing: process2 Program Ctr: 1 OpCounter: 16
-Executing: process2 Program Ctr: 1 OpCounter: 15
-Executing: process2 Program Ctr: 1 OpCounter: 14
-Executing: process2 Program Ctr: 1 OpCounter: 13
-Executing: process2 Program Ctr: 1 OpCounter: 12
-Interrupted process2 at 1/11
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -66
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -67
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -68
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -69
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -70
-Interrupted backgroundProcess at 0/-71
-Executing: process1 Program Ctr: 3 OpCounter: 7
-Executing: process1 Program Ctr: 3 OpCounter: 6
-Executing: process1 Program Ctr: 3 OpCounter: 5
-Executing: process1 Program Ctr: 3 OpCounter: 4
-Executing: process1 Program Ctr: 3 OpCounter: 3
-Interrupted process1 at 3/2
-Executing: process2 Program Ctr: 1 OpCounter: 11
-Executing: process2 Program Ctr: 1 OpCounter: 10
-Executing: process2 Program Ctr: 1 OpCounter: 9
-Executing: process2 Program Ctr: 1 OpCounter: 8
-Executing: process2 Program Ctr: 1 OpCounter: 7
-Interrupted process2 at 1/6
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -71
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -72
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -73
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -74
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -75
-Interrupted backgroundProcess at 0/-76
-Executing: process1 Program Ctr: 3 OpCounter: 2
-Executing: process1 Program Ctr: 3 OpCounter: 1
-Terminated process1
-Interrupted process1 at 4/0
-Executing: process2 Program Ctr: 1 OpCounter: 6
-Executing: process2 Program Ctr: 1 OpCounter: 5
-Executing: process2 Program Ctr: 1 OpCounter: 4
-Executing: process2 Program Ctr: 1 OpCounter: 3
-Executing: process2 Program Ctr: 1 OpCounter: 2
-Executing: process2 Program Ctr: 1 OpCounter: 1
-Interrupted process2 at 1/0
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -76
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -77
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -78
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -79
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -80
-Interrupted backgroundProcess at 0/-81
-Executing: process2 Program Ctr: 2 OpCounter: 1
-Executing: process2 Program Ctr: 3 OpCounter: 20
-Executing: process2 Program Ctr: 3 OpCounter: 19
-Executing: process2 Program Ctr: 3 OpCounter: 18
-Executing: process2 Program Ctr: 3 OpCounter: 17
-Interrupted process2 at 3/16
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -81
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -82
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -83
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -84
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -85
-Interrupted backgroundProcess at 0/-86
-Executing: process2 Program Ctr: 3 OpCounter: 16
-Executing: process2 Program Ctr: 3 OpCounter: 15
-Executing: process2 Program Ctr: 3 OpCounter: 14
-Executing: process2 Program Ctr: 3 OpCounter: 13
-Executing: process2 Program Ctr: 3 OpCounter: 12
-Interrupted process2 at 3/11
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -86
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -87
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -88
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -89
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -90
-Interrupted backgroundProcess at 0/-91
-Executing: process2 Program Ctr: 3 OpCounter: 11
-Executing: process2 Program Ctr: 3 OpCounter: 10
-Executing: process2 Program Ctr: 3 OpCounter: 9
-Executing: process2 Program Ctr: 3 OpCounter: 8
-Executing: process2 Program Ctr: 3 OpCounter: 7
-Interrupted process2 at 3/6
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -91
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -92
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -93
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -94
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -95
-Interrupted backgroundProcess at 0/-96
-Executing: process2 Program Ctr: 3 OpCounter: 6
-Executing: process2 Program Ctr: 3 OpCounter: 5
-Executing: process2 Program Ctr: 3 OpCounter: 4
-Executing: process2 Program Ctr: 3 OpCounter: 3
-Executing: process2 Program Ctr: 3 OpCounter: 2
-Interrupted process2 at 3/1
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -96
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -97
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -98
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -99
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -100
-Interrupted backgroundProcess at 0/-101
-Executing: process2 Program Ctr: 3 OpCounter: 1
-Terminated process2
-Interrupted process2 at 4/0
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -101
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -102
-Executing: backgroundProcess Program Ctr: 0 OpCounter: -103
-Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 103
-Ready Processes:
-
+BSOD: No ready processes
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

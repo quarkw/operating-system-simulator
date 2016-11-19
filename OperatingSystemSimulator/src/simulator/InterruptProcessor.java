@@ -1,21 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulator;
 
-import kernel.InterruptHandler;
+import kernel.interrupthandlers.*;
 
-/**
- *
- * @author pjhudgins
- */
 public class InterruptProcessor {
     
-    public InterruptHandler interruptHandler;
+    public static final int YIELD = 0;
+    public static final int AQUIRE = 1;
+    public static final int RELEASE = 2;
+    public static final int PAGE_FAULT = 3;
+    
+    
+    private final boolean[]interruptFlags = new boolean[4];
+    
+    public YieldHandler yieldHandler;
+    public LockTraps lockTraps;
+    
+    public InterruptProcessor() {
+        for (int i = 0; i < interruptFlags.length; i++) {
+            interruptFlags[i] = false;
+        }
+    }
+    
+    public void setFlag(int type) {
+        interruptFlags[type] = true;
+    }
+    
+    public boolean isInterruptPending() {
+        boolean pending = false;
+        for (int i = 0; i < interruptFlags.length; i++) {
+            pending = pending || interruptFlags[i];
+        }
+        return pending;
+    }
     
     public void signalInterrupt() {
-        interruptHandler.handleInterrupt();
+        if (interruptFlags[AQUIRE]) {
+            interruptFlags[AQUIRE] = false;
+            lockTraps.aquire();
+        } else if (interruptFlags[RELEASE]) {
+            interruptFlags[RELEASE] = false;
+            lockTraps.release();
+        } else if (interruptFlags[YIELD]) {
+            interruptFlags[YIELD] = false;
+            yieldHandler.handleInterrupt();
+        }
     }
 }

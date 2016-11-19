@@ -1,13 +1,16 @@
-package kernel;
+package kernel.interrupthandlers;
 
+import kernel.ProcessControlBlock;
+import kernel.ProcessState;
+import kernel.Scheduler;
 import simulator.CPU;
 
-public class InterruptHandler {
+public class YieldHandler {
     private Scheduler scheduler;
     
     private CPU cpu;
     
-    public InterruptHandler(CPU cpu, Scheduler scheduler) {
+    public YieldHandler(CPU cpu, Scheduler scheduler) {
         this.cpu = cpu;
         this.scheduler = scheduler;
     }
@@ -15,6 +18,9 @@ public class InterruptHandler {
     //Context switch from oldPCB to newPCB
     public void handleInterrupt() {
         ProcessControlBlock oldPCB = cpu.runningPcbPointer;
+        if (oldPCB.state == ProcessState.RUNNING) {
+            oldPCB.state = ProcessState.READY;
+        }
         oldPCB.programCounter = cpu.programCounter;
         oldPCB.operationCounter = cpu.operationCounter;
         System.out.println("Interrupted " + oldPCB.processID 

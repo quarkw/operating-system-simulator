@@ -41,11 +41,4 @@ public class SystemCalls {
         return summary.toString();
     }
     
-    public boolean aquire(String device) {
-        return scheduler.deviceOneLock.aquire();
-    }
-    
-    public void release(String device) {
-        scheduler.deviceOneLock.release();
-    }
 }
