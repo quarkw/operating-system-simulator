@@ -6,8 +6,6 @@ public class Scheduler {
     
     private LinkedList<ProcessControlBlock> readyQueue = new LinkedList<>();
     
-    public MutexLock deviceOneLock = new MutexLock();
-    
     
     public void insertPCB(ProcessControlBlock pcb) {
         readyQueue.add(pcb);

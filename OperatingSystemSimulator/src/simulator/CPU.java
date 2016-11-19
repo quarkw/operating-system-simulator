@@ -24,8 +24,6 @@ public class CPU {
     public int programCounter;
     
     
-    
-    
     private Random rand = new Random();
     
     public CPU() {
@@ -35,30 +33,30 @@ public class CPU {
     public void cycle() {
         if (interruptTimer > 0 ) {
             interruptTimer--;
+        } else {
+           interruptProcessor.setFlag(InterruptProcessor.YIELD);
+        }
+        
+        if (interruptProcessor.isInterruptPending()) {
+            interruptProcessor.signalInterrupt();
+        } else {
             if (operationCounter == 0) {
                 programCounter++;
                 loadOperation();
             }
-            System.out.println("Executing: " + runningPcbPointer.processID
-                    + " Program Ctr: " + programCounter
-                    + " OpCounter: " + operationCounter);
-            operationCounter--;
-            runningPcbPointer.cpuUsed++;
+            //System.out.println("Executing: " + runningPcbPointer.processID
+            //    + " Program Ctr: " + programCounter
+            //    + " OpCounter: " + operationCounter);
             
-        } else {
-            runningPcbPointer.state = ProcessState.READY;
-            interruptProcessor.signalInterrupt();
+            executeOperation();
+            runningPcbPointer.cpuUsed++;
         }
     }
     
     private void loadOperation() {
         Operation op = runningPcbPointer.program.get(programCounter);
         switch(op.getType()){
-            case Operation.END_OF_PROGRAM:
-                System.out.println("Terminated " + runningPcbPointer.processID);
-                runningPcbPointer.state = ProcessState.TERMINATED;
-                interruptProcessor.signalInterrupt();
-                break;
+            
             case Operation.CALCULATE:
                 operationCounter = op.getParameter();
                 break;
@@ -66,19 +64,36 @@ public class CPU {
                 operationCounter = 25 + rand.nextInt(25);
                 break;
             case Operation.AQUIRE:
-                if (!system.aquire("device 1")) {
-                    System.out.println("Process " + runningPcbPointer.processID + " failed to aquire resource");
-                    programCounter--; //TODO this is pretty ugly
-                    interruptTimer = 0;
-                    //interruptProcessor.signalInterrupt();
-                } else {
-                    System.out.println("Process " + runningPcbPointer.processID + " aquired resource");
-                }
-                operationCounter = 1; //TODO find a better way to spin
+                operationCounter = 1;
                 break;
             case Operation.RELEASE:
-                system.release("device 1");
-                operationCounter = 1;
+                operationCounter = 0;
+                break;
+            case Operation.END_OF_PROGRAM:
+                operationCounter = 0;
+                break;
+                
+        }
+    }
+    private void executeOperation() {
+        Operation op = runningPcbPointer.program.get(programCounter);
+        switch(op.getType()){
+            case Operation.CALCULATE:
+                operationCounter--;
+                break;
+            case Operation.IO:
+                operationCounter--;
+                break;
+            case Operation.END_OF_PROGRAM:
+                System.out.println("Terminating " + runningPcbPointer.processID);
+                runningPcbPointer.state = ProcessState.TERMINATED;
+                interruptProcessor.setFlag(InterruptProcessor.YIELD);
+                break;
+            case Operation.AQUIRE:
+                interruptProcessor.setFlag(InterruptProcessor.AQUIRE);
+                break;
+            case Operation.RELEASE:
+                interruptProcessor.setFlag(InterruptProcessor.RELEASE);
                 break;
                 
         }

@@ -1,6 +1,6 @@
 package utilities;
 
-import kernel.InterruptHandler;
+import kernel.interrupthandlers.*;
 import kernel.Scheduler;
 import kernel.SystemCalls;
 import simulator.CPU;
@@ -8,7 +8,9 @@ import simulator.CPU;
 public class BootLoader {
     public static SystemCalls boot(CPU cpu) {
         Scheduler scheduler = new Scheduler();
-        cpu.interruptProcessor.interruptHandler = new InterruptHandler(cpu, scheduler);
+        cpu.interruptProcessor.yieldHandler = new YieldHandler(cpu, scheduler);
+        cpu.interruptProcessor.lockTraps = new LockTraps(cpu);
+        
         
         SystemCalls system = new SystemCalls(scheduler, cpu);
         
