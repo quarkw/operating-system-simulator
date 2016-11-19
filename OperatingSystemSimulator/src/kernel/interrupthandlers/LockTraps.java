@@ -27,8 +27,6 @@ public class LockTraps {
     public void aquire() {
         if (!deviceOneLock.aquire()) {
                     System.out.println("Process " + cpu.runningPcbPointer.processID + " failed to aquire resource");
-                    //programCounter--; //TODO this is pretty ugly
-                    //interruptTimer = 0;
                     cpu.interruptProcessor.setFlag(InterruptProcessor.YIELD);
         } else {
                     System.out.println("Process " + cpu.runningPcbPointer.processID + " aquired resource");

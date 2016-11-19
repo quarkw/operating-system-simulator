@@ -19,6 +19,7 @@ public class SystemCalls {
         ArrayList<Operation> program = Assembler.assembleProgram(programText);
         int memoryRequirement = Assembler.memoryRequirement(programText);
         ProcessControlBlock pcb = new ProcessControlBlock(processID, program, memoryRequirement);
+        pcb.state = ProcessState.READY; //TODO remove this once new process queue implemented
         scheduler.insertPCB(pcb);
     }
     

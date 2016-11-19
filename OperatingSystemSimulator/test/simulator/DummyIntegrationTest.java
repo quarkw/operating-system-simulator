@@ -43,7 +43,7 @@ public class DummyIntegrationTest {
         System.out.println("Loading process2");
         System.out.println(systemCalls.processSummary());
         
-        for (int i = 0; i < 250; i++) {
+        for (int i = 0; i < 300; i++) {
             cpu.cycle();
         }
         System.out.println(systemCalls.processSummary());

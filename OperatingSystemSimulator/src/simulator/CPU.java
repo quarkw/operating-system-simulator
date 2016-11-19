@@ -44,10 +44,10 @@ public class CPU {
                 programCounter++;
                 loadOperation();
             }
-            System.out.println("Executing: " + runningPcbPointer.processID
-                + " Program Ctr: " + programCounter
-                + " OpCounter: " + operationCounter);
-            //operationCounter--;
+            //System.out.println("Executing: " + runningPcbPointer.processID
+            //    + " Program Ctr: " + programCounter
+            //    + " OpCounter: " + operationCounter);
+            
             executeOperation();
             runningPcbPointer.cpuUsed++;
         }
@@ -85,7 +85,7 @@ public class CPU {
                 operationCounter--;
                 break;
             case Operation.END_OF_PROGRAM:
-                System.out.println("Terminated " + runningPcbPointer.processID);
+                System.out.println("Terminating " + runningPcbPointer.processID);
                 runningPcbPointer.state = ProcessState.TERMINATED;
                 interruptProcessor.setFlag(InterruptProcessor.YIELD);
                 break;
