@@ -4,13 +4,25 @@ import kernel.SystemCalls;
 import simulator.CPU;
 import utilities.BootLoader;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Shell {
     private Scanner sc;
     private CPU cpu;
     private SystemCalls systemCalls;
+    private File workingDirectory, programFiles;
+    private static final String programFilesDirectoryName = "ProgramFiles";
+    private static final String programExtension = ".prgrm";
+    private static final String jobExtension = ".job";
+    private static final Charset encoding = StandardCharsets.UTF_8;
 
     public Shell(){
         this(System.in);
@@ -19,13 +31,15 @@ public class Shell {
         this.sc = new Scanner(input);
         this.cpu = new CPU();
         this.systemCalls = BootLoader.boot(cpu);
+        this.workingDirectory = new File(System.getProperty("user.dir"));
+        this.programFiles = new File(workingDirectory.getAbsolutePath() + "/" + programFilesDirectoryName);
     }
-    public void readLines(){
+    public void readLines() throws IOException {
         while(sc.hasNextLine()){
             executeInput(sc.nextLine());
         }
     }
-    public void executeInput(String input){
+    public void executeInput(String input) throws IOException {
         String[] inputArray = input.split("\\s");
         String command = inputArray[0];
         String[] params = {};
@@ -44,16 +58,16 @@ public class Shell {
                 load(params);
                 break;
             case "EXE":
-                exe();
+                exe(params);
                 break;
             case "TEST":
                 test();
                 break;
             case "RESET":
-                System.out.println("Logic for RESET");
+                reset();
                 break;
             case "EXIT":
-                System.out.println("Logic for EXIT");
+                exit();
                 break;
             default:
                 System.out.printf("Command \"%s\" not found\n", inputArray[0]);
@@ -71,6 +85,7 @@ public class Shell {
         // amount of CPU time already used,
         // priority (if relevant),
         // number of I/O requests performed.
+        System.out.println(systemCalls.processSummary());
     }
 
     private void mem(){
@@ -79,15 +94,67 @@ public class Shell {
 
     }
 
-    private void load(){
+    private String[] getProgramList(){
         //TODO list files in the program files directory and let user input program to load
-
+        String[] programs = programFiles.list((File dir, String name) ->  name.endsWith(programExtension));
+        return programs;
     }
 
-    private void load(String[] filenames){
-        if(filenames.length==0)
-            load();
-        for(String file : filenames){
+    private void printProgramList(){
+        String[] programs = getProgramList();
+        if(programs.length==0) {
+            System.out.printf("There are no programs inside the \"%s\" directory\n", programFilesDirectoryName);
+            System.out.printf("Programs have the extension \"%s\" and are located in \"%s\"\n",programExtension,programFiles.getAbsolutePath());
+        }
+        else {
+            System.out.println("Programs: " + Arrays.toString(programs));
+        }
+    }
+
+    private String[] getJobList(){
+        //TODO list files in the program files directory and let user input program to load
+        String[] programs = programFiles.list((File dir, String name) ->  name.endsWith(jobExtension));
+        return programs;
+    }
+
+    private void printJobList(){
+        String[] jobs = getJobList();
+        if(jobs.length==0) {
+            System.out.printf("There are no jobs inside the \"%s\" directory\n", programFilesDirectoryName);
+            System.out.printf("Jobs have the extension \"%s\" and are located in \"%s\"\n",jobExtension,programFiles.getAbsolutePath());
+        }
+        else {
+            System.out.println("Programs: " + Arrays.toString(jobs));
+        }
+    }
+
+    private void load(String[] filenames) throws IOException {
+        if(!programFiles.exists()){
+            System.out.printf("Error: There is no folder called \"%s\" inside: \"%s\"\n",programFilesDirectoryName,workingDirectory.getAbsolutePath());
+            return;
+        }
+        if(filenames.length==0){
+            printProgramList();
+            printJobList();
+        }
+
+        //Try files in job
+
+        for(String filename : filenames){
+            File file;
+            if(filename.endsWith(programExtension)) {
+                file = new File(programFiles.getAbsolutePath() + "/" + filename);
+                if(file.exists() && !file.isDirectory()){
+                    systemCalls.loadProgram(file.getName(),readFile(file));
+                }
+            } else if (filename.endsWith(jobExtension)) {
+                file = new File(programFiles.getAbsoluteFile() + "/" + filename);
+                if(file.exists() && !file.isDirectory()){
+                    List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()),encoding);
+                    for(String line : lines)
+                        executeInput(line);
+                }
+            }
             //TODO Load file using systemCall
         }
     }
@@ -98,6 +165,18 @@ public class Shell {
 
     private void exe(String[] parameters){
         //TODO
+        if(parameters.length == 0){
+            exe();
+            return;
+        }
+        try{
+            int execLength = Integer.parseInt(parameters[0]);
+            for(int i = 0;i < execLength; i++){
+                cpu.cycle();
+            }
+        } catch(NumberFormatException e) {
+            System.out.printf("ERROR: Parameter for EXE, \"%s\", is not an integer\n", parameters[0]);
+        }
     }
 
     private void test(){
@@ -132,7 +211,7 @@ public class Shell {
         System.out.println("Resetting simulator ...");
         this.cpu = new CPU();
         this.systemCalls = BootLoader.boot(cpu);
-        System.out.print("Reset complete");
+        System.out.println("Reset complete");
     }
 
     private void exit(){
@@ -141,13 +220,19 @@ public class Shell {
     }
 
     private void suggestCommands(String input){
-        String inputToLower = input.toLowerCase();
         String[] commands = {"PROC","MEM","LOAD","EXE","TEST","RESET","EXIT"};
+        suggestCorrections(input, commands);
+    }
+
+    private void suggestCorrections(String input, String[] commands){
+        String inputToLower = input.toLowerCase();
         LinkedList<String> suggestions = new LinkedList<>();
         for(String command : commands){
             if(inputToLower.equals(command.toLowerCase()))
                 suggestions.add(command);
         }
+        if(!suggestions.isEmpty())
+            System.out.println("Remember Commands are case sensitive");
         //Suggest command that share two n-2 letters, (minimum 2)
         for(String command : commands){
             //Find number of shared characters
@@ -180,6 +265,7 @@ public class Shell {
         if(!suggestions.isEmpty())
             System.out.println("Did you mean: " + linkedListToHumanReadableOrList(suggestions));
     }
+
     private String linkedListToHumanReadableOrList(LinkedList list){
         if(list.isEmpty()) return "";
         StringBuilder sb = new StringBuilder();
@@ -190,6 +276,11 @@ public class Shell {
             sb.append('"').append(list.remove().toString()).append('"');
         }
         return sb.toString();
+    }
+
+    private String readFile(File file) throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
+        return new String (encoded, encoding);
     }
 
 }

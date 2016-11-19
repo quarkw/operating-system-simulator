@@ -11,6 +11,8 @@ import utilities.BootLoader;
 import kernel.SystemCalls;
 import org.junit.Test;
 
+import java.io.IOException;
+
 /**
  *
  * @author pjhudgins
@@ -52,7 +54,7 @@ public class DummyIntegrationTest {
         System.out.println(systemCalls.processSummary());
     }
     @Test
-    public void runShellTest(){
+    public void runShellTest() throws IOException {
         Shell shell = new Shell();
         shell.executeInput("TEST");
     }
