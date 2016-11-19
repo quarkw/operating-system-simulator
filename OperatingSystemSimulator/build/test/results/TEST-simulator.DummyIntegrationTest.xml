@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="0" tests="1" time="0.085" timestamp="2016-11-19T22:03:45">
+<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="1" tests="2" time="0.186" timestamp="2016-11-19T22:36:16">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -59,7 +59,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher5790397470158269055.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit1473294622651455566.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher6583906697663083945.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit6858649528051234333.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -99,7 +99,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null1805444665" />
+    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null1369513805" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar" />
@@ -402,184 +402,750 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="simulator.DummyIntegrationTest" name="runTwoProcesses" time="0.022" />
+  <testcase classname="simulator.DummyIntegrationTest" name="runTwoProcesses" time="0.001">
+    <skipped />
+  </testcase>
+  <testcase classname="simulator.DummyIntegrationTest" name="runFiveProcesses" time="0.115" />
   <system-out><![CDATA[Running Process:
-  Process: backgroundProcess, Program Counter: -1, Cpu Used: 0
+  Pid: 0, Program: backgroundProcess, PC: -1, Cpu Used: 0
 Ready Processes:
 Standby Processes:
 
-Interrupted backgroundProcess at -1/0
-Interrupted backgroundProcess at 0/-6
-Interrupted backgroundProcess at 0/-11
-Interrupted backgroundProcess at 0/-16
-Loading process1
+Interrupted 0 at -1/0
+Interrupted 0 at 0/-6
+Interrupted 0 at 0/-11
+Interrupted 0 at 0/-16
+Interrupted 0 at 0/-21
 Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 16
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 20
 Ready Processes:
 Standby Processes:
 
-Interrupted backgroundProcess at 0/-21
-Interrupted backgroundProcess at 0/-26
-Interrupted backgroundProcess at 0/-31
-Loading process2
+Loading process 1
 Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 33
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 20
 Ready Processes:
 Standby Processes:
 
-Interrupted backgroundProcess at 0/-36
-Interrupted backgroundProcess at 0/-41
-Interrupted backgroundProcess at 0/-46
-Interrupted backgroundProcess at 0/-51
+Interrupted 0 at 0/-26
+Interrupted 0 at 0/-31
+Interrupted 0 at 0/-36
+Interrupted 0 at 0/-41
 Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 54
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 41
 Ready Processes:
-  Process: process1, Program Counter: -1, Cpu Used: 0
-  Process: process2, Program Counter: -1, Cpu Used: 0
 Standby Processes:
 
-Interrupted backgroundProcess at 0/-56
-Process process1 aquired resource
-Interrupted process1 at 1/37
-Process process2 failed to aquire resource
-Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-61
-Interrupted process1 at 1/32
-Process process2 failed to aquire resource
+Loading process 2
 Running Process:
-  Process: process2, Program Counter: 0, Cpu Used: 2
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 41
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 60
-  Process: process1, Program Counter: 1, Cpu Used: 9
 Standby Processes:
 
-Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-66
-Interrupted process1 at 1/27
-Process process2 failed to aquire resource
-Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-71
+Interrupted 0 at 0/-46
+Interrupted 0 at 0/-51
+Interrupted 0 at 0/-56
+Process 1 aquired resource
+Interrupted 1 at 1/25
+Process 2 failed to aquire resource
 Running Process:
-  Process: process1, Program Counter: 1, Cpu Used: 17
+  Pid: 2, Program: IOprogram, PC: -1, Cpu Used: 1
 Ready Processes:
-  Process: process2, Program Counter: 0, Cpu Used: 3
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 70
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 55
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 4
 Standby Processes:
 
-Interrupted process1 at 1/22
-Process process2 failed to aquire resource
-Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-76
-Interrupted process1 at 1/17
-Process process2 failed to aquire resource
-Interrupted process2 at 0/1
+Loading process 3
 Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 79
+  Pid: 2, Program: IOprogram, PC: -1, Cpu Used: 1
 Ready Processes:
-  Process: process1, Program Counter: 1, Cpu Used: 24
-  Process: process2, Program Counter: 0, Cpu Used: 5
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 55
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 4
 Standby Processes:
 
-Interrupted backgroundProcess at 0/-81
-Interrupted process1 at 1/12
-Process process2 failed to aquire resource
-Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-86
-Interrupted process1 at 1/7
-Process process2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-61
+Interrupted 1 at 1/20
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-66
 Running Process:
-  Process: process2, Program Counter: 0, Cpu Used: 7
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 12
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 85
-  Process: process1, Program Counter: 1, Cpu Used: 34
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 2
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 65
 Standby Processes:
 
-Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-91
-Interrupted process1 at 1/2
-Process process2 failed to aquire resource
-Interrupted process2 at 0/1
-Interrupted backgroundProcess at 0/-96
+Loading process 4
 Running Process:
-  Process: process1, Program Counter: 1, Cpu Used: 42
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 12
 Ready Processes:
-  Process: process2, Program Counter: 0, Cpu Used: 8
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 95
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 2
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 65
 Standby Processes:
 
-Interrupted process1 at 3/19
-Process process2 aquired resource
-Interrupted process2 at 1/37
-Interrupted backgroundProcess at 0/-101
-Interrupted process1 at 3/14
+Interrupted 1 at 1/15
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-71
+Interrupted 1 at 1/10
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
 Running Process:
-  Process: process2, Program Counter: 1, Cpu Used: 16
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 2
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 100
-  Process: process1, Program Counter: 3, Cpu Used: 48
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 3
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 70
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+
+Loading process 5
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 2
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 3
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 70
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 4 failed to aquire resource
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 6
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 3
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 70
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 6
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 3
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 70
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+
+Interrupted 4 at 0/1
+Interrupted 0 at 0/-76
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-81
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-86
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 5
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 85
+Standby Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 6
+  Pid: 5, Program: IOprogram, PC: -1, Cpu Used: 0
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-91
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-96
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 99
+Ready Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 8
+Standby Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 6
+  Pid: 5, Program: IOprogram, PC: -1, Cpu Used: 0
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+
+Interrupted 0 at 0/-101
+Process 5 failed to aquire resource
+Interrupted 5 at 0/1
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Process 5 failed to aquire resource
+Interrupted 5 at 0/1
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Process 5 failed to aquire resource
+Interrupted 5 at 0/1
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Process 5 failed to aquire resource
+Interrupted 5 at 0/1
+Process 4 failed to aquire resource
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 10
+Ready Processes:
+  Pid: 5, Program: IOprogram, PC: 0, Cpu Used: 4
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 8
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 100
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+
+Interrupted 4 at 0/1
+Process 5 failed to aquire resource
+Interrupted 5 at 0/1
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Process 5 failed to aquire resource
+Interrupted 5 at 0/1
+Interrupted 0 at 0/-106
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-111
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 9
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 110
+Standby Processes:
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+  Pid: 5, Program: IOprogram, PC: 0, Cpu Used: 6
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-116
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-121
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 124
+Ready Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 12
+Standby Processes:
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+  Pid: 5, Program: IOprogram, PC: 0, Cpu Used: 6
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+
+Interrupted 0 at 0/-126
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-131
+Interrupted 1 at 1/5
+Process 5 failed to aquire resource
+Interrupted 5 at 0/1
+Running Process:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 29
+Ready Processes:
+  Pid: 5, Program: IOprogram, PC: 0, Cpu Used: 7
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 13
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 130
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+
+Interrupted 1 at 1/0
+Process 5 failed to aquire resource
+Interrupted 5 at 0/1
+Interrupted 1 at 3/17
+Process 5 aquired resource
+Interrupted 5 at 1/44
+Interrupted 1 at 3/12
+Running Process:
+  Pid: 5, Program: IOprogram, PC: 1, Cpu Used: 15
+Ready Processes:
+  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 38
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 13
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 130
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+
+Interrupted 5 at 1/39
+Interrupted 1 at 3/7
+Interrupted 5 at 1/34
+Interrupted 1 at 3/2
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 134
+Ready Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 13
+Standby Processes:
+  Pid: 5, Program: IOprogram, PC: 1, Cpu Used: 22
+  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 48
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Interrupted 0 at 0/-136
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-141
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-146
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 147
+Ready Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 16
+Standby Processes:
+  Pid: 5, Program: IOprogram, PC: 1, Cpu Used: 22
+  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 48
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 5
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Interrupted 0 at 0/-151
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-156
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-161
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Running Process:
+  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 48
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 6
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 18
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 160
+  Pid: 5, Program: IOprogram, PC: 1, Cpu Used: 22
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Terminating 1
+Interrupted 1 at 4/0
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Running Process:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 13
+Ready Processes:
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 18
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 160
+  Pid: 5, Program: IOprogram, PC: 1, Cpu Used: 22
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Interrupted 5 at 1/29
+Interrupted 0 at 0/-166
+Interrupted 5 at 1/24
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 166
+Ready Processes:
+  Pid: 5, Program: IOprogram, PC: 1, Cpu Used: 32
+Standby Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 15
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 18
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Interrupted 0 at 0/-171
+Interrupted 5 at 1/19
+Interrupted 0 at 0/-176
+Interrupted 5 at 1/14
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 177
+Ready Processes:
+  Pid: 5, Program: IOprogram, PC: 1, Cpu Used: 42
+Standby Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 15
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 18
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Interrupted 0 at 0/-181
+Interrupted 5 at 1/9
+Interrupted 0 at 0/-186
+Interrupted 5 at 1/4
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Running Process:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 15
+Ready Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 19
+Standby Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 185
+  Pid: 5, Program: IOprogram, PC: 1, Cpu Used: 52
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Running Process:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 20
+Ready Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 23
+Standby Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 185
+  Pid: 5, Program: IOprogram, PC: 1, Cpu Used: 52
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 5 at 2/0
+Interrupted 0 at 0/-191
+Interrupted 5 at 3/15
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 191
+Ready Processes:
+  Pid: 5, Program: IOprogram, PC: 3, Cpu Used: 62
+Standby Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 20
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 24
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Interrupted 0 at 0/-196
+Interrupted 5 at 3/10
+Interrupted 0 at 0/-201
+Interrupted 5 at 3/5
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 202
+Ready Processes:
+  Pid: 5, Program: IOprogram, PC: 3, Cpu Used: 72
+Standby Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 20
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 24
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 11
+
+Interrupted 0 at 0/-206
+Interrupted 5 at 3/0
+Interrupted 0 at 0/-211
+Terminating 5
+Interrupted 5 at 4/0
+Process 4 aquired resource
+Interrupted 4 at 1/42
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 25
+Ready Processes:
+  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 15
+Standby Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 210
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 20
+
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 4 at 1/37
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 4 at 1/32
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 30
+Ready Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 27
+Standby Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 210
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 20
+
+Interrupted 4 at 1/27
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 4 at 1/22
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 4 at 1/17
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 213
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 21
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 29
+  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 40
+
+Interrupted 0 at 0/-216
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Interrupted 0 at 0/-221
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Interrupted 0 at 0/-226
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 226
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 24
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 29
+  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 40
+
+Interrupted 0 at 0/-231
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Interrupted 0 at 0/-236
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Interrupted 4 at 1/12
+Process 2 failed to aquire resource
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 30
+Ready Processes:
+  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 45
+Standby Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 235
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 26
+
+Interrupted 2 at 0/1
+Interrupted 4 at 1/7
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 4 at 1/2
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 4 at 3/19
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 32
+Ready Processes:
+  Pid: 4, Program: IOprogram, PC: 3, Cpu Used: 59
+Standby Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 235
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 26
+
+Process 2 aquired resource
+Interrupted 2 at 1/33
+Interrupted 4 at 3/14
+Interrupted 2 at 1/28
+Interrupted 4 at 3/9
+Running Process:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 27
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 235
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 41
+  Pid: 4, Program: IOprogram, PC: 3, Cpu Used: 69
+
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Interrupted 0 at 0/-241
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Interrupted 0 at 0/-246
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 250
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 29
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 41
+  Pid: 4, Program: IOprogram, PC: 3, Cpu Used: 69
+
+Interrupted 0 at 0/-251
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Interrupted 0 at 0/-256
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Interrupted 0 at 0/-261
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 3, Cpu Used: 72
+Ready Processes:
+  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 41
+Standby Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 260
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 32
+
+Interrupted 4 at 3/4
+Interrupted 2 at 1/23
+Terminating 4
+Interrupted 4 at 4/0
+Interrupted 2 at 1/18
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 55
+Ready Processes:
+Standby Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 260
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 32
+
+Interrupted 2 at 1/13
+Interrupted 2 at 1/8
+Interrupted 2 at 1/3
+Interrupted 2 at 2/0
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 2, Cpu Used: 75
+Ready Processes:
+Standby Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 260
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 32
+
+Interrupted 2 at 3/15
+Interrupted 2 at 3/10
+Interrupted 2 at 3/5
+Interrupted 0 at 0/-266
+Process 3 aquired resource
+Interrupted 3 at 1/28
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 265
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 1, Cpu Used: 36
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 3, Cpu Used: 85
+
+Interrupted 0 at 0/-271
+Interrupted 3 at 1/23
+Interrupted 0 at 0/-276
+Interrupted 3 at 1/18
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 276
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 1, Cpu Used: 46
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 3, Cpu Used: 85
+
+Interrupted 0 at 0/-281
+Interrupted 3 at 1/13
+Interrupted 0 at 0/-286
+Interrupted 3 at 1/8
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 287
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 1, Cpu Used: 56
+Standby Processes:
+  Pid: 2, Program: IOprogram, PC: 3, Cpu Used: 85
+
+Interrupted 0 at 0/-291
+Interrupted 3 at 1/3
+Interrupted 0 at 0/-296
+Interrupted 2 at 3/0
+Running Process:
+  Pid: 3, Program: IOprogram, PC: 1, Cpu Used: 64
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 295
+  Pid: 2, Program: IOprogram, PC: 3, Cpu Used: 90
 Standby Processes:
 
-Interrupted process2 at 1/32
-Interrupted backgroundProcess at 0/-106
-Interrupted process1 at 3/9
-Interrupted process2 at 1/27
+Interrupted 3 at 2/0
+Interrupted 0 at 0/-301
+Terminating 2
+Interrupted 2 at 4/0
+Interrupted 3 at 3/15
+Interrupted 0 at 0/-306
 Running Process:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 110
+  Pid: 3, Program: IOprogram, PC: 3, Cpu Used: 72
 Ready Processes:
-  Process: process1, Program Counter: 3, Cpu Used: 53
-  Process: process2, Program Counter: 1, Cpu Used: 22
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 305
 Standby Processes:
 
-Interrupted backgroundProcess at 0/-111
-Interrupted process1 at 3/4
-Interrupted process2 at 1/22
-Interrupted backgroundProcess at 0/-116
-Terminating process1
-Interrupted process1 at 4/0
+Interrupted 3 at 3/10
+Interrupted 0 at 0/-311
+Interrupted 3 at 3/5
+Interrupted 0 at 0/-316
 Running Process:
-  Process: process2, Program Counter: 1, Cpu Used: 27
+  Pid: 3, Program: IOprogram, PC: 3, Cpu Used: 83
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 115
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 315
 Standby Processes:
 
-Interrupted process2 at 1/17
-Interrupted backgroundProcess at 0/-121
-Interrupted process2 at 1/12
-Interrupted backgroundProcess at 0/-126
+Interrupted 3 at 3/0
+Interrupted 0 at 0/-321
+Terminating 3
+Interrupted 3 at 4/0
+Interrupted 0 at 0/-326
+Interrupted 0 at 0/-331
 Running Process:
-  Process: process2, Program Counter: 1, Cpu Used: 38
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 332
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 125
 Standby Processes:
 
-Interrupted process2 at 1/7
-Interrupted backgroundProcess at 0/-131
-Interrupted process2 at 1/2
-Interrupted backgroundProcess at 0/-136
+Interrupted 0 at 0/-336
+Interrupted 0 at 0/-341
+Interrupted 0 at 0/-346
+Interrupted 0 at 0/-351
 Running Process:
-  Process: process2, Program Counter: 1, Cpu Used: 49
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 353
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 135
 Standby Processes:
 
-Interrupted process2 at 3/19
-Interrupted backgroundProcess at 0/-141
-Interrupted process2 at 3/14
-Interrupted backgroundProcess at 0/-146
+Interrupted 0 at 0/-356
+Interrupted 0 at 0/-361
+Interrupted 0 at 0/-366
+Interrupted 0 at 0/-371
 Running Process:
-  Process: process2, Program Counter: 3, Cpu Used: 59
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 374
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 145
 Standby Processes:
 
-Interrupted process2 at 3/9
-Interrupted backgroundProcess at 0/-151
-Interrupted process2 at 3/4
-Interrupted backgroundProcess at 0/-156
+Interrupted 0 at 0/-376
+Interrupted 0 at 0/-381
+Interrupted 0 at 0/-386
+Interrupted 0 at 0/-391
 Running Process:
-  Process: process2, Program Counter: 3, Cpu Used: 70
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 395
 Ready Processes:
-  Process: backgroundProcess, Program Counter: 0, Cpu Used: 155
+Standby Processes:
+
+Interrupted 0 at 0/-396
+Interrupted 0 at 0/-401
+Interrupted 0 at 0/-406
+Interrupted 0 at 0/-411
+Interrupted 0 at 0/-416
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 415
+Ready Processes:
+Standby Processes:
+
+Interrupted 0 at 0/-421
+Interrupted 0 at 0/-426
+Interrupted 0 at 0/-431
+Interrupted 0 at 0/-436
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 436
+Ready Processes:
 Standby Processes:
 
 ]]></system-out>

@@ -14,7 +14,7 @@ import simulator.CPU;
  */
 public class LongTermScheduler {
     
-    private static final int MEMORY_FOR_USER_PROCS = 200;
+    private static final int MEMORY_FOR_USER_PROCS = 150;
     
     public final ShortTermScheduler shortTermScheduler = new ShortTermScheduler(this);
     

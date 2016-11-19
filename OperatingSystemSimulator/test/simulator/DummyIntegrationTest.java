@@ -8,6 +8,7 @@ package simulator;
 import simulator.CPU;
 import utilities.BootLoader;
 import kernel.SystemCalls;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -19,7 +20,7 @@ public class DummyIntegrationTest {
     public DummyIntegrationTest() {
     }
     
-    
+    @Ignore
     @Test
     public void runTwoProcesses() {
         CPU cpu = new CPU();
@@ -43,6 +44,40 @@ public class DummyIntegrationTest {
         System.out.println("Loading process2");
         
         exec(325, cpu, systemCalls);
+        //System.out.println(systemCalls.processSummary());
+    }
+    
+    
+    @Test
+    public void runFiveProcesses() {
+        CPU cpu = new CPU();
+        SystemCalls systemCalls = BootLoader.boot(cpu);
+        
+        exec(25, cpu, systemCalls);
+        
+        String program = "50 \nIO \nCALCULATE 20";
+        
+        System.out.println("Loading process 1");
+        systemCalls.loadProgram("IOprogram", program);
+        exec(25, cpu, systemCalls);
+        
+        System.out.println("Loading process 2");
+        systemCalls.loadProgram("IOprogram", program);
+        exec(25, cpu, systemCalls);
+        
+        System.out.println("Loading process 3");
+        systemCalls.loadProgram("IOprogram", program);
+        exec(25, cpu, systemCalls);
+        
+        System.out.println("Loading process 4");
+        systemCalls.loadProgram("IOprogram", program);
+        exec(25, cpu, systemCalls);
+        
+        System.out.println("Loading process 5");
+        systemCalls.loadProgram("IOprogram", program);
+        exec(25, cpu, systemCalls);
+        
+        exec(1000, cpu, systemCalls);
         //System.out.println(systemCalls.processSummary());
     }
     

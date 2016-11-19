@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class ProcessControlBlock {
     //Just used public fields because this is simulating a methodless block of data
-    public final String processID;
+    public final int processID;
+    public final String programName;
     public final int memoryAllocation;
     public final long startTime;
     
@@ -15,9 +16,10 @@ public class ProcessControlBlock {
     public int operationCounter; //Would not exist in a real machine, necessary because of simulator language.
     public ArrayList<Operation> program;
     
-    public ProcessControlBlock(String processID, ArrayList<Operation> program, 
+    public ProcessControlBlock(int processID, String programName, ArrayList<Operation> program, 
             int memoryRequirement) {
         this.processID = processID;
+        this.programName = programName;
         this.memoryAllocation = memoryRequirement;
         this.program = program;
         this.programCounter = -1;

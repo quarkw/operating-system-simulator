@@ -19,7 +19,7 @@ public class ShortTermScheduler {
         readyQueue.add(pcb);
     }
     
-    public int getTimeLimit(String processID) {
+    public int getTimeLimit(int processID) {
         return ST_SCHEDULE_INTERVAL;
     }
     
