@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class SystemCalls {
     
-    private final LongTermScheduler scheduler;
+    public final LongTermScheduler scheduler;
     private final CPU cpu;
     
     private int nextPid = 0;

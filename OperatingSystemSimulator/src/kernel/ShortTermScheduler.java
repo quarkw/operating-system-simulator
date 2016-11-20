@@ -24,12 +24,13 @@ public class ShortTermScheduler {
     }
     
     public ProcessControlBlock getNextPcb() {
-        if (longTermScheduleTimer == 0) {
+        if (longTermScheduleTimer == 0 || readyQueue.isEmpty()) {
             longTermScheduler.schedule();
             longTermScheduleTimer = LT_SCHEDULE_INTERVAL;
         } else {
             longTermScheduleTimer--;
         }
+
         return readyQueue.remove();
     }
     
