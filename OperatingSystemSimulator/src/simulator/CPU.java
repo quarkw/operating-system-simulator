@@ -30,6 +30,16 @@ public class CPU {
         this.interruptProcessor = new InterruptProcessor();
     }
     
+    public boolean advanceClock() {
+        if (runningPcbPointer.state == ProcessState.TERMINATED
+                && system.scheduler.shortTermScheduler.getReadyQueue().isEmpty()) {
+            return false;
+        }
+        cycle();
+        
+        return true;
+    }
+    
     public void cycle() {
         if (interruptTimer > 0 ) {
             interruptTimer--;
