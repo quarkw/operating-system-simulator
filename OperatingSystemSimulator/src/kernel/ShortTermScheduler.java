@@ -48,4 +48,14 @@ public class ShortTermScheduler {
     public LinkedList<ProcessControlBlock> getReadyQueue() {
         return readyQueue;
     }
+    
+    public boolean aquireDevice(int n) {
+        
+    }
+    
+    public boolean releaseDevice(int n) {
+        if (!waitingQueues[n].isEmpty()) {
+            insertPCB(waitingQueues[])
+        }
+    }
 }
