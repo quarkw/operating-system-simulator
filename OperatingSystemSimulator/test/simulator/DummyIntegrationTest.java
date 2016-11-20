@@ -92,7 +92,7 @@ public class DummyIntegrationTest {
         for (int i = 0; i < n; i += 25) {
             System.out.println(system.processSummary());
             for (int j = 0; j < 25; j++) {
-               cpu.advanceClock();
+               if (!cpu.advanceClock()) return;
             }
         }
         System.out.println(system.processSummary());

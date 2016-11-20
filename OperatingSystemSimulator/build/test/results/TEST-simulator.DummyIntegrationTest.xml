@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="2" tests="3" time="0.08" timestamp="2016-11-20T05:35:29">
+<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="2" tests="3" time="0.18" timestamp="2016-11-20T17:31:01">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -59,7 +59,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher3351470734034519561.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit3352776821992778515.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher5998210262310616017.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit4641146855140225865.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -99,7 +99,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null483242026" />
+    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null1108961447" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar" />
@@ -114,6 +114,7 @@
     <property name="ant.file.OperatingSystemSimulator" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build.xml" />
     <property name="libs.jaxb.javadoc" value="C:\Program Files\NetBeans 8.1\ide\docs\jaxb-api-doc.zip" />
     <property name="libs.struts.classpath" value="C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\antlr-2.7.2.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\bsf-2.3.0.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-beanutils-1.8.0.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-chain-1.2.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-digester-1.8.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-fileupload-1.1.1.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-io-1.1.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-logging-1.0.4.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\commons-validator-1.3.1.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\jstl-1.0.2.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\oro-2.0.8.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\standard-1.0.6.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-core-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-el-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-extras-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-faces-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-mailreader-dao-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-scripting-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-taglib-1.3.10.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\struts\struts-tiles-1.3.10.jar" />
+    <property name="org.openide.awt.SwingBrowserImpl.do-not-block-awt" value="false" />
     <property name="javac.includes.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\classes\simulator\DummyIntegrationTest.class" />
     <property name="ant.home" value="C:\Program Files\NetBeans 8.1\extide\ant" />
     <property name="libs.junit_4.src" value="C:\Program Files\NetBeans 8.1\platform\docs\junit-4.12-sources.jar" />
@@ -303,8 +304,8 @@
     <property name="line.separator" value="&#xd;&#xa;" />
     <property name="ant.file.OperatingSystemSimulator-impl" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\nbproject\build-impl.xml" />
     <property name="java.specification.version" value="1.8" />
-    <property name="libs.jaxws21.maven-pom" value="" />
     <property name="java.vm.info" value="mixed mode" />
+    <property name="libs.jaxws21.maven-pom" value="" />
     <property name="nb.junit.batch" value="true" />
     <property name="junit.forkmode" value="perTest" />
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_101\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_101\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_101\jre\classes" />
@@ -317,21 +318,22 @@
     <property name="annotation.processing.enabled" value="true" />
     <property name="libs.jsf20.src" value="" />
     <property name="libs.jpa20-persistence.src" value="" />
-    <property name="libs.jsf12.src" value="" />
     <property name="libs.DataBindingME-SVG.maven-pom" value="" />
+    <property name="libs.jsf12.src" value="" />
     <property name="libs.struts.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\struts-1.3.10-javadoc.zip" />
+    <property name="ignore.failing.tests" value="true" />
     <property name="libs.javaee-web-api-7.0.src" value="" />
     <property name="libs.primefaces.src" value="" />
     <property name="dist.dir" value="dist" />
     <property name="libs.groovy-all.javadoc" value="" />
     <property name="testng.debug.mode" value="" />
-    <property name="javac.fork" value="true" />
     <property name="libs.groovy-all.classpath" value="C:\Program Files\NetBeans 8.1\groovy\modules\ext\groovy-all.jar" />
+    <property name="javac.fork" value="true" />
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
     <property name="default.javac.source" value="1.8" />
     <property name="debug-transport-by-os" value="dt_shmem" />
-    <property name="libs.MySQLDriver.src" value="" />
     <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="libs.MySQLDriver.src" value="" />
     <property name="build.test.results.dir" value="build/test/results" />
     <property name="java.runtime.version" value="1.8.0_101-b13" />
     <property name="default.javac.target" value="1.8" />
@@ -350,8 +352,8 @@
     <property name="libs.restlib.maven-pom" value="" />
     <property name="libs.jpa2-persistence.javadoc" value="C:\Program Files\NetBeans 8.1\java\modules\ext\docs\javax.persistence-2.1.0-doc.zip" />
     <property name="libs.DataBindingME.javadoc" value="C:\Program Files\NetBeans 8.1\mobility\modules\docs\netbeans_databindingme-api.zip" />
-    <property name="apple.laf.useScreenMenuBar" value="true" />
     <property name="java.class.path" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\classes;C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar;C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar;C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\classes;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-launcher.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-junit.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-junit4.jar" />
+    <property name="apple.laf.useScreenMenuBar" value="true" />
     <property name="do.mkdist" value="true" />
     <property name="libs.absolutelayout.src" value="" />
     <property name="libs.jpa20-persistence.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar" />
@@ -365,7 +367,7 @@
     <property name="libs.hibernate4-support.maven-pom" value="" />
     <property name="libs.restlib.javadoc" value="" />
     <property name="libs.JAXB-ENDORSED.classpath" value="C:\Program Files\NetBeans 8.1\ide\modules\ext\jaxb\api\jaxb-api.jar" />
-    <property name="nb.internal.action.name" value="run.single" />
+    <property name="nb.internal.action.name" value="test.single" />
     <property name="libs.javaee-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\javaee-doc-api.jar" />
     <property name="libs.eclipselink.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\eclipselink.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\javax.persistence_2.1.0.v201304241213.jar;C:\Program Files\NetBeans 8.1\java\modules\ext\eclipselink\org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
@@ -381,18 +383,18 @@
     <property name="dist.archive.excludes" value="" />
     <property name="libs.testng.javadoc" value="C:\Program Files\NetBeans 8.1\platform\docs\testng-6.8.1-javadoc.zip" />
     <property name="libs.DataBindingME-PIM.src" value="C:\Program Files\NetBeans 8.1\mobility\sources\netbeans_databindingme_pim-src.zip" />
-    <property name="libs.PostgreSQLDriver.classpath" value="C:\Program Files\NetBeans 8.1\ide\modules\ext\postgresql-9.2-1002.jdbc4.jar" />
     <property name="user.script" value="" />
+    <property name="libs.PostgreSQLDriver.classpath" value="C:\Program Files\NetBeans 8.1\ide\modules\ext\postgresql-9.2-1002.jdbc4.jar" />
     <property name="libs.jsf12.maven-pom" value="" />
     <property name="libs.hibernate4-persistencemodelgen.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\hibernate4\hibernate-jpamodelgen-4.3.1.Final.jar" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
     <property name="main.class" value="proto312.Proto312" />
-    <property name="build.dir" value="build" />
     <property name="libs.CopyLibs.src" value="" />
+    <property name="build.dir" value="build" />
     <property name="libs.jsp-compilation.classpath" value="C:\Program Files\NetBeans 8.1\extide\ant\lib\ant.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\servlet3.1-jsp2.3-api.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\glassfish-jspparser-4.0.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\jsf-2_2\javax.faces.jar;C:\Program Files\NetBeans 8.1\enterprise\modules\ext\jstl-api.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.4 compiled on April 29 2014" />
-    <property name="file.encoding" value="Cp1252" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
+    <property name="file.encoding" value="Cp1252" />
     <property name="jdkBug6558476" value="false" />
     <property name="javadoc.nonavbar" value="false" />
     <property name="libs.spring-webmvc4.0.classpath" value="C:\Program Files\NetBeans 8.1\java\modules\ext\spring-4\spring-webmvc-4.0.1.RELEASE.jar" />
@@ -403,38 +405,21 @@
   <testcase classname="simulator.DummyIntegrationTest" name="runTwoProcesses" time="0.0">
     <skipped />
   </testcase>
-  <testcase classname="simulator.DummyIntegrationTest" name="runFiveProcesses" time="0.018">
-    <error message="Index: 5, Size: 5" type="java.lang.IndexOutOfBoundsException">java.lang.IndexOutOfBoundsException: Index: 5, Size: 5
-	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
-	at java.util.ArrayList.get(ArrayList.java:429)
-	at simulator.CPU.loadOperation(CPU.java:89)
-	at simulator.CPU.cycle(CPU.java:76)
-	at simulator.CPU.advanceClock(CPU.java:59)
-	at simulator.DummyIntegrationTest.exec(DummyIntegrationTest.java:95)
-	at simulator.DummyIntegrationTest.runFiveProcesses(DummyIntegrationTest.java:81)
-</error>
-  </testcase>
+  <testcase classname="simulator.DummyIntegrationTest" name="runFiveProcesses" time="0.108" />
   <testcase classname="simulator.DummyIntegrationTest" name="runShellTest" time="0.0">
     <skipped />
   </testcase>
   <system-out><![CDATA[Loading process 1
-Interrupted 0 at -1/0
 Running Process:
   Pid: 0, Program: IOprogram, PC: -1, Cpu Used: 0
 Ready Processes:
-  Pid: 0, Program: IOprogram, PC: -1, Cpu Used: 0
 Processes Waiting for Device:
 Standby Processes:
 
 Process 0 aquired resource
-Interrupted 0 at 1/38
-Interrupted 0 at 1/33
-Interrupted 0 at 1/28
-Interrupted 0 at 1/23
 Running Process:
   Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 20
 Ready Processes:
-  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 20
 Processes Waiting for Device:
 Standby Processes:
 
@@ -442,60 +427,211 @@ Loading process 2
 Running Process:
   Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 20
 Ready Processes:
-  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 20
 Processes Waiting for Device:
 Standby Processes:
 
-Interrupted 0 at 1/18
-Interrupted 0 at 1/13
-Interrupted 0 at 1/8
-Interrupted 0 at 1/3
+Interrupted 0 at 1/17
+Process 1 failed to aquire resource
+Interrupted 1 at 0/1
 Running Process:
-  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 41
+  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 39
 Ready Processes:
-  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 41
 Processes Waiting for Device:
+  Pid: 1, Program: IOprogram, PC: 0, Cpu Used: 1
 Standby Processes:
 
 Loading process 3
 Running Process:
-  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 41
+  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 39
 Ready Processes:
-  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 41
 Processes Waiting for Device:
+  Pid: 1, Program: IOprogram, PC: 0, Cpu Used: 1
 Standby Processes:
 
-Interrupted 0 at 2/0
-Interrupted 0 at 3/15
-Interrupted 0 at 3/10
-Interrupted 0 at 3/5
+Interrupted 0 at 1/2
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 3/19
 Process 1 aquired resource
+Interrupted 1 at 1/33
+Interrupted 0 at 3/14
 Running Process:
-  Pid: 1, Program: IOprogram, PC: -1, Cpu Used: 2
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 8
 Ready Processes:
-  Pid: 2, Program: IOprogram, PC: -1, Cpu Used: 0
-  Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 58
-  Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 58
+  Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 48
 Processes Waiting for Device:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
 Standby Processes:
 
 Loading process 4
 Running Process:
-  Pid: 1, Program: IOprogram, PC: -1, Cpu Used: 2
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 8
 Ready Processes:
-  Pid: 2, Program: IOprogram, PC: -1, Cpu Used: 0
+  Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 48
+Processes Waiting for Device:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Interrupted 1 at 1/28
+Interrupted 0 at 3/9
+Interrupted 1 at 1/23
+Interrupted 0 at 3/4
+Running Process:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+Ready Processes:
   Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 58
+Processes Waiting for Device:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Loading process 5
+Running Process:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+Ready Processes:
   Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 58
+Processes Waiting for Device:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Interrupted 1 at 1/18
+Terminating 0
+Interrupted 0 at 4/0
+Interrupted 1 at 1/13
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Running Process:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 30
+Ready Processes:
+Processes Waiting for Device:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Running Process:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 30
+Ready Processes:
+Processes Waiting for Device:
+  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Interrupted 1 at 2/0
+Process 2 aquired resource
+Interrupted 2 at 1/27
+Interrupted 1 at 3/15
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 5
+Ready Processes:
+  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 44
+Processes Waiting for Device:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Interrupted 2 at 1/22
+Interrupted 1 at 3/10
+Interrupted 2 at 1/17
+Interrupted 1 at 3/5
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 16
+Ready Processes:
+  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 54
+Processes Waiting for Device:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Interrupted 2 at 1/12
+Interrupted 1 at 3/0
+Interrupted 2 at 1/7
+Terminating 1
+Interrupted 1 at 4/0
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 30
+Ready Processes:
+Processes Waiting for Device:
+  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Interrupted 2 at 3/19
+Process 3 aquired resource
+Interrupted 3 at 1/28
+Interrupted 2 at 3/14
+Interrupted 3 at 1/23
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 3, Cpu Used: 40
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 1, Cpu Used: 10
+Processes Waiting for Device:
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Interrupted 2 at 3/9
+Interrupted 3 at 1/18
+Interrupted 2 at 3/4
+Interrupted 3 at 1/13
+Running Process:
+  Pid: 2, Program: IOprogram, PC: 3, Cpu Used: 51
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 1, Cpu Used: 20
+Processes Waiting for Device:
+  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
+Standby Processes:
+
+Terminating 2
+Interrupted 2 at 4/0
+Interrupted 3 at 2/0
+Process 4 aquired resource
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 3
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 2, Cpu Used: 34
 Processes Waiting for Device:
 Standby Processes:
 
-Interrupted 1 at 1/43
-Process 2 failed to aquire resource
-Interrupted 2 at 0/1
-Interrupted 0 at 3/0
-Terminating 0
-Interrupted 0 at 4/0
-Interrupted 1 at 1/38
+Interrupted 4 at 1/45
+Interrupted 3 at 3/15
+Interrupted 4 at 1/40
+Interrupted 3 at 3/10
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 14
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 3, Cpu Used: 44
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 4 at 1/35
+Interrupted 3 at 3/5
+Interrupted 4 at 1/30
+Interrupted 3 at 3/0
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 25
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: 3, Cpu Used: 54
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 4 at 1/25
+Terminating 3
+Interrupted 3 at 4/0
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 44
+Ready Processes:
+Processes Waiting for Device:
+Standby Processes:
+
+Running Process:
+  Pid: 4, Program: IOprogram, PC: 3, Cpu Used: 64
+Ready Processes:
+Processes Waiting for Device:
+Standby Processes:
+
+Terminating 4
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

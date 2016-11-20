@@ -27,8 +27,12 @@ public class SystemCalls {
     public String processSummary() {
         StringBuilder summary = new StringBuilder();
         summary.append("Running Process:\n");
-        String line = pcbSummary(kernel.cpu.runningPcbPointer);
-        summary.append(line);
+        summary.append(String.format(
+                "  Pid: %d, Program: %s, PC: %d, Cpu Used: %d\n", 
+                kernel.cpu.runningPcbPointer.processID,
+                kernel.cpu.runningPcbPointer.programName,
+                kernel.cpu.programCounter,
+                kernel.cpu.runningPcbPointer.cpuUsed));
         summary.append("Ready Processes:\n");
         for (ProcessControlBlock pcb : kernel.stScheduler.getReadyQueue()) {
             summary.append(pcbSummary(pcb));

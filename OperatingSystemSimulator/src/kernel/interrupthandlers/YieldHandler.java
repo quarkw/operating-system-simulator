@@ -15,30 +15,11 @@ public class YieldHandler {
     
     //Context switch from oldPCB to newPCB
     public void handleInterrupt() {
-        /*ProcessControlBlock oldPCB = cpu.runningPcbPointer;
-        if (oldPCB.state == ProcessState.RUNNING) {
-            oldPCB.state = ProcessState.READY;
-        }
-        oldPCB.programCounter = cpu.programCounter;
-        oldPCB.operationCounter = cpu.operationCounter;
-        System.out.println("Interrupted " + oldPCB.processID 
-                + " at " + cpu.programCounter + "/" 
-                + oldPCB.operationCounter);
-        if (oldPCB.state == ProcessState.READY) {
-            scheduler.insertPCB(oldPCB);
-        }
-        
-        if (scheduler.getReadyQueue().isEmpty()) {
-            System.out.println("BSOD: No ready processes");
-        }
-        
-        ProcessControlBlock nextPCB = scheduler.getNextPcb();
-        cpu.runningPcbPointer = nextPCB;
-        cpu.programCounter = nextPCB.programCounter;
-        cpu.operationCounter = nextPCB.operationCounter;
-        cpu.interruptTimer = scheduler.getTimeLimit(nextPCB.processID);
-        */
         ProcessControlBlock nextInLine = kernel.stScheduler.getNextPcb();
-        kernel.contextSwitchHandler.switchContextTo(nextInLine);
+        if (nextInLine != null) {
+            kernel.contextSwitchHandler.switchContextTo(nextInLine);
+        } else {
+            kernel.cpu.interruptTimer = kernel.stScheduler.getTimeLimit(0);
+        }
     }
 }

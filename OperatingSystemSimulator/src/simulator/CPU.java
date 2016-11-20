@@ -46,10 +46,11 @@ public class CPU {
         return true;
     }
     public boolean advanceClock() {
-        if(runningPcbPointer == null){
+        if(runningPcbPointer == null) {
             this.runningPcbPointer = kernel.stScheduler.getNextPcb();
             this.programCounter = -1;
             this.operationCounter = 0;
+            if (runningPcbPointer == null) return false;
         }
         if (runningPcbPointer.state == ProcessState.TERMINATED
                 && kernel.stScheduler.getReadyQueue().isEmpty()) {

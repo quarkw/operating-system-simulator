@@ -46,9 +46,8 @@ public class ShortTermScheduler {
         } else {
             longTermScheduleTimer--;
         }
-
-        ProcessControlBlock nextPcb = readyQueue.poll();
-        return (nextPcb != null) ? nextPcb : kernel.cpu.runningPcbPointer;
+ 
+        return readyQueue.poll();
     }
     
     public LinkedList<ProcessControlBlock> getReadyQueue() {
