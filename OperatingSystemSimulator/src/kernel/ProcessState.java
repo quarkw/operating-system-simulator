@@ -1,5 +1,5 @@
 package kernel;
 
 public enum ProcessState {
-    NEW, READY, WAITING, RUNNING, TERMINATED
+    NEW, READY, WAITING, RUNNING, TERMINATED, STANDBY
 }

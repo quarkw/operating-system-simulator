@@ -23,38 +23,7 @@ public class DummyIntegrationTest {
     
     public DummyIntegrationTest() {
     }
-    
-    @Ignore
-    @Test
-    public void runTwoProcesses() {
-        CPU cpu = new CPU();
-        Kernel kernel = BootLoader.boot(cpu);
-        SystemCalls systemCalls = kernel.systemCalls;
 
-        System.out.println("CPU 25-cycle 1 start");
-        System.out.println(systemCalls.processSummary());
-        for (int i = 0; i < 20; i++) {
-            cpu.advanceClock();
-        }
-        System.out.println("CPU 25-cycle 1 end");
-        
-        String program = "50 \nIO \nCALCULATE 20";
-        System.out.println("Loading process1");
-        systemCalls.loadProgram("process1", program);
-        
-        System.out.println(systemCalls.processSummary());
-        for (int i = 0; i < 20; i++) {
-            cpu.advanceClock();
-        }
-        
-        systemCalls.loadProgram("process2", program);
-        System.out.println("Loading process2");
-        
-        exec(450, cpu, systemCalls);
-        //System.out.println(systemCalls.processSummary());
-    }
-    
-    
     @Test
     public void runFiveProcesses() {
         CPU cpu = new CPU();

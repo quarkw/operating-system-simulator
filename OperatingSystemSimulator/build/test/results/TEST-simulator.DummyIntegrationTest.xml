@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="2" tests="3" time="0.14" timestamp="2016-11-20T18:13:19">
+<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="1" tests="2" time="0.135" timestamp="2016-11-20T20:17:24">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -59,7 +59,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher5775801807620027350.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit1156400147609115430.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher433752675937491654.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit528672141596886019.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -99,7 +99,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null319714853" />
+    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null1100214343" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar" />
@@ -402,235 +402,128 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans 8.1\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="simulator.DummyIntegrationTest" name="runTwoProcesses" time="0.0">
-    <skipped />
-  </testcase>
-  <testcase classname="simulator.DummyIntegrationTest" name="runFiveProcesses" time="0.072" />
+  <testcase classname="simulator.DummyIntegrationTest" name="runFiveProcesses" time="0.061" />
   <testcase classname="simulator.DummyIntegrationTest" name="runShellTest" time="0.0">
     <skipped />
   </testcase>
   <system-out><![CDATA[Loading process 1
-Running Process:
-  Pid: 0, Program: IOprogram, PC: -1, Cpu Used: 0
-Ready Processes:
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 0, State: RUNNING, PC: -1, Cpu Used: 0
+Memory Usage: 80
 
 Process 0 aquired resource
-Running Process:
-  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 20
-Ready Processes:
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 0, State: RUNNING, PC: 1, Cpu Used: 20
+Memory Usage: 80
 
 Loading process 2
-Running Process:
-  Pid: 0, Program: IOprogram, PC: 1, Cpu Used: 20
-Ready Processes:
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 0, State: RUNNING, PC: 1, Cpu Used: 20
+IOprogram, Pid: 1, State:     NEW, PC: -1, Cpu Used: 0
+Memory Usage: 80
 
-Interrupted 0 at 1/7
 Process 1 failed to aquire resource
-Interrupted 1 at 0/1
-Interrupted 0 at 3/19
 Process 1 aquired resource
-Running Process:
-  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 5
-Ready Processes:
-  Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 33
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 0, State: RUNNING, PC: 3, Cpu Used: 33
+IOprogram, Pid: 1, State:   READY, PC: 1, Cpu Used: 5
+Memory Usage: 160
 
 Loading process 3
-Running Process:
-  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 5
-Ready Processes:
-  Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 33
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 0, State: RUNNING, PC: 3, Cpu Used: 33
+IOprogram, Pid: 1, State:   READY, PC: 1, Cpu Used: 5
+IOprogram, Pid: 2, State:     NEW, PC: -1, Cpu Used: 0
+Memory Usage: 160
 
-Interrupted 1 at 1/44
-Interrupted 0 at 3/14
-Interrupted 1 at 1/39
-Interrupted 0 at 3/9
-Interrupted 1 at 1/34
-Running Process:
-  Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 43
-Ready Processes:
-  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 15
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 0, State:   READY, PC: 3, Cpu Used: 43
+IOprogram, Pid: 1, State: RUNNING, PC: 1, Cpu Used: 15
+IOprogram, Pid: 2, State:     NEW, PC: -1, Cpu Used: 0
+Memory Usage: 160
 
 Loading process 4
-Running Process:
-  Pid: 0, Program: IOprogram, PC: 3, Cpu Used: 43
-Ready Processes:
-  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 15
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 0, State:   READY, PC: 3, Cpu Used: 43
+IOprogram, Pid: 1, State: RUNNING, PC: 1, Cpu Used: 15
+IOprogram, Pid: 2, State:     NEW, PC: -1, Cpu Used: 0
+IOprogram, Pid: 3, State:     NEW, PC: -1, Cpu Used: 0
+Memory Usage: 160
 
-Interrupted 0 at 3/4
-Interrupted 1 at 1/29
 Terminating 0
-Interrupted 0 at 4/0
-Interrupted 1 at 1/24
-Running Process:
-  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
-Ready Processes:
-  Pid: 3, Program: IOprogram, PC: -1, Cpu Used: 0
-  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 25
-Processes Waiting for Device:
-Standby Processes:
+Process 2 failed to aquire resource
+Process 3 failed to aquire resource
+IOprogram, Pid: 1, State: RUNNING, PC: 1, Cpu Used: 26
+IOprogram, Pid: 2, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 3, State: WAITING, PC: 0, Cpu Used: 1
+Memory Usage: 240
 
 Loading process 5
-Running Process:
-  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
-Ready Processes:
-  Pid: 3, Program: IOprogram, PC: -1, Cpu Used: 0
-  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 25
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 1, State: RUNNING, PC: 1, Cpu Used: 26
+IOprogram, Pid: 2, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 3, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 4, State:     NEW, PC: -1, Cpu Used: 0
+Memory Usage: 240
 
-Process 2 failed to aquire resource
-Interrupted 2 at 0/1
-Process 3 failed to aquire resource
-Interrupted 3 at 0/1
-***Force Swap in failed****
-***Force Swap in failed****
-***Force Swap in failed****
-Running Process:
-  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 42
-Ready Processes:
-Processes Waiting for Device:
-  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
-  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
-Standby Processes:
-  Pid: 4, Program: IOprogram, PC: -1, Cpu Used: 0
+IOprogram, Pid: 1, State: RUNNING, PC: 1, Cpu Used: 47
+IOprogram, Pid: 2, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 3, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 4, State: STANDBY, PC: -1, Cpu Used: 0
+Memory Usage: 240
 
-Running Process:
-  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 42
-Ready Processes:
-Processes Waiting for Device:
-  Pid: 2, Program: IOprogram, PC: 0, Cpu Used: 1
-  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
-Standby Processes:
-  Pid: 4, Program: IOprogram, PC: -1, Cpu Used: 0
+IOprogram, Pid: 1, State: RUNNING, PC: 1, Cpu Used: 47
+IOprogram, Pid: 2, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 3, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 4, State: STANDBY, PC: -1, Cpu Used: 0
+Memory Usage: 240
 
-***Force Swap in failed****
-Interrupted 1 at 2/0
 Process 2 aquired resource
-Interrupted 2 at 1/40
-Interrupted 1 at 3/15
-Running Process:
-  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 7
-Ready Processes:
-  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 55
-Processes Waiting for Device:
-  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
-Standby Processes:
-  Pid: 4, Program: IOprogram, PC: -1, Cpu Used: 0
+IOprogram, Pid: 1, State: RUNNING, PC: 3, Cpu Used: 57
+IOprogram, Pid: 2, State:   READY, PC: 1, Cpu Used: 10
+IOprogram, Pid: 3, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 4, State: STANDBY, PC: -1, Cpu Used: 0
+Memory Usage: 240
 
-Interrupted 2 at 1/35
-Interrupted 1 at 3/10
-Interrupted 2 at 1/30
-Interrupted 1 at 3/5
-Running Process:
-  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 18
-Ready Processes:
-  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 65
-Processes Waiting for Device:
-  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
-Standby Processes:
-  Pid: 4, Program: IOprogram, PC: -1, Cpu Used: 0
+IOprogram, Pid: 1, State: RUNNING, PC: 3, Cpu Used: 68
+IOprogram, Pid: 2, State:   READY, PC: 1, Cpu Used: 20
+IOprogram, Pid: 3, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 4, State: STANDBY, PC: -1, Cpu Used: 0
+Memory Usage: 240
 
-Interrupted 2 at 1/25
-Interrupted 1 at 3/0
-Interrupted 2 at 1/20
 Terminating 1
-Interrupted 1 at 4/0
 Process 4 failed to aquire resource
-Interrupted 4 at 0/1
-Running Process:
-  Pid: 2, Program: IOprogram, PC: 1, Cpu Used: 30
-Ready Processes:
-Processes Waiting for Device:
-  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
-  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
-Standby Processes:
-
-Interrupted 2 at 3/17
-Running Process:
-  Pid: 3, Program: IOprogram, PC: 0, Cpu Used: 1
-Ready Processes:
-  Pid: 2, Program: IOprogram, PC: 3, Cpu Used: 49
-Processes Waiting for Device:
-  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
-Standby Processes:
+IOprogram, Pid: 2, State: RUNNING, PC: 1, Cpu Used: 35
+IOprogram, Pid: 3, State: WAITING, PC: 0, Cpu Used: 1
+IOprogram, Pid: 4, State: WAITING, PC: 0, Cpu Used: 1
+Memory Usage: 240
 
 Process 3 aquired resource
-Interrupted 3 at 1/24
-Interrupted 2 at 3/12
-Interrupted 3 at 1/19
-Interrupted 2 at 3/7
-Running Process:
-  Pid: 3, Program: IOprogram, PC: 1, Cpu Used: 11
-Ready Processes:
-  Pid: 2, Program: IOprogram, PC: 3, Cpu Used: 59
-Processes Waiting for Device:
-  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
-Standby Processes:
+IOprogram, Pid: 2, State:   READY, PC: 3, Cpu Used: 49
+IOprogram, Pid: 3, State: RUNNING, PC: 1, Cpu Used: 6
+IOprogram, Pid: 4, State: WAITING, PC: 0, Cpu Used: 1
+Memory Usage: 240
 
-Interrupted 3 at 1/14
-Interrupted 2 at 3/2
-Interrupted 3 at 1/9
+IOprogram, Pid: 2, State:   READY, PC: 3, Cpu Used: 59
+IOprogram, Pid: 3, State: RUNNING, PC: 1, Cpu Used: 17
+IOprogram, Pid: 4, State: WAITING, PC: 0, Cpu Used: 1
+Memory Usage: 240
+
 Terminating 2
-Interrupted 2 at 4/0
-Running Process:
-  Pid: 3, Program: IOprogram, PC: 1, Cpu Used: 24
-Ready Processes:
-Processes Waiting for Device:
-  Pid: 4, Program: IOprogram, PC: 0, Cpu Used: 1
-Standby Processes:
+IOprogram, Pid: 3, State: RUNNING, PC: 1, Cpu Used: 34
+IOprogram, Pid: 4, State: WAITING, PC: 0, Cpu Used: 1
+Memory Usage: 160
 
-Interrupted 3 at 2/0
+IOprogram, Pid: 3, State: RUNNING, PC: 3, Cpu Used: 54
+IOprogram, Pid: 4, State:   READY, PC: 0, Cpu Used: 1
+Memory Usage: 160
+
 Process 4 aquired resource
-Interrupted 4 at 1/28
-Interrupted 3 at 3/15
-Running Process:
-  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 9
-Ready Processes:
-  Pid: 3, Program: IOprogram, PC: 3, Cpu Used: 35
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 3, State:   READY, PC: 3, Cpu Used: 64
+IOprogram, Pid: 4, State: RUNNING, PC: 1, Cpu Used: 10
+Memory Usage: 160
 
-Interrupted 4 at 1/23
-Interrupted 3 at 3/10
-Interrupted 4 at 1/18
-Interrupted 3 at 3/5
-Running Process:
-  Pid: 4, Program: IOprogram, PC: 1, Cpu Used: 20
-Ready Processes:
-  Pid: 3, Program: IOprogram, PC: 3, Cpu Used: 45
-Processes Waiting for Device:
-Standby Processes:
-
-Interrupted 4 at 1/13
-Interrupted 3 at 3/0
-Interrupted 4 at 1/8
 Terminating 3
-Interrupted 3 at 4/0
-Running Process:
-  Pid: 4, Program: IOprogram, PC: 2, Cpu Used: 34
-Ready Processes:
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 4, State: RUNNING, PC: 1, Cpu Used: 22
+Memory Usage: 80
 
-Running Process:
-  Pid: 4, Program: IOprogram, PC: 3, Cpu Used: 54
-Ready Processes:
-Processes Waiting for Device:
-Standby Processes:
+IOprogram, Pid: 4, State: RUNNING, PC: 2, Cpu Used: 43
+Memory Usage: 80
+
+IOprogram, Pid: 4, State: RUNNING, PC: 3, Cpu Used: 63
+Memory Usage: 80
 
 Terminating 4
 ]]></system-out>

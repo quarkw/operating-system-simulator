@@ -48,6 +48,7 @@ public class CPU {
     public boolean advanceClock() {
         if(runningPcbPointer == null) {
             this.runningPcbPointer = kernel.stScheduler.getNextPcb();
+            this.runningPcbPointer.state = ProcessState.RUNNING;
             this.programCounter = -1;
             this.operationCounter = 0;
             if (runningPcbPointer == null) return false;

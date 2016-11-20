@@ -30,10 +30,12 @@ public class ContextSwitchHandler {
         }
         oldPCB.programCounter = cpu.programCounter;
         oldPCB.operationCounter = cpu.operationCounter;
-        System.out.println("Interrupted " + oldPCB.processID 
-                + " at " + cpu.programCounter + "/" 
-                + oldPCB.operationCounter);
-        if (oldPCB.state != ProcessState.TERMINATED) {
+        //System.out.println("Interrupted " + oldPCB.processID 
+        //        + " at " + cpu.programCounter + "/" 
+        //        + oldPCB.operationCounter);
+        if (oldPCB.state == ProcessState.TERMINATED) {
+            kernel.allProcesses.remove(oldPCB);
+        } else {
             kernel.stScheduler.insertPCB(oldPCB);
         }
         
@@ -42,6 +44,7 @@ public class ContextSwitchHandler {
         //}
         
         //ProcessControlBlock nextPCB = kernel.stScheduler.getNextPcb();
+        nextPcb.state = ProcessState.RUNNING;
         cpu.runningPcbPointer = nextPcb;
         cpu.programCounter = nextPcb.programCounter;
         cpu.operationCounter = nextPcb.operationCounter;

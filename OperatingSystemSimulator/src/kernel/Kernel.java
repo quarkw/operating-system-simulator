@@ -5,6 +5,7 @@
  */
 package kernel;
 
+import java.util.LinkedList;
 import kernel.interrupthandlers.*;
 import simulator.CPU;
 
@@ -15,15 +16,17 @@ import simulator.CPU;
 public class Kernel {
     public static final int NUM_IO_DEVICES = 1;
     
-    public CPU cpu;
+    public final CPU cpu;
     
-    public SystemCalls systemCalls;
-    public LongTermScheduler ltScheduler;
-    public ShortTermScheduler stScheduler;
+    public final SystemCalls systemCalls;
+    public final ShortTermScheduler stScheduler;
+    public final LongTermScheduler ltScheduler;
     
-    public LockTraps lockTraps;
-    public YieldHandler yieldHandler;
-    public ContextSwitchHandler contextSwitchHandler;
+    public final LockTraps lockTraps;
+    public final YieldHandler yieldHandler;
+    public final ContextSwitchHandler contextSwitchHandler;
+    
+    public LinkedList<ProcessControlBlock> allProcesses;
     
     public Kernel(CPU cpu) {
         this.cpu = cpu;
@@ -37,7 +40,7 @@ public class Kernel {
         this.lockTraps = new LockTraps(this);
         this.contextSwitchHandler = new ContextSwitchHandler(this);
         
-        
+        this.allProcesses = new LinkedList<>();
     }
     
 }

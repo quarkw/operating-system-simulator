@@ -10,7 +10,7 @@ import simulator.CPU;
 
 public class LongTermScheduler {
     
-    private static final int MEMORY_FOR_USER_PROCS = 150;
+    //private static final int MEMORY_FOR_USER_PROCS = 150;
     
     private final Kernel kernel;
     private final CPU cpu;
@@ -39,8 +39,7 @@ public class LongTermScheduler {
         //                shortTermScheduler.getReadyQueue().size()));
         while (!newProcessQueue.isEmpty()) {
             ProcessControlBlock newProcess = newProcessQueue.poll();
-            newProcess.state = ProcessState.READY;
-            standByQueue.add(newProcess);
+            swapOut(newProcess);
         }
         swapInIfAble();
         if (!standByQueue.isEmpty()) {
@@ -69,7 +68,7 @@ public class LongTermScheduler {
         while (candidate != null 
                && candidate.memoryAllocation + getMemoryUsage() <= cpu.memory ) {
             standByQueue.remove(candidate);
-            stScheduler.insertPCB(candidate);
+            swapIn(candidate);
             candidate = standByQueue.peek();
         }
     }
@@ -78,26 +77,31 @@ public class LongTermScheduler {
     private void forceSwapIn(ProcessControlBlock pcb) { //TODO this whole method is crap
         while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory 
                 && !stScheduler.getReadyQueue().isEmpty()) {
-            standByQueue.add(stScheduler.getReadyQueue().remove());
+            swapOut(stScheduler.getReadyQueue().remove());
         }
-        //while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory 
-        //        && !stScheduler.getDeviceQueue(0).isEmpty()) {
-        //    standByQueue.add(stScheduler.getDeviceQueue(0).remove());
-        //}
         if (pcb.memoryAllocation + getMemoryUsage() > cpu.memory) {
-            System.out.println("***Force Swap in failed****");
-            standByQueue.add(pcb);
+            //System.out.println("***Force Swap in failed****");
+            swapOut(pcb);
             return;
         }
         
         
-        stScheduler.insertPCB(pcb);
+        swapIn(pcb);
     }
-    
     
     
     public LinkedList<ProcessControlBlock> getStandByQueue() {
         return standByQueue;
+    }
+    
+    private void swapIn(ProcessControlBlock pcb) {
+        pcb.state = ProcessState.READY;
+        stScheduler.insertPCB(pcb);
+    }
+    
+    private void swapOut(ProcessControlBlock pcb) {
+        pcb.state = ProcessState.STANDBY;
+        standByQueue.add(pcb);
     }
     
 }

@@ -22,9 +22,10 @@ public class SystemCalls {
         ProcessControlBlock pcb = 
                 new ProcessControlBlock(nextPid++, programName, program, memoryRequirement);
         kernel.ltScheduler.insertNewPcb(pcb);
+        kernel.allProcesses.add(pcb);
     }
     
-    public String processSummary() {
+    public String processSummaryByQueue() {
         StringBuilder summary = new StringBuilder();
         summary.append("Running Process:\n");
         summary.append(String.format(
@@ -54,6 +55,29 @@ public class SystemCalls {
                 pcb.processID,
                 pcb.programName,
                 pcb.programCounter,
+                pcb.cpuUsed);
+    }
+    
+    public String processSummary() {
+        StringBuilder summary = new StringBuilder();
+        for (ProcessControlBlock pcb : kernel.allProcesses) {
+            summary.append(processSummary(pcb));
+        }
+        
+        summary.append(String.format("Memory Usage: %d\n",
+                kernel.ltScheduler.getMemoryUsage()));
+        return summary.toString();
+    }
+    
+    private String processSummary(ProcessControlBlock pcb) {
+         return String.format(
+                "%6s, Pid: %d, State: %7s, PC: %d, Cpu Used: %d\n", 
+                pcb.programName,
+                pcb.processID,
+                pcb.state.toString(),
+                (pcb.state == ProcessState.RUNNING)
+                     ? kernel.cpu.programCounter
+                     : pcb.programCounter,
                 pcb.cpuUsed);
     }
     
