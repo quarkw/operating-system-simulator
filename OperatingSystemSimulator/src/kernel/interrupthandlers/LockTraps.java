@@ -6,6 +6,8 @@
 package kernel.interrupthandlers;
 
 import kernel.MutexLock;
+import kernel.ProcessState;
+import kernel.ShortTermScheduler;
 import simulator.CPU;
 import simulator.InterruptProcessor;
 
@@ -15,11 +17,11 @@ import simulator.InterruptProcessor;
  */
 public class LockTraps {
     
-    private final MutexLock deviceOneLock;
+    private final ShortTermScheduler stScheduler;
     private final CPU cpu;
     
-    public LockTraps(CPU cpu) {
-        this.deviceOneLock = new MutexLock();
+    public LockTraps(CPU cpu, ShortTermScheduler stScheduler) {
+        this.stScheduler = stScheduler;
         this.cpu = cpu;
     }
     
@@ -27,6 +29,7 @@ public class LockTraps {
     public void aquire() {
         if (!deviceOneLock.aquire()) {
                     System.out.println("Process " + cpu.runningPcbPointer.processID + " failed to aquire resource");
+                    cpu.runningPcbPointer.state = ProcessState.WAITING;
                     cpu.interruptProcessor.setFlag(InterruptProcessor.YIELD);
         } else {
                     System.out.println("Process " + cpu.runningPcbPointer.processID + " aquired resource");

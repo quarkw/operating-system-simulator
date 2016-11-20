@@ -5,13 +5,25 @@ import java.util.LinkedList;
 public class ShortTermScheduler {
     public static final int LT_SCHEDULE_INTERVAL = 10;
     public static final int ST_SCHEDULE_INTERVAL = 5;
+    public static final int NUM_IO_DEVICES = 1;
     
-    private LongTermScheduler longTermScheduler;
-    private LinkedList<ProcessControlBlock> readyQueue = new LinkedList<>();
+    private final LongTermScheduler longTermScheduler;
+    private final LinkedList<ProcessControlBlock> readyQueue = new LinkedList<>();
+    
+    private final MutexLock[] locks = new MutexLock[NUM_IO_DEVICES];
+    private final LinkedList<ProcessControlBlock>[] waitingQueues = new LinkedList[NUM_IO_DEVICES];
+    
+    
     private int longTermScheduleTimer = 0;
+    
+    
     
     public ShortTermScheduler(LongTermScheduler longTermScheduler) {
         this.longTermScheduler = longTermScheduler;
+        for (int i = 0; i < NUM_IO_DEVICES; i++) {
+            locks[i] = new MutexLock();
+            waitingQueues[i] = new LinkedList<>();
+        }
     }
     
     

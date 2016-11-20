@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="2" tests="3" time="0.079" timestamp="2016-11-19T23:34:24">
+<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="2" tests="3" time="0.076" timestamp="2016-11-19T23:36:27">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -59,7 +59,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher9011613010408984443.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit8840422379046816136.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher2662848381656677891.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit1672585727550718759.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -99,7 +99,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null9386341" />
+    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null1250825713" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar" />
@@ -407,7 +407,7 @@
   <testcase classname="simulator.DummyIntegrationTest" name="runFiveProcesses" time="0.0">
     <skipped />
   </testcase>
-  <testcase classname="simulator.DummyIntegrationTest" name="runShellTest" time="0.011" />
+  <testcase classname="simulator.DummyIntegrationTest" name="runShellTest" time="0.014" />
   <system-out><![CDATA[CPU 25-cycle 1 start
 Running Process:
   Pid: 0, Program: backgroundProcess, PC: -1, Cpu Used: 0
@@ -440,52 +440,54 @@ Interrupted 0 at 0/-46
 Interrupted 0 at 0/-51
 Interrupted 0 at 0/-56
 Process 1 aquired resource
-Interrupted 1 at 1/28
+Interrupted 1 at 1/38
 Process 2 failed to aquire resource
 Interrupted 2 at 0/1
 Interrupted 0 at 0/-61
-Interrupted 1 at 1/23
+Interrupted 1 at 1/33
 Process 2 failed to aquire resource
 Interrupted 2 at 0/1
 Interrupted 0 at 0/-66
-Interrupted 1 at 1/18
+Interrupted 1 at 1/28
 Process 2 failed to aquire resource
 Interrupted 2 at 0/1
 Interrupted 0 at 0/-71
-Interrupted 1 at 1/13
+Interrupted 1 at 1/23
 Process 2 failed to aquire resource
 Interrupted 2 at 0/1
 Interrupted 0 at 0/-76
-Interrupted 1 at 1/8
+Interrupted 1 at 1/18
 Process 2 failed to aquire resource
 Interrupted 2 at 0/1
 Interrupted 0 at 0/-81
-Interrupted 1 at 1/3
+Interrupted 1 at 1/13
 Process 2 failed to aquire resource
 Interrupted 2 at 0/1
 Interrupted 0 at 0/-86
+Interrupted 1 at 1/8
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-91
+Interrupted 1 at 1/3
+Process 2 failed to aquire resource
+Interrupted 2 at 0/1
+Interrupted 0 at 0/-96
 Interrupted 1 at 2/0
 Process 2 aquired resource
-Interrupted 2 at 1/46
-Interrupted 0 at 0/-91
-Interrupted 1 at 3/15
-Interrupted 2 at 1/41
-Interrupted 0 at 0/-96
-Interrupted 1 at 3/10
-Interrupted 2 at 1/36
+Interrupted 2 at 1/29
 Interrupted 0 at 0/-101
-Interrupted 1 at 3/5
-Interrupted 2 at 1/31
+Interrupted 1 at 3/15
+Interrupted 2 at 1/24
 Interrupted 0 at 0/-106
-Interrupted 1 at 3/0
-Interrupted 2 at 1/26
+Interrupted 1 at 3/10
+Interrupted 2 at 1/19
 Interrupted 0 at 0/-111
-Terminating 1
-Interrupted 1 at 4/0
+Interrupted 1 at 3/5
 Running Process:
-  Pid: 2, Program: process2, PC: 1, Cpu Used: 31
+  Pid: 2, Program: process2, PC: 1, Cpu Used: 25
 Ready Processes:
   Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 110
+  Pid: 1, Program: process1, PC: 3, Cpu Used: 58
 Standby Processes:
 
 ]]></system-out>
