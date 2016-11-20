@@ -50,10 +50,9 @@ public class DummyIntegrationTest {
         systemCalls.loadProgram("process2", program);
         System.out.println("Loading process2");
         
-        exec(325, cpu, systemCalls);
+        exec(450, cpu, systemCalls);
         //System.out.println(systemCalls.processSummary());
     }
-    
     
     @Test
     public void runFiveProcesses() {

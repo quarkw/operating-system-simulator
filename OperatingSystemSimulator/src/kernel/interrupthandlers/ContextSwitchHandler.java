@@ -33,7 +33,7 @@ public class ContextSwitchHandler {
         System.out.println("Interrupted " + oldPCB.processID 
                 + " at " + cpu.programCounter + "/" 
                 + oldPCB.operationCounter);
-        if (oldPCB.state == ProcessState.READY) {
+        if (oldPCB.state != ProcessState.TERMINATED) {
             kernel.stScheduler.insertPCB(oldPCB);
         }
         
