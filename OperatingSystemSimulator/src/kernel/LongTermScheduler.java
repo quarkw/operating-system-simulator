@@ -56,6 +56,11 @@ public class LongTermScheduler {
         for (ProcessControlBlock pcb : stScheduler.getReadyQueue()) {
             usage += pcb.memoryAllocation;
         }
+        for (int i = 0; i < Kernel.NUM_IO_DEVICES; i++) {
+            for (ProcessControlBlock pcb : stScheduler.getDeviceQueue(i)) {
+                usage += pcb.memoryAllocation;
+            }
+        }
         return usage;
     }
 
@@ -69,16 +74,26 @@ public class LongTermScheduler {
         }
     }
     
-    private void forceSwapIn(ProcessControlBlock pcb) {
-        while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory ) {
-            swapOut(stScheduler.getNextPcb());
+    //TODO this needs to be optimized to take out lowest priority processes
+    private void forceSwapIn(ProcessControlBlock pcb) { //TODO this whole method is crap
+        while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory 
+                && !stScheduler.getReadyQueue().isEmpty()) {
+            standByQueue.add(stScheduler.getReadyQueue().remove());
         }
+        //while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory 
+        //        && !stScheduler.getDeviceQueue(0).isEmpty()) {
+        //    standByQueue.add(stScheduler.getDeviceQueue(0).remove());
+        //}
+        if (pcb.memoryAllocation + getMemoryUsage() > cpu.memory) {
+            System.out.println("***Force Swap in failed****");
+            standByQueue.add(pcb);
+            return;
+        }
+        
+        
         stScheduler.insertPCB(pcb);
     }
     
-    private void swapOut(ProcessControlBlock pcb) {
-        standByQueue.add(pcb);
-    }
     
     
     public LinkedList<ProcessControlBlock> getStandByQueue() {

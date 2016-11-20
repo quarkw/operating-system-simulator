@@ -61,7 +61,7 @@ public class DummyIntegrationTest {
         Kernel kernel = BootLoader.boot(cpu);
         SystemCalls systemCalls = kernel.systemCalls;
         
-        String program = "50 \nIO \nCALCULATE 20";
+        String program = "80 \nIO \nCALCULATE 20";
         
         System.out.println("Loading process 1");
         systemCalls.loadProgram("IOprogram", program);
