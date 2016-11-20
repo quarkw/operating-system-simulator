@@ -16,6 +16,8 @@ public class ProcessControlBlock {
     public int operationCounter; //Would not exist in a real machine, necessary because of simulator language.
     public ArrayList<Operation> program;
     
+    public int requestedDevice = 0;
+    
     public ProcessControlBlock(int processID, String programName, ArrayList<Operation> program, 
             int memoryRequirement) {
         this.processID = processID;

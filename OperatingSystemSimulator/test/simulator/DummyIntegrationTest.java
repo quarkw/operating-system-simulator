@@ -13,6 +13,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
+import kernel.Kernel;
 
 /**
  *
@@ -27,7 +28,8 @@ public class DummyIntegrationTest {
     @Test
     public void runTwoProcesses() {
         CPU cpu = new CPU();
-        SystemCalls systemCalls = BootLoader.boot(cpu);
+        Kernel kernel = BootLoader.boot(cpu);
+        SystemCalls systemCalls = kernel.systemCalls;
 
         System.out.println("CPU 25-cycle 1 start");
         System.out.println(systemCalls.processSummary());
@@ -56,7 +58,8 @@ public class DummyIntegrationTest {
     @Test
     public void runFiveProcesses() {
         CPU cpu = new CPU();
-        SystemCalls systemCalls = BootLoader.boot(cpu);
+        Kernel kernel = BootLoader.boot(cpu);
+        SystemCalls systemCalls = kernel.systemCalls;
         
         exec(25, cpu, systemCalls);
         

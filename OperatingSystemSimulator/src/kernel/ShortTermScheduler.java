@@ -5,30 +5,34 @@ import java.util.LinkedList;
 public class ShortTermScheduler {
     public static final int LT_SCHEDULE_INTERVAL = 10;
     public static final int ST_SCHEDULE_INTERVAL = 5;
-    public static final int NUM_IO_DEVICES = 1;
     
-    private final LongTermScheduler longTermScheduler;
+    
+    private final Kernel kernel;
     private final LinkedList<ProcessControlBlock> readyQueue = new LinkedList<>();
     
-    private final MutexLock[] locks = new MutexLock[NUM_IO_DEVICES];
-    private final LinkedList<ProcessControlBlock>[] waitingQueues = new LinkedList[NUM_IO_DEVICES];
+    private final LinkedList<ProcessControlBlock>[] deviceQueues = new LinkedList[Kernel.NUM_IO_DEVICES];
     
     
     private int longTermScheduleTimer = 0;
     
     
     
-    public ShortTermScheduler(LongTermScheduler longTermScheduler) {
-        this.longTermScheduler = longTermScheduler;
-        for (int i = 0; i < NUM_IO_DEVICES; i++) {
-            locks[i] = new MutexLock();
-            waitingQueues[i] = new LinkedList<>();
+    public ShortTermScheduler(Kernel kernel) {
+        this.kernel = kernel;
+        for (int i = 0; i < Kernel.NUM_IO_DEVICES; i++) {
+            deviceQueues[i] = new LinkedList<>();
         }
     }
     
     
-    public void insertReadyPCB(ProcessControlBlock pcb) {
-        readyQueue.add(pcb);
+    public void insertPCB(ProcessControlBlock pcb) {
+        if (pcb.state == ProcessState.READY) {
+           readyQueue.add(pcb);
+        } else if (pcb.state == ProcessState.WAITING) {
+            deviceQueues[0].add(pcb); //TODO check which device it is waiting for
+        } else {
+            System.out.println("Error invalid state"); //TODO
+        }
     }
     
     public int getTimeLimit(int processID) {
@@ -37,25 +41,22 @@ public class ShortTermScheduler {
     
     public ProcessControlBlock getNextPcb() {
         if (longTermScheduleTimer == 0) {
-            longTermScheduler.schedule();
+            kernel.ltScheduler.schedule();
             longTermScheduleTimer = LT_SCHEDULE_INTERVAL;
         } else {
             longTermScheduleTimer--;
         }
-        return readyQueue.remove();
+        ProcessControlBlock nextPcb = readyQueue.poll();
+        return (nextPcb != null) ? nextPcb : kernel.cpu.runningPcbPointer;
     }
     
     public LinkedList<ProcessControlBlock> getReadyQueue() {
         return readyQueue;
     }
     
-    public boolean aquireDevice(int n) {
-        
+    public LinkedList<ProcessControlBlock> getDeviceQueue(int deviceNumber){
+        return deviceQueues[deviceNumber];
     }
     
-    public boolean releaseDevice(int n) {
-        if (!waitingQueues[n].isEmpty()) {
-            insertPCB(waitingQueues[])
-        }
-    }
+    
 }

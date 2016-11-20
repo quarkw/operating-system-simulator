@@ -8,12 +8,13 @@ package simulator;
 import kernel.ProcessControlBlock;
 import kernel.ProcessState;
 import java.util.Random;
+import kernel.Kernel;
 import kernel.SystemCalls;
 
 public class CPU {
     
     public InterruptProcessor interruptProcessor;
-    public SystemCalls system;
+    public Kernel kernel;
     
     /*Simulated registers */
     public ProcessControlBlock runningPcbPointer;

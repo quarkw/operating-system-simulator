@@ -1,23 +1,21 @@
 package kernel.interrupthandlers;
 
+import kernel.Kernel;
 import kernel.ProcessControlBlock;
 import kernel.ProcessState;
 import kernel.ShortTermScheduler;
 import simulator.CPU;
 
 public class YieldHandler {
-    private ShortTermScheduler scheduler;
+    private final Kernel kernel;
     
-    private CPU cpu;
-    
-    public YieldHandler(CPU cpu, ShortTermScheduler scheduler) {
-        this.cpu = cpu;
-        this.scheduler = scheduler;
+    public YieldHandler(Kernel kernel) {
+        this.kernel = kernel;
     }
     
     //Context switch from oldPCB to newPCB
     public void handleInterrupt() {
-        ProcessControlBlock oldPCB = cpu.runningPcbPointer;
+        /*ProcessControlBlock oldPCB = cpu.runningPcbPointer;
         if (oldPCB.state == ProcessState.RUNNING) {
             oldPCB.state = ProcessState.READY;
         }
@@ -27,7 +25,7 @@ public class YieldHandler {
                 + " at " + cpu.programCounter + "/" 
                 + oldPCB.operationCounter);
         if (oldPCB.state == ProcessState.READY) {
-            scheduler.insertReadyPCB(oldPCB);
+            scheduler.insertPCB(oldPCB);
         }
         
         if (scheduler.getReadyQueue().isEmpty()) {
@@ -39,5 +37,8 @@ public class YieldHandler {
         cpu.programCounter = nextPCB.programCounter;
         cpu.operationCounter = nextPCB.operationCounter;
         cpu.interruptTimer = scheduler.getTimeLimit(nextPCB.processID);
+        */
+        ProcessControlBlock nextInLine = kernel.stScheduler.getNextPcb();
+        kernel.contextSwitchHandler.switchContextTo(nextInLine);
     }
 }

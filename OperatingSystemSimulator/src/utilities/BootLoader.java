@@ -5,22 +5,23 @@ import kernel.*;
 import simulator.CPU;
 
 public class BootLoader {
-    public static SystemCalls boot(CPU cpu) {
-        LongTermScheduler scheduler = new LongTermScheduler(cpu);
-        cpu.interruptProcessor.yieldHandler = new YieldHandler(cpu, scheduler.shortTermScheduler);
-        cpu.interruptProcessor.lockTraps = new LockTraps(cpu);
+    public static Kernel boot(CPU cpu) {
+        Kernel kernel = new Kernel(cpu);
+        cpu.interruptProcessor.yieldHandler = kernel.yieldHandler;
+        cpu.interruptProcessor.lockTraps = kernel.lockTraps;
+        cpu.kernel = kernel;
         
         
-        SystemCalls system = new SystemCalls(scheduler, cpu);
+        //SystemCalls system = new SystemCalls(scheduler, cpu);
         
         String backgroundProgram = "20 \n" + "CALCULATE -1";
-        system.loadProgram("backgroundProcess", backgroundProgram);
-        scheduler.schedule();
-        cpu.runningPcbPointer = scheduler.shortTermScheduler.getNextPcb();
+        kernel.systemCalls.loadProgram("backgroundProcess", backgroundProgram);
+        kernel.ltScheduler.schedule();
+        cpu.runningPcbPointer = kernel.stScheduler.getNextPcb();
         cpu.programCounter = -1;
         cpu.operationCounter = 0; 
-        cpu.system = system; //TODO this is a total hack, need to represent "switching to kernel mode"
+         //TODO this is a total hack, need to represent "switching to kernel mode"
         
-        return system;
+        return kernel;
     }
 }

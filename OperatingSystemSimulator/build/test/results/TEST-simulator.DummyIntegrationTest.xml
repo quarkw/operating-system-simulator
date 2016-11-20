@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="2" tests="3" time="0.076" timestamp="2016-11-19T23:36:27">
+<testsuite errors="0" failures="0" hostname="DESKTOP-2MD63LK" name="simulator.DummyIntegrationTest" skipped="2" tests="3" time="0.144" timestamp="2016-11-20T04:58:35">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -59,7 +59,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher2662848381656677891.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit1672585727550718759.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner simulator.DummyIntegrationTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\test\results\TEST-simulator.DummyIntegrationTest.xml crashfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junitvmwatcher6244830250989470188.properties propsfile=C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\build\junit335032938456745364.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -99,7 +99,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null1250825713" />
+    <property name="javac.includesfile.binary" value="C:\Users\pjhud\Documents\NetBeansProjects\operating-system-simulator\OperatingSystemSimulator\null1675033511" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Program Files\NetBeans 8.1\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.1\platform\modules\ext\hamcrest-core-1.3.jar" />
@@ -404,14 +404,14 @@
   <testcase classname="simulator.DummyIntegrationTest" name="runTwoProcesses" time="0.0">
     <skipped />
   </testcase>
-  <testcase classname="simulator.DummyIntegrationTest" name="runFiveProcesses" time="0.0">
+  <testcase classname="simulator.DummyIntegrationTest" name="runFiveProcesses" time="0.062" />
+  <testcase classname="simulator.DummyIntegrationTest" name="runShellTest" time="0.0">
     <skipped />
   </testcase>
-  <testcase classname="simulator.DummyIntegrationTest" name="runShellTest" time="0.014" />
-  <system-out><![CDATA[CPU 25-cycle 1 start
-Running Process:
+  <system-out><![CDATA[Running Process:
   Pid: 0, Program: backgroundProcess, PC: -1, Cpu Used: 0
 Ready Processes:
+Processes Waiting for Device:
 Standby Processes:
 
 Interrupted 0 at -1/0
@@ -419,75 +419,591 @@ Interrupted 0 at 0/-6
 Interrupted 0 at 0/-11
 Interrupted 0 at 0/-16
 Interrupted 0 at 0/-21
-CPU 25-cycle 1 end
-Loading process1
 Running Process:
   Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 20
 Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 20
+Processes Waiting for Device:
+Standby Processes:
+
+Loading process 1
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 20
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 20
+Processes Waiting for Device:
 Standby Processes:
 
 Interrupted 0 at 0/-26
 Interrupted 0 at 0/-31
 Interrupted 0 at 0/-36
 Interrupted 0 at 0/-41
-Loading process2
 Running Process:
   Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 41
 Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 41
+Processes Waiting for Device:
+Standby Processes:
+
+Loading process 2
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 41
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 41
+Processes Waiting for Device:
 Standby Processes:
 
 Interrupted 0 at 0/-46
 Interrupted 0 at 0/-51
 Interrupted 0 at 0/-56
 Process 1 aquired resource
-Interrupted 1 at 1/38
+Interrupted 1 at 1/41
 Process 2 failed to aquire resource
+Running Process:
+  Pid: 2, Program: IOprogram, PC: -1, Cpu Used: 1
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 55
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 55
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 4
+Processes Waiting for Device:
+Standby Processes:
+
+Loading process 3
+Running Process:
+  Pid: 2, Program: IOprogram, PC: -1, Cpu Used: 1
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 55
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 55
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 4
+Processes Waiting for Device:
+Standby Processes:
+
 Interrupted 2 at 0/1
 Interrupted 0 at 0/-61
-Interrupted 1 at 1/33
-Process 2 failed to aquire resource
-Interrupted 2 at 0/1
 Interrupted 0 at 0/-66
-Interrupted 1 at 1/28
-Process 2 failed to aquire resource
-Interrupted 2 at 0/1
+Interrupted 1 at 1/36
 Interrupted 0 at 0/-71
-Interrupted 1 at 1/23
-Process 2 failed to aquire resource
-Interrupted 2 at 0/1
-Interrupted 0 at 0/-76
-Interrupted 1 at 1/18
-Process 2 failed to aquire resource
-Interrupted 2 at 0/1
-Interrupted 0 at 0/-81
-Interrupted 1 at 1/13
-Process 2 failed to aquire resource
-Interrupted 2 at 0/1
-Interrupted 0 at 0/-86
-Interrupted 1 at 1/8
-Process 2 failed to aquire resource
-Interrupted 2 at 0/1
-Interrupted 0 at 0/-91
-Interrupted 1 at 1/3
-Process 2 failed to aquire resource
-Interrupted 2 at 0/1
-Interrupted 0 at 0/-96
-Interrupted 1 at 2/0
-Process 2 aquired resource
-Interrupted 2 at 1/29
-Interrupted 0 at 0/-101
-Interrupted 1 at 3/15
-Interrupted 2 at 1/24
-Interrupted 0 at 0/-106
-Interrupted 1 at 3/10
-Interrupted 2 at 1/19
-Interrupted 0 at 0/-111
-Interrupted 1 at 3/5
 Running Process:
-  Pid: 2, Program: process2, PC: 1, Cpu Used: 25
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 70
 Ready Processes:
-  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 110
-  Pid: 1, Program: process1, PC: 3, Cpu Used: 58
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 9
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 70
+Processes Waiting for Device:
+Standby Processes:
+
+Loading process 4
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 70
+Ready Processes:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 9
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 70
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-76
+Interrupted 1 at 1/31
+Interrupted 0 at 0/-81
+Interrupted 0 at 0/-86
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 86
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: -1, Cpu Used: 0
+  Pid: 4, Program: IOprogram, PC: -1, Cpu Used: 0
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 86
+Processes Waiting for Device:
+Standby Processes:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 14
+
+Loading process 5
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 86
+Ready Processes:
+  Pid: 3, Program: IOprogram, PC: -1, Cpu Used: 0
+  Pid: 4, Program: IOprogram, PC: -1, Cpu Used: 0
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 86
+Processes Waiting for Device:
+Standby Processes:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 14
+
+Interrupted 0 at 0/-91
+Process 3 failed to aquire resource
+Interrupted 3 at 0/1
+Process 4 failed to aquire resource
+Interrupted 4 at 0/1
+Interrupted 0 at 0/-96
+Interrupted 0 at 0/-101
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 102
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 102
+Processes Waiting for Device:
+Standby Processes:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 14
+
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 102
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 102
+Processes Waiting for Device:
+Standby Processes:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 14
+
+Interrupted 0 at 0/-106
+Interrupted 0 at 0/-111
+Interrupted 0 at 0/-116
+Interrupted 0 at 0/-121
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 123
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 123
+Processes Waiting for Device:
+Standby Processes:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 14
+
+Interrupted 0 at 0/-126
+Interrupted 0 at 0/-131
+Interrupted 0 at 0/-136
+Interrupted 1 at 1/26
+Process 5 failed to aquire resource
+Interrupted 5 at 0/1
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 136
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 136
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 19
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-141
+Interrupted 0 at 0/-146
+Interrupted 1 at 1/21
+Interrupted 0 at 0/-151
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 152
+Ready Processes:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 24
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 152
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-156
+Interrupted 1 at 1/16
+Interrupted 0 at 0/-161
+Interrupted 0 at 0/-166
+Running Process:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 32
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 165
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 165
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 1 at 1/11
+Interrupted 0 at 0/-171
+Interrupted 0 at 0/-176
+Interrupted 1 at 1/6
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 179
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 179
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 39
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-181
+Interrupted 0 at 0/-186
+Interrupted 1 at 1/1
+Interrupted 0 at 0/-191
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 195
+Ready Processes:
+  Pid: 1, Program: IOprogram, PC: 1, Cpu Used: 44
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 195
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-196
+Interrupted 1 at 3/18
+Interrupted 0 at 0/-201
+Interrupted 0 at 0/-206
+Interrupted 1 at 3/13
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 205
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 205
+  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 53
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-211
+Interrupted 0 at 0/-216
+Interrupted 1 at 3/8
+Interrupted 0 at 0/-221
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 221
+Ready Processes:
+  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 58
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 221
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-226
+Interrupted 1 at 3/3
+Interrupted 0 at 0/-231
+Interrupted 0 at 0/-236
+Running Process:
+  Pid: 1, Program: IOprogram, PC: 3, Cpu Used: 65
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 235
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 235
+Processes Waiting for Device:
+Standby Processes:
+
+Terminating 1
+Interrupted 1 at 4/0
+Interrupted 0 at 0/-241
+Interrupted 0 at 0/-246
+Interrupted 0 at 0/-251
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 254
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 254
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-256
+Interrupted 0 at 0/-261
+Interrupted 0 at 0/-266
+Interrupted 0 at 0/-271
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 275
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 275
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-276
+Interrupted 0 at 0/-281
+Interrupted 0 at 0/-286
+Interrupted 0 at 0/-291
+Interrupted 0 at 0/-296
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 295
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 295
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-301
+Interrupted 0 at 0/-306
+Interrupted 0 at 0/-311
+Interrupted 0 at 0/-316
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 316
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 316
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-321
+Interrupted 0 at 0/-326
+Interrupted 0 at 0/-331
+Interrupted 0 at 0/-336
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 337
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 337
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-341
+Interrupted 0 at 0/-346
+Interrupted 0 at 0/-351
+Interrupted 0 at 0/-356
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 358
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 358
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-361
+Interrupted 0 at 0/-366
+Interrupted 0 at 0/-371
+Interrupted 0 at 0/-376
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 379
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 379
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-381
+Interrupted 0 at 0/-386
+Interrupted 0 at 0/-391
+Interrupted 0 at 0/-396
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 400
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 400
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-401
+Interrupted 0 at 0/-406
+Interrupted 0 at 0/-411
+Interrupted 0 at 0/-416
+Interrupted 0 at 0/-421
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 420
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 420
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-426
+Interrupted 0 at 0/-431
+Interrupted 0 at 0/-436
+Interrupted 0 at 0/-441
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 441
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 441
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-446
+Interrupted 0 at 0/-451
+Interrupted 0 at 0/-456
+Interrupted 0 at 0/-461
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 462
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 462
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-466
+Interrupted 0 at 0/-471
+Interrupted 0 at 0/-476
+Interrupted 0 at 0/-481
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 483
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 483
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-486
+Interrupted 0 at 0/-491
+Interrupted 0 at 0/-496
+Interrupted 0 at 0/-501
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 504
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 504
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-506
+Interrupted 0 at 0/-511
+Interrupted 0 at 0/-516
+Interrupted 0 at 0/-521
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 525
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 525
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-526
+Interrupted 0 at 0/-531
+Interrupted 0 at 0/-536
+Interrupted 0 at 0/-541
+Interrupted 0 at 0/-546
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 545
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 545
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-551
+Interrupted 0 at 0/-556
+Interrupted 0 at 0/-561
+Interrupted 0 at 0/-566
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 566
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 566
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-571
+Interrupted 0 at 0/-576
+Interrupted 0 at 0/-581
+Interrupted 0 at 0/-586
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 587
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 587
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-591
+Interrupted 0 at 0/-596
+Interrupted 0 at 0/-601
+Interrupted 0 at 0/-606
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 608
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 608
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-611
+Interrupted 0 at 0/-616
+Interrupted 0 at 0/-621
+Interrupted 0 at 0/-626
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 629
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 629
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-631
+Interrupted 0 at 0/-636
+Interrupted 0 at 0/-641
+Interrupted 0 at 0/-646
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 650
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 650
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-651
+Interrupted 0 at 0/-656
+Interrupted 0 at 0/-661
+Interrupted 0 at 0/-666
+Interrupted 0 at 0/-671
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 670
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 670
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-676
+Interrupted 0 at 0/-681
+Interrupted 0 at 0/-686
+Interrupted 0 at 0/-691
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 691
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 691
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-696
+Interrupted 0 at 0/-701
+Interrupted 0 at 0/-706
+Interrupted 0 at 0/-711
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 712
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 712
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-716
+Interrupted 0 at 0/-721
+Interrupted 0 at 0/-726
+Interrupted 0 at 0/-731
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 733
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 733
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-736
+Interrupted 0 at 0/-741
+Interrupted 0 at 0/-746
+Interrupted 0 at 0/-751
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 754
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 754
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-756
+Interrupted 0 at 0/-761
+Interrupted 0 at 0/-766
+Interrupted 0 at 0/-771
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 775
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 775
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-776
+Interrupted 0 at 0/-781
+Interrupted 0 at 0/-786
+Interrupted 0 at 0/-791
+Interrupted 0 at 0/-796
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 795
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 795
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-801
+Interrupted 0 at 0/-806
+Interrupted 0 at 0/-811
+Interrupted 0 at 0/-816
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 816
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 816
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-821
+Interrupted 0 at 0/-826
+Interrupted 0 at 0/-831
+Interrupted 0 at 0/-836
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 837
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 837
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-841
+Interrupted 0 at 0/-846
+Interrupted 0 at 0/-851
+Interrupted 0 at 0/-856
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 858
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 858
+Processes Waiting for Device:
+Standby Processes:
+
+Interrupted 0 at 0/-861
+Interrupted 0 at 0/-866
+Interrupted 0 at 0/-871
+Interrupted 0 at 0/-876
+Running Process:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 879
+Ready Processes:
+  Pid: 0, Program: backgroundProcess, PC: 0, Cpu Used: 879
+Processes Waiting for Device:
 Standby Processes:
 
 ]]></system-out>
