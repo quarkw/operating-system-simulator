@@ -64,14 +64,14 @@ public class ShellGUI extends Application {
 
         consoleOut.appendText("This is appending");
 
-        Platform.runLater(() -> {
-            try {
-                Shell shell = new Shell(System.in, outputStream);
-                shell.readLines();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+//        Platform.runLater(() -> {
+//            try {
+//                Shell shell = new Shell(System.in);
+//                (shell).start();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
     }
     public void asyncWriteToConsole(String s){
         Platform.runLater( () -> consoleOut.appendText(s));

@@ -38,9 +38,19 @@ public class Shell {
         this(input);
         System.setOut(new PrintStream(out,true));
     }
-    public void readLines() throws IOException {
-        while(sc.hasNextLine()){
-            executeInput(sc.nextLine());
+    public void readLines() throws IOException  {
+        while(true){
+            if(sc.hasNextLine())
+                executeInput(sc.nextLine());
+        }
+    }
+    public void run(){
+        while(sc.hasNextLine()) {
+            try {
+                executeInput(sc.nextLine());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void executeInput(String input) throws IOException {
