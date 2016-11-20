@@ -32,7 +32,7 @@ public class DummyIntegrationTest {
         System.out.println("CPU 25-cycle 1 start");
         System.out.println(systemCalls.processSummary());
         for (int i = 0; i < 20; i++) {
-            cpu.cycle();
+            cpu.advanceClock();
         }
         System.out.println("CPU 25-cycle 1 end");
         
@@ -42,7 +42,7 @@ public class DummyIntegrationTest {
         
         System.out.println(systemCalls.processSummary());
         for (int i = 0; i < 20; i++) {
-            cpu.cycle();
+            cpu.advanceClock();
         }
         
         systemCalls.loadProgram("process2", program);
@@ -90,7 +90,7 @@ public class DummyIntegrationTest {
         for (int i = 0; i < n; i += 25) {
             System.out.println(system.processSummary());
             for (int j = 0; j < 25; j++) {
-               cpu.cycle();
+               cpu.advanceClock();
             }
         }
         System.out.println(system.processSummary());

@@ -19,6 +19,8 @@ public class Shell {
     private CPU cpu;
     private SystemCalls systemCalls;
     private File workingDirectory, programFiles;
+    private Boolean hasRun = false;
+    private Boolean programLoaded = false;
     private static final String programFilesDirectoryName = "ProgramFiles";
     private static final String programExtension = ".prgrm";
     private static final String jobExtension = ".job";
@@ -83,7 +85,12 @@ public class Shell {
         // amount of CPU time already used,
         // priority (if relevant),
         // number of I/O requests performed.
-        System.out.println(systemCalls.processSummary());
+        if(!hasRun)
+            System.out.println("You must LOAD a program and start the simulation (EXE) before running PROC");
+        else if (!cpu.isRunning())
+            System.out.println("All processes have terminated. Please LOAD another program and start the simulation");
+        else
+            System.out.println(systemCalls.processSummary());
     }
 
     private void mem(){
@@ -143,11 +150,14 @@ public class Shell {
             if(filename.endsWith(programExtension)) {
                 file = new File(programFiles.getAbsolutePath() + "/" + filename);
                 if(file.exists() && !file.isDirectory()){
+                    programLoaded = true;
                     systemCalls.loadProgram(file.getName(),readFile(file));
+                    System.out.printf("Loaded Program \"%s\"\n",filename);
                 }
             } else if (filename.endsWith(jobExtension)) {
                 file = new File(programFiles.getAbsoluteFile() + "/" + filename);
                 if(file.exists() && !file.isDirectory()){
+                    System.out.printf("Loaded Job \"%s\"\n",filename);
                     List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()),encoding);
                     for(String line : lines)
                         executeInput(line);
@@ -159,10 +169,17 @@ public class Shell {
 
     private void exe(){
         //TODO start executing what we've loaded
+        while(cpu.advanceClock());
+        programLoaded = false;
     }
 
     private void exe(String[] parameters){
         //TODO
+        if(!programLoaded){
+            System.out.println("You must LOAD a program before starting the simulation");
+            return;
+        }
+        hasRun = true;
         if(parameters.length == 0){
             exe();
             return;
@@ -170,7 +187,10 @@ public class Shell {
         try{
             int execLength = Integer.parseInt(parameters[0]);
             for(int i = 0;i < execLength; i++){
-                cpu.cycle();
+                if(!cpu.advanceClock()) {
+                    programLoaded = false;
+                    break;
+                }
             }
         } catch(NumberFormatException e) {
             System.out.printf("ERROR: Parameter for EXE, \"%s\", is not an integer\n", parameters[0]);

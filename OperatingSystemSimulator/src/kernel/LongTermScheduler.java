@@ -58,7 +58,7 @@ public class LongTermScheduler {
     private void swapInIfAble() {
         ProcessControlBlock candidate = standByQueue.peek();
         while (candidate != null 
-               && candidate.memoryAllocation + getMemoryUsage() <= MEMORY_FOR_USER_PROCS) {
+               && candidate.memoryAllocation + getMemoryUsage() <= cpu.memory ) {
             standByQueue.remove(candidate);
             shortTermScheduler.insertReadyPCB(candidate);
             candidate = standByQueue.peek();
@@ -66,7 +66,7 @@ public class LongTermScheduler {
     }
     
     private void forceSwapIn(ProcessControlBlock pcb) {
-        while (pcb.memoryAllocation + getMemoryUsage() > MEMORY_FOR_USER_PROCS) {
+        while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory ) {
             swapOut(shortTermScheduler.getNextPcb());
         }
         shortTermScheduler.insertReadyPCB(pcb);

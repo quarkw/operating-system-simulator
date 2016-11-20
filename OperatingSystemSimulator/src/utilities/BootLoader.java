@@ -13,12 +13,12 @@ public class BootLoader {
         
         SystemCalls system = new SystemCalls(scheduler, cpu);
         
-        String backgroundProgram = "20 \n" + "CALCULATE -1";
-        system.loadProgram("backgroundProcess", backgroundProgram);
-        scheduler.schedule();
-        cpu.runningPcbPointer = scheduler.shortTermScheduler.getNextPcb();
-        cpu.programCounter = -1;
-        cpu.operationCounter = 0;
+//        String backgroundProgram = "20 \n" + "CALCULATE -1";
+//        system.loadProgram("backgroundProcess", backgroundProgram);
+//        scheduler.schedule();
+//        cpu.runningPcbPointer = scheduler.shortTermScheduler.getNextPcb();
+//        cpu.programCounter = -1;
+//        cpu.operationCounter = 0;
         cpu.system = system; //TODO this is a total hack, need to represent "switching to kernel mode"
         
         return system;

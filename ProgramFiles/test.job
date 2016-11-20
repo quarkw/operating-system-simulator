@@ -1,5 +1,11 @@
 LOAD test.prgrm
-EXE 25
-LOAD test2.prgrm
-EXE 300
+EXE 10
+PROC
+EXE
+PROC
+LOAD test.prgrm
+EXE 10
+PROC
+EXE
+PROC
 EXIT

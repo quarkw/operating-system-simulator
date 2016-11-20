@@ -14,6 +14,7 @@ public class CPU {
     
     public InterruptProcessor interruptProcessor;
     public SystemCalls system;
+    public int memory;
     
     /*Simulated registers */
     public ProcessControlBlock runningPcbPointer;
@@ -22,17 +23,36 @@ public class CPU {
     /*Registers to be saved in PCB */
     public int operationCounter;
     public int programCounter;
+
+    private static final int defaultMemory = 256;
     
     
     private Random rand = new Random();
     
     public CPU() {
-        this.interruptProcessor = new InterruptProcessor();
+        this(defaultMemory);
     }
-    
-    public boolean advanceClock() {
+    public CPU(int memory){
+        this.interruptProcessor = new InterruptProcessor();
+        this.memory = defaultMemory;
+    }
+    public boolean isRunning(){
+        if(runningPcbPointer==null) return false;
         if (runningPcbPointer.state == ProcessState.TERMINATED
                 && system.scheduler.shortTermScheduler.getReadyQueue().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+    public boolean advanceClock() {
+        if(runningPcbPointer == null){
+            this.runningPcbPointer = system.scheduler.shortTermScheduler.getNextPcb();
+            this.programCounter = -1;
+            this.operationCounter = 0;
+        }
+        if (runningPcbPointer.state == ProcessState.TERMINATED
+                && system.scheduler.shortTermScheduler.getReadyQueue().isEmpty()) {
+            runningPcbPointer = null;
             return false;
         }
         cycle();
@@ -40,7 +60,7 @@ public class CPU {
         return true;
     }
     
-    public void cycle() {
+    private void cycle() {
         if (interruptTimer > 0 ) {
             interruptTimer--;
         } else {
