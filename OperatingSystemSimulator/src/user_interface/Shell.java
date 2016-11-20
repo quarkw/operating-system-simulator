@@ -4,10 +4,7 @@ import kernel.SystemCalls;
 import simulator.CPU;
 import utilities.BootLoader;
 
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -40,9 +37,23 @@ public class Shell {
         this.workingDirectory = new File(System.getProperty("user.dir"));
         this.programFiles = new File(workingDirectory.getAbsolutePath() + "/" + programFilesDirectoryName);
     }
-    public void readLines() throws IOException {
-        while(sc.hasNextLine()){
-            executeInput(sc.nextLine());
+    public Shell(InputStream input, OutputStream out){
+        this(input);
+        System.setOut(new PrintStream(out,true));
+    }
+    public void readLines() throws IOException  {
+        while(true){
+            if(sc.hasNextLine())
+                executeInput(sc.nextLine());
+        }
+    }
+    public void run(){
+        while(sc.hasNextLine()) {
+            try {
+                executeInput(sc.nextLine());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void executeInput(String input) throws IOException {
