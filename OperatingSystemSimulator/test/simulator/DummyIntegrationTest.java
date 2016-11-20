@@ -52,7 +52,7 @@ public class DummyIntegrationTest {
         //System.out.println(systemCalls.processSummary());
     }
     
-    @Ignore
+    
     @Test
     public void runFiveProcesses() {
         CPU cpu = new CPU();
@@ -95,6 +95,7 @@ public class DummyIntegrationTest {
         }
         System.out.println(system.processSummary());
     }
+    @Ignore
     @Test
     public void runShellTest() throws IOException {
         Shell shell = new Shell();
