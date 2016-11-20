@@ -13,6 +13,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
+import kernel.Kernel;
 
 /**
  *
@@ -27,7 +28,8 @@ public class DummyIntegrationTest {
     @Test
     public void runTwoProcesses() {
         CPU cpu = new CPU();
-        SystemCalls systemCalls = BootLoader.boot(cpu);
+        Kernel kernel = BootLoader.boot(cpu);
+        SystemCalls systemCalls = kernel.systemCalls;
 
         System.out.println("CPU 25-cycle 1 start");
         System.out.println(systemCalls.processSummary());
@@ -48,22 +50,22 @@ public class DummyIntegrationTest {
         systemCalls.loadProgram("process2", program);
         System.out.println("Loading process2");
         
-        exec(325, cpu, systemCalls);
+        exec(450, cpu, systemCalls);
         //System.out.println(systemCalls.processSummary());
     }
     
-//    @Ignore
+    
     @Test
     public void runFiveProcesses() {
         CPU cpu = new CPU();
-        SystemCalls systemCalls = BootLoader.boot(cpu);
+        Kernel kernel = BootLoader.boot(cpu);
+        SystemCalls systemCalls = kernel.systemCalls;
         
-        exec(25, cpu, systemCalls);
-        
-        String program = "50 \nIO \nCALCULATE 20";
+        String program = "80 \nIO \nCALCULATE 20";
         
         System.out.println("Loading process 1");
         systemCalls.loadProgram("IOprogram", program);
+        cpu.advanceClock();
         exec(25, cpu, systemCalls);
         
         System.out.println("Loading process 2");
@@ -90,11 +92,12 @@ public class DummyIntegrationTest {
         for (int i = 0; i < n; i += 25) {
             System.out.println(system.processSummary());
             for (int j = 0; j < 25; j++) {
-               cpu.advanceClock();
+               if (!cpu.advanceClock()) return;
             }
         }
         System.out.println(system.processSummary());
     }
+    
     @Ignore
     @Test
     public void runShellTest() throws IOException {
