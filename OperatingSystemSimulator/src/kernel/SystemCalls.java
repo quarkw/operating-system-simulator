@@ -7,14 +7,13 @@ import java.util.ArrayList;
 
 public class SystemCalls {
     
-    public final LongTermScheduler scheduler;
-    private final CPU cpu;
+
+    private final Kernel kernel;
     
     private int nextPid = 0;
     
-    public SystemCalls(LongTermScheduler scheduler, CPU cpu) {
-        this.scheduler = scheduler;
-        this.cpu = cpu;
+    public SystemCalls(Kernel kernel) {
+        this.kernel = kernel;
     }
     
     public void loadProgram(String programName, String programText) {
@@ -22,20 +21,24 @@ public class SystemCalls {
         int memoryRequirement = Assembler.memoryRequirement(programText);
         ProcessControlBlock pcb = 
                 new ProcessControlBlock(nextPid++, programName, program, memoryRequirement);
-        scheduler.insertNewPcb(pcb);
+        kernel.ltScheduler.insertNewPcb(pcb);
     }
     
     public String processSummary() {
         StringBuilder summary = new StringBuilder();
         summary.append("Running Process:\n");
-        String line = pcbSummary(cpu.runningPcbPointer);
+        String line = pcbSummary(kernel.cpu.runningPcbPointer);
         summary.append(line);
         summary.append("Ready Processes:\n");
-        for (ProcessControlBlock pcb : scheduler.shortTermScheduler.getReadyQueue()) {
+        for (ProcessControlBlock pcb : kernel.stScheduler.getReadyQueue()) {
+            summary.append(pcbSummary(pcb));
+        }
+        summary.append("Processes Waiting for Device:\n");
+        for (ProcessControlBlock pcb : kernel.stScheduler.getDeviceQueue(0)) {
             summary.append(pcbSummary(pcb));
         }
         summary.append("Standby Processes:\n");
-        for (ProcessControlBlock pcb : scheduler.getStandByQueue()) {
+        for (ProcessControlBlock pcb : kernel.ltScheduler.getStandByQueue()) {
             summary.append(pcbSummary(pcb));
         }
         return summary.toString();

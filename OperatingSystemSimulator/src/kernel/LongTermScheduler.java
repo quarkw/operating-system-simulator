@@ -12,14 +12,18 @@ public class LongTermScheduler {
     
     private static final int MEMORY_FOR_USER_PROCS = 150;
     
-    public final ShortTermScheduler shortTermScheduler = new ShortTermScheduler(this);
+    private final Kernel kernel;
+    private final CPU cpu;
+    private final ShortTermScheduler stScheduler;
     
     private final LinkedList<ProcessControlBlock> standByQueue = new LinkedList<>();
     private final LinkedList<ProcessControlBlock> newProcessQueue = new LinkedList<>();
-    private final CPU cpu;
     
-    public LongTermScheduler(CPU cpu) {
-        this.cpu = cpu;
+    
+    public LongTermScheduler(Kernel kernel) {
+        this.kernel = kernel;
+        this.cpu = kernel.cpu;
+        this.stScheduler = kernel.stScheduler;
     }
     
     public void insertNewPcb(ProcessControlBlock pcb) {
@@ -49,7 +53,7 @@ public class LongTermScheduler {
         if (cpu.runningPcbPointer != null) { //TODO: This is a hack to allow booting
             usage += cpu.runningPcbPointer.memoryAllocation;
         }
-        for (ProcessControlBlock pcb : shortTermScheduler.getReadyQueue()) {
+        for (ProcessControlBlock pcb : stScheduler.getReadyQueue()) {
             usage += pcb.memoryAllocation;
         }
         return usage;
@@ -60,16 +64,16 @@ public class LongTermScheduler {
         while (candidate != null 
                && candidate.memoryAllocation + getMemoryUsage() <= cpu.memory ) {
             standByQueue.remove(candidate);
-            shortTermScheduler.insertReadyPCB(candidate);
+            stScheduler.insertPCB(candidate);
             candidate = standByQueue.peek();
         }
     }
     
     private void forceSwapIn(ProcessControlBlock pcb) {
         while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory ) {
-            swapOut(shortTermScheduler.getNextPcb());
+            swapOut(stScheduler.getNextPcb());
         }
-        shortTermScheduler.insertReadyPCB(pcb);
+        stScheduler.insertPCB(pcb);
     }
     
     private void swapOut(ProcessControlBlock pcb) {

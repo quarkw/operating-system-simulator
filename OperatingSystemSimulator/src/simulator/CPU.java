@@ -8,13 +8,14 @@ package simulator;
 import kernel.ProcessControlBlock;
 import kernel.ProcessState;
 import java.util.Random;
+import kernel.Kernel;
 import kernel.SystemCalls;
 
 public class CPU {
     
     public InterruptProcessor interruptProcessor;
-    public SystemCalls system;
     public int memory;
+    public Kernel kernel;
     
     /*Simulated registers */
     public ProcessControlBlock runningPcbPointer;
@@ -39,19 +40,19 @@ public class CPU {
     public boolean isRunning(){
         if(runningPcbPointer==null) return false;
         if (runningPcbPointer.state == ProcessState.TERMINATED
-                && system.scheduler.shortTermScheduler.getReadyQueue().isEmpty()) {
+                && kernel.stScheduler.getReadyQueue().isEmpty()) {
             return false;
         }
         return true;
     }
     public boolean advanceClock() {
         if(runningPcbPointer == null){
-            this.runningPcbPointer = system.scheduler.shortTermScheduler.getNextPcb();
+            this.runningPcbPointer = kernel.stScheduler.getNextPcb();
             this.programCounter = -1;
             this.operationCounter = 0;
         }
         if (runningPcbPointer.state == ProcessState.TERMINATED
-                && system.scheduler.shortTermScheduler.getReadyQueue().isEmpty()) {
+                && kernel.stScheduler.getReadyQueue().isEmpty()) {
             runningPcbPointer = null;
             return false;
         }

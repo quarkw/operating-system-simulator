@@ -13,10 +13,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import kernel.Kernel;
 
 public class Shell {
     private Scanner sc;
     private CPU cpu;
+    private Kernel kernel;
     private SystemCalls systemCalls;
     private File workingDirectory, programFiles;
     private Boolean hasRun = false;
@@ -33,7 +35,8 @@ public class Shell {
     public Shell(InputStream input){
         this.sc = new Scanner(input);
         this.cpu = new CPU();
-        this.systemCalls = BootLoader.boot(cpu);
+        this.kernel = BootLoader.boot(cpu);
+        this.systemCalls = kernel.systemCalls;
         this.workingDirectory = new File(System.getProperty("user.dir"));
         this.programFiles = new File(workingDirectory.getAbsolutePath() + "/" + programFilesDirectoryName);
     }
@@ -200,7 +203,8 @@ public class Shell {
     private void reset(){
         System.out.println("Resetting simulator ...");
         this.cpu = new CPU();
-        this.systemCalls = BootLoader.boot(cpu);
+        this.kernel = BootLoader.boot(cpu);
+        this.systemCalls = kernel.systemCalls;
         System.out.println("Reset complete");
     }
 

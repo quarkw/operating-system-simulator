@@ -1,0 +1,11 @@
+LOAD test.prgrm
+EXE 10
+PROC
+EXE
+PROC
+LOAD test.prgrm
+EXE 10
+PROC
+EXE
+PROC
+EXIT
