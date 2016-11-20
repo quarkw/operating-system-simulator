@@ -24,6 +24,7 @@ public class Shell {
     private static final String jobExtension = ".job";
     private static final Charset encoding = StandardCharsets.UTF_8;
 
+
     public Shell(){
         this(System.in);
     }
@@ -59,9 +60,6 @@ public class Shell {
                 break;
             case "EXE":
                 exe(params);
-                break;
-            case "TEST":
-                test();
                 break;
             case "RESET":
                 reset();
@@ -177,34 +175,6 @@ public class Shell {
         } catch(NumberFormatException e) {
             System.out.printf("ERROR: Parameter for EXE, \"%s\", is not an integer\n", parameters[0]);
         }
-    }
-
-    private void test(){
-        //Execute whatever test code you want;
-        System.out.println("CPU 25-cycle 1 start");
-        System.out.println(systemCalls.processSummary());
-        for (int i = 0; i < 25; i++) {
-            cpu.cycle();
-        }
-        System.out.println("CPU 25-cycle 1 end");
-
-        String program = "50 \nIO \nCALCULATE 20";
-        System.out.println("Loading process1");
-        systemCalls.loadProgram("process1", program);
-
-        System.out.println(systemCalls.processSummary());
-        for (int i = 0; i < 25; i++) {
-            cpu.cycle();
-        }
-
-        systemCalls.loadProgram("process2", program);
-        System.out.println("Loading process2");
-        System.out.println(systemCalls.processSummary());
-
-        for (int i = 0; i < 200; i++) {
-            cpu.cycle();
-        }
-        System.out.println(systemCalls.processSummary());
     }
 
     private void reset(){

@@ -18,7 +18,7 @@ public class BootLoader {
         scheduler.schedule();
         cpu.runningPcbPointer = scheduler.shortTermScheduler.getNextPcb();
         cpu.programCounter = -1;
-        cpu.operationCounter = 0; 
+        cpu.operationCounter = 0;
         cpu.system = system; //TODO this is a total hack, need to represent "switching to kernel mode"
         
         return system;

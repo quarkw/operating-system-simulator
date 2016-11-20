@@ -44,6 +44,7 @@ public class CPU {
                 programCounter++;
                 loadOperation();
             }
+
             //System.out.println("Executing: " + runningPcbPointer.processID
             //    + " Program Ctr: " + programCounter
             //    + " OpCounter: " + operationCounter);

@@ -21,8 +21,7 @@ public class SystemCalls {
         ArrayList<Operation> program = Assembler.assembleProgram(programText);
         int memoryRequirement = Assembler.memoryRequirement(programText);
         ProcessControlBlock pcb = 
-                new ProcessControlBlock(nextPid, programName, program, memoryRequirement);
-        nextPid++;
+                new ProcessControlBlock(nextPid++, programName, program, memoryRequirement);
         scheduler.insertNewPcb(pcb);
     }
     
