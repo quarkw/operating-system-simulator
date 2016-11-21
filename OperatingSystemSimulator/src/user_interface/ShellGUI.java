@@ -11,20 +11,25 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.util.LinkedList;
 
 public class ShellGUI extends Application {
 
+    private Shell shell;
+
     public TextArea consoleOut;
     public TextField consoleIn;
+    private PipedOutputStream commands;
+    private PipedInputStream inputStream;
+    private OutputStream outputStream;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 //        Button btn = new Button();
 //        btn.setText("Hello World!");
 //        btn.setOnAction( (event) -> {System.out.println("Hello World!");});
@@ -37,44 +42,52 @@ public class ShellGUI extends Application {
 //        primaryStage.setTitle("Hello World!");
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
-        consoleOut  = new TextArea("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus pretium metus, sed facilisis ipsum gravida sit amet. Vivamus fringilla dignissim posuere. Nam accumsan tempus sem non dignissim. Aliquam porta odio erat, et suscipit velit venenatis vitae. Fusce a metus at arcu lobortis pharetra eget non massa. Vestibulum sit amet congue ante, et bibendum mauris. Integer nec nunc quis leo cursus placerat vel eu nisl. Sed et nisl nec magna fermentum fringilla. Phasellus dignissim non turpis sit amet tincidunt. Pellentesque cursus magna nisl, in efficitur nulla ornare sed. ");
+        consoleOut  = new TextArea("");
         consoleOut.setWrapText(true);
         consoleOut.setEditable(false);
 
-        consoleOut.setStyle("-fx-border-color: black");
+        commands = new PipedOutputStream();
         consoleIn = new TextField();
+        consoleIn.setOnAction ( (e) -> {
+            if(consoleIn.getText().equals(""))
+                consoleIn.setText(shell.getLastInput());
+            else {
+                try {
+                    commands.write(consoleIn.getText().getBytes());
+                    commands.write("\n".getBytes());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                consoleIn.setText("");
+            }
+        });
+//        consoleIn.setOnKeyPressed( (e) -> System.out.println(e));
         VBox consoleBox = new VBox();
-        consoleBox.setStyle("-fx-border-color: black");
+
         consoleBox.getChildren().addAll(consoleOut,consoleIn);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setBottom(consoleBox);
 
-        OutputStream outputStream = new OutputStream(){
+        inputStream = new PipedInputStream(commands);
+
+        outputStream = new OutputStream(){
             public void write(int b) throws IOException {
                 Platform.runLater( () -> consoleOut.appendText(String.valueOf((char) b)));
             }
         };
 
-        Scene scene = new Scene (borderPane);
+        Scene scene = new Scene (borderPane,600,600);
 
         primaryStage.setTitle("The Console");
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        consoleOut.appendText("This is appending");
-
-//        Platform.runLater(() -> {
-//            try {
-//                Shell shell = new Shell(System.in);
-//                (shell).start();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
+        consoleOut.appendText("Welcome to the OS-Simulator Shell. Please type your commands in the box below.\n");
+        consoleIn.requestFocus();
+        Platform.runLater(() -> {
+            shell = new Shell(inputStream,outputStream);
+            shell.start();
+        });
     }
-    public void asyncWriteToConsole(String s){
-        Platform.runLater( () -> consoleOut.appendText(s));
-    }
-
 }

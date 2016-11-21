@@ -12,14 +12,16 @@ import java.nio.file.Paths;
 import java.util.*;
 import kernel.Kernel;
 
-public class Shell {
+public class Shell extends Thread {
     private Scanner sc;
+    private LinkedList<String> history;
     private CPU cpu;
     private Kernel kernel;
     private SystemCalls systemCalls;
     private File workingDirectory, programFiles;
     private Boolean hasRun = false;
     private Boolean programLoaded = false;
+    private static final String[] commands = {"PROC","MEM","LOAD","EXE","TEST","RESET","EXIT"};
     private static final String programFilesDirectoryName = "ProgramFiles";
     private static final String programExtension = ".prgrm";
     private static final String jobExtension = ".job";
@@ -31,6 +33,7 @@ public class Shell {
     }
     public Shell(InputStream input){
         this.sc = new Scanner(input);
+        this.history = new LinkedList<>();
         this.cpu = new CPU();
         this.kernel = BootLoader.boot(cpu);
         this.systemCalls = kernel.systemCalls;
@@ -41,21 +44,24 @@ public class Shell {
         this(input);
         System.setOut(new PrintStream(out,true));
     }
-    public void readLines() throws IOException  {
-        while(true){
-            if(sc.hasNextLine())
-                executeInput(sc.nextLine());
-        }
-    }
-    public void run(){
+
+    public void run(){  //called by .start()
         while(sc.hasNextLine()) {
             try {
-                executeInput(sc.nextLine());
+                String line = sc.nextLine();
+                executeInput(line);
+                history.add(line);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+    public String getLastInput(){
+        if(history.isEmpty()) return "";
+        return history.getLast();
+    }
+
     public void executeInput(String input) throws IOException {
         String[] inputArray = input.split("\\s");
         String command = inputArray[0];
@@ -225,7 +231,6 @@ public class Shell {
     }
 
     private void suggestCommands(String input){
-        String[] commands = {"PROC","MEM","LOAD","EXE","TEST","RESET","EXIT"};
         suggestCorrections(input, commands);
     }
 
@@ -256,6 +261,8 @@ public class Shell {
                         commandCharMap.remove(c);
                     else
                         commandCharMap.put(c,count);
+                } else {
+                    numSharedCharacters--;
                 }
             }
             //if shared characters < n && >= n-2 && >= 2;
@@ -269,6 +276,8 @@ public class Shell {
         //Suggest the suggestions
         if(!suggestions.isEmpty())
             System.out.println("Did you mean: " + linkedListToHumanReadableOrList(suggestions));
+        else
+            System.out.println("Here is a list of available commands: " + Arrays.toString(commands));
     }
 
     private String linkedListToHumanReadableOrList(LinkedList list){
