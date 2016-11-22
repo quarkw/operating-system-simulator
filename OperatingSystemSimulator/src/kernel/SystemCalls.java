@@ -52,14 +52,7 @@ public class SystemCalls {
 
     public ArrayList<ProcessControlBlock> getPCBs(){
         ArrayList<ProcessControlBlock> PCBs = new ArrayList<>();
-        PCBs.add(kernel.cpu.runningPcbPointer); //Running Process
-        for (ProcessControlBlock pcb : kernel.stScheduler.getReadyQueue()) {    //Ready Processes
-            PCBs.add(pcb);
-        }
-        for (ProcessControlBlock pcb : kernel.stScheduler.getDeviceQueue(0)) {  //Processes Waiting For Device
-            PCBs.add(pcb);
-        }
-        for (ProcessControlBlock pcb : kernel.ltScheduler.getStandByQueue()) {  //Standby Processes
+        for (ProcessControlBlock pcb : kernel.allProcesses) {
             PCBs.add(pcb);
         }
         return PCBs;

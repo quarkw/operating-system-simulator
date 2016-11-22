@@ -23,7 +23,7 @@ public class Shell extends Thread {
     private LineFinishedListener lineFinishedListener;
     private CycleFinishedListener cycleFinishedListener;
     private CPU cpu;
-    private int sleepDelay = 50;
+    private int sleepDelay = 100;
     private Kernel kernel;
     private SystemCalls systemCalls;
     private File workingDirectory, programFiles;
@@ -247,7 +247,6 @@ public class Shell extends Thread {
             if(filename.endsWith(programExtension)) {
                 file = new File(programFiles.getAbsolutePath() + "/" + filename);
                 if(file.exists() && !file.isDirectory()){
-                    programLoaded = true;
                     systemCalls.loadProgram(file.getName(),readFile(file));
                     System.out.printf("Loaded Program \"%s\"\n",filename);
                 } else {
@@ -275,16 +274,18 @@ public class Shell extends Thread {
 
     private void exe(){
         //Start executing what's been loaded until end
-        while(programLoaded){
-            programLoaded = cpu.advanceClock();
-            passCycleInfoThroughListener();
+        while(true){
             try {
                 Thread.sleep(sleepDelay);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-        programLoaded = false;
+            if(!cpu.advanceClock()) {
+                passCycleInfoThroughListener();
+                break;
+            }
+            passCycleInfoThroughListener();
+        };
     }
 
     private void exe(String[] parameters){
@@ -300,20 +301,17 @@ public class Shell extends Thread {
         }
         try{
             int execLength = Integer.parseInt(parameters[0]);
-            for(int i = 0;i < execLength; i++){
-                programLoaded = cpu.advanceClock();
+            int i;
+            for(i = 0;i < execLength; i++){
                 passCycleInfoThroughListener();
                 try {
                     Thread.sleep(sleepDelay);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(!programLoaded) {
-
-                    System.out.printf("Completed %s of %s requested cycles", i, execLength);
-                    break;
-                }
+                if(!cpu.advanceClock()) break;
             }
+            System.out.printf("Completed %s of %s requested cycles\n", i, execLength);
         } catch(NumberFormatException e) {
             System.out.printf("ERROR: Parameter for EXE, \"%s\", is not an integer\n", parameters[0]);
         }

@@ -186,8 +186,10 @@ public class ShellGUI extends Application {
                 String autoType = shell.autoType(consoleIn.getText());
                 if(!autoType.equals(consoleIn.getText()))
                     suggestions = autoType;
+                consoleInSuggestions.setText(existingToSpaces(suggestions));
+            } else {
+                consoleInSuggestions.setText(existingToSpaces(suggestions));
             }
-            consoleInSuggestions.setText(existingToSpaces(suggestions));
         });
 
         consoleInWrapper = new StackPane();

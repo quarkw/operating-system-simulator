@@ -38,31 +38,32 @@ public class CPU {
         this.memory = defaultMemory;
     }
     public boolean isRunning(){
-        if(runningPcbPointer == null) {
-            this.runningPcbPointer = kernel.stScheduler.getNextPcb();
-            if (runningPcbPointer == null) return false;
+        for(ProcessControlBlock pcb : kernel.allProcesses){
+            if(!pcb.getState().equals(ProcessState.TERMINATED)) return true;
         }
-        if (runningPcbPointer.state == ProcessState.TERMINATED
-                && kernel.stScheduler.getReadyQueue().isEmpty()) {
-            return false;
-        }
-        return true;
+        return false;
     }
     public boolean advanceClock() {
-        if(runningPcbPointer == null) {
+        if(runningPcbPointer == null) { //No program is running, we must bootsrap
             this.runningPcbPointer = kernel.stScheduler.getNextPcb();
+            if (runningPcbPointer == null) return false;
             this.runningPcbPointer.state = ProcessState.RUNNING;
             this.programCounter = -1;
             this.operationCounter = 0;
-            if (runningPcbPointer == null) return false;
+
         }
-        if (runningPcbPointer.state == ProcessState.TERMINATED
-                && kernel.stScheduler.getReadyQueue().isEmpty()) {
+        if (runningPcbPointer != null
+                && runningPcbPointer.state == ProcessState.TERMINATED) {//Terminate program safely
+            //Release resources
+            interruptProcessor.setFlag(InterruptProcessor.RELEASE);
+            interruptProcessor.signalInterrupt();   //TODO get rid of this non-cycle cycle. Should PCB have a holdsResources() method?
+            //Remove terminated process;
+            kernel.allProcesses.remove(runningPcbPointer);
             runningPcbPointer = null;
-            return false;
         }
+
         cycle();
-        
+
         return true;
     }
     
