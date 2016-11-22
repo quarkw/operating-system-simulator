@@ -38,7 +38,10 @@ public class CPU {
         this.memory = defaultMemory;
     }
     public boolean isRunning(){
-        if(runningPcbPointer==null) return false;
+        if(runningPcbPointer == null) {
+            this.runningPcbPointer = kernel.stScheduler.getNextPcb();
+            if (runningPcbPointer == null) return false;
+        }
         if (runningPcbPointer.state == ProcessState.TERMINATED
                 && kernel.stScheduler.getReadyQueue().isEmpty()) {
             return false;

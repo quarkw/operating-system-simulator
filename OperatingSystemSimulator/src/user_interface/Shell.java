@@ -289,7 +289,7 @@ public class Shell extends Thread {
 
     private void exe(String[] parameters){
         //Start executing what's been loaded for X cycles
-        if(!programLoaded){
+        if(!cpu.isRunning()){
             System.out.println("ERROR: You must LOAD a program before starting the simulation");
             return;
         }
