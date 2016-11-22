@@ -4,6 +4,58 @@ import simulator.Operation;
 import java.util.ArrayList;
 
 public class ProcessControlBlock {
+    public int getProcessID() {
+        return processID;
+    }
+
+    public String getProgramName() {
+        return programName;
+    }
+
+    public int getMemoryAllocation() {
+        return memoryAllocation;
+    }
+
+    public int getCpuUsed() {
+        return cpuUsed;
+    }
+
+    public void setCpuUsed(int cpuUsed) {
+        this.cpuUsed = cpuUsed;
+    }
+
+    public ProcessState getState() {
+        return state;
+    }
+
+    public void setState(ProcessState state) {
+        this.state = state;
+    }
+
+    public int getProgramCounter() {
+        return programCounter;
+    }
+
+    public void setProgramCounter(int programCounter) {
+        this.programCounter = programCounter;
+    }
+
+    public int getOperationCounter() {
+        return operationCounter;
+    }
+
+    public void setOperationCounter(int operationCounter) {
+        this.operationCounter = operationCounter;
+    }
+
+    public int getRequestedDevice() {
+        return requestedDevice;
+    }
+
+    public void setRequestedDevice(int requestedDevice) {
+        this.requestedDevice = requestedDevice;
+    }
+
     //Just used public fields because this is simulating a methodless block of data
     public final int processID;
     public final String programName;

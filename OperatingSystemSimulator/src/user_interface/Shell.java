@@ -1,5 +1,7 @@
 package user_interface;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import kernel.ProcessControlBlock;
 import kernel.SystemCalls;
 import simulator.CPU;
@@ -19,20 +21,25 @@ public class Shell extends Thread {
     private ListIterator<String> historyIterator;
     private Boolean lastHistoryDirectionUp = true;
     private LineFinishedListener lineFinishedListener;
+    private CycleFinishedListener cycleFinishedListener;
     private CPU cpu;
+    private int sleepDelay = 50;
     private Kernel kernel;
     private SystemCalls systemCalls;
     private File workingDirectory, programFiles;
     private Boolean hasRun = false;
     private Boolean programLoaded = false;
-    public static final String[] commands = {"PROC","MEM","LOAD","EXE","RESET","EXIT"};
+    public static final String[] commands = {"PROC","MEM","LOAD","EXE","CAT","RESET","EXIT"};
     private static final String programFilesDirectoryName = "ProgramFiles";
     private static final String programExtension = ".prgrm";
     private static final String jobExtension = ".job";
     private static final Charset encoding = StandardCharsets.UTF_8;
 
     public interface LineFinishedListener {
-        void onLineFinished();
+        void onLineFinished(String suggestion, Boolean setAutoSuggestOn);
+    }
+    public interface CycleFinishedListener {
+        void onCycleFinished(ObservableList<ProcessControlBlock> procTable);
     }
     public Shell(){
         this(System.in);
@@ -56,19 +63,27 @@ public class Shell extends Thread {
         while(sc.hasNextLine()) {
             try {
                 String line = sc.nextLine();
-                executeInput(line);
                 history.add(line);
                 historyIterator = history.listIterator(history.size());
+                executeInput(line);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             if(this.lineFinishedListener != null)
-                this.lineFinishedListener.onLineFinished();
+                this.lineFinishedListener.onLineFinished("", true);
         }
     }
 
     public void setLineFinishedListener(LineFinishedListener listener){
         this.lineFinishedListener = listener;
+    }
+    public void setCycleFinishedListener(CycleFinishedListener listener){
+        this.cycleFinishedListener = listener;
+    }
+    private void passCycleInfoThroughListener(){
+        if(this.cycleFinishedListener!=null){
+            this.cycleFinishedListener.onCycleFinished(procTable());
+        }
     }
 
     public String getLastInput(){
@@ -123,6 +138,9 @@ public class Shell extends Thread {
             case "EXE":
                 exe(params);
                 break;
+            case "CAT":
+                cat(params);
+                break;
             case "RESET":
                 reset();
                 break;
@@ -151,6 +169,14 @@ public class Shell extends Thread {
             System.out.println("ERROR: All processes have terminated. Please LOAD another program and start the simulation (EXE)");
         else
             System.out.println(systemCalls.processSummaryByQueue());
+    }
+    public ObservableList<ProcessControlBlock> procTable(){
+        if(!hasRun)
+            return FXCollections.observableArrayList();
+        else if (!cpu.isRunning())
+            return FXCollections.observableArrayList();
+        else
+            return FXCollections.observableArrayList(systemCalls.getPCBs());
     }
 
     private void mem(){
@@ -209,7 +235,7 @@ public class Shell extends Thread {
             return;
         }
         if(filenames.length==0){
-            System.out.printf("LOAD takes any number of files as parameters in the form: \"LOAD file1.ext file2.ext\" and can load files with extensions \"%s\" and\"%s\"\n",programExtension,jobExtension);
+            System.out.printf("LOAD takes any number of files as parameters in the form: \"LOAD file1.ext file2.ext\" and can load files with extensions \"%s\" and\"%s\"\n\n",programExtension,jobExtension);
             printProgramList();
             printJobList();
         }
@@ -249,7 +275,15 @@ public class Shell extends Thread {
 
     private void exe(){
         //Start executing what's been loaded until end
-        while(cpu.advanceClock());
+        while(programLoaded){
+            programLoaded = cpu.advanceClock();
+            passCycleInfoThroughListener();
+            try {
+                Thread.sleep(sleepDelay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         programLoaded = false;
     }
 
@@ -267,13 +301,91 @@ public class Shell extends Thread {
         try{
             int execLength = Integer.parseInt(parameters[0]);
             for(int i = 0;i < execLength; i++){
-                if(!cpu.advanceClock()) {
-                    programLoaded = false;
+                programLoaded = cpu.advanceClock();
+                passCycleInfoThroughListener();
+                try {
+                    Thread.sleep(sleepDelay);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(!programLoaded) {
+
+                    System.out.printf("Completed %s of %s requested cycles", i, execLength);
                     break;
                 }
             }
         } catch(NumberFormatException e) {
             System.out.printf("ERROR: Parameter for EXE, \"%s\", is not an integer\n", parameters[0]);
+        }
+    }
+
+    private void cat(String[] parameters){
+        String quitString = ":wq";
+        if(parameters.length==0){
+            System.out.printf("CAT (in it's current incarnation) displays the contents of files, writes to files, and supports output redirection( with \">\" and \">>\")\n\n");
+            System.out.printf("Available files: %s\n",Arrays.toString(getFileList()));
+        } else {
+            StringBuilder sb = new StringBuilder();
+            int i;
+            String operationType = "Displaying";
+            for( i = 0; i < parameters.length; i++){
+                String filename = parameters[i];
+                if(filename.equals(">")) {
+                    operationType = "Writing";
+                    break;
+                }
+                if(filename.equals(">>")){
+                    operationType = "Appending";
+                    break;
+                }
+                File file = new File(programFiles.getAbsoluteFile() + "/" + filename);
+                List<String> lines = null;
+                try {
+                    lines = Files.readAllLines(Paths.get(file.getAbsolutePath()), encoding);
+                    for (String line : lines)
+                        sb.append(line+"\n");
+                } catch (IOException e) {
+                    sb.append(String.format("Could not load file \"%s\"\n", filename));
+                }
+            }
+            if(i++ == 0){
+                while(true) {
+                    if (this.lineFinishedListener != null)
+                        this.lineFinishedListener.onLineFinished(String.format("To close the file, type\"%s\" and enter", quitString), false);
+
+                    String line = sc.nextLine();
+                    history.add(line);
+                    historyIterator = history.listIterator(history.size());
+                    if (line.equals(quitString)) break;
+                    sb.append(line + "\n");
+                }
+            }
+            System.out.print(sb.toString());
+            if( !operationType.equals("Displaying")){
+                String filename = parameters[i];
+                StringBuilder before = new StringBuilder();
+                List<String> lines = null;
+                if (operationType.equals("Appending")){
+                    File file = new File(programFiles.getAbsoluteFile() + "/" + filename);
+                    try {
+                        lines = Files.readAllLines(Paths.get(file.getAbsolutePath()), encoding);
+                    } catch (IOException e) {
+                    }
+                    if(lines != null) {
+                        for (String line : lines)
+                            before.append(line + "\n");
+                    }
+                }
+                System.out.printf("%s to file \"%s\":\n", operationType, filename);
+                try {
+                    PrintWriter out = new PrintWriter(programFilesDirectoryName + "/" + filename);
+                    out.print(before.toString() + sb.toString());
+                    out.close();
+                    System.out.printf("File \"%s\" saved successfully\n",filename);
+                } catch (FileNotFoundException e) {
+                    System.out.printf("Failed to write to file: \"%s\"\n", filename);
+                }
+            }
         }
     }
 
@@ -288,6 +400,38 @@ public class Shell extends Thread {
     private void exit(){
         System.out.println("Goodbye :)");
         System.exit(0);
+    }
+
+    public String autoType(String input){
+        if(input.equals("")) return input;
+        StringBuilder sb = new StringBuilder();
+        for(String command : commands){
+            if (command.startsWith(input) || input.startsWith(command)) {
+                sb.append(command);
+                break;
+            }
+        }
+        String[] split = input.split("\\s");
+        if(split.length>1){
+            if(sb.toString().equals("CAT") || sb.toString().equals("LOAD")) {
+                HashMap<String, Boolean> files = new HashMap<String, Boolean>();
+                for (int i = 1; i < split.length - 1; i++) {
+                    sb.append(" " + split[i]);
+                    files.put(split[i], true);
+                }
+                for (String filename : getFileList()) {
+                    if (filename.startsWith(split[split.length - 1])) {
+                        if (!files.containsKey(filename)) {
+                            sb.append(" " + filename);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        if(sb.length() > 0)
+            return sb.toString();
+        return input;
     }
 
     private void suggestCommands(String input){

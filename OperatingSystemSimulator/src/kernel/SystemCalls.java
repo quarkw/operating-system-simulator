@@ -4,6 +4,7 @@ import simulator.CPU;
 import simulator.Operation;
 import utilities.Assembler;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SystemCalls {
     
@@ -47,6 +48,21 @@ public class SystemCalls {
             summary.append(pcbSummary(pcb));
         }
         return summary.toString();
+    }
+
+    public ArrayList<ProcessControlBlock> getPCBs(){
+        ArrayList<ProcessControlBlock> PCBs = new ArrayList<>();
+        PCBs.add(kernel.cpu.runningPcbPointer); //Running Process
+        for (ProcessControlBlock pcb : kernel.stScheduler.getReadyQueue()) {    //Ready Processes
+            PCBs.add(pcb);
+        }
+        for (ProcessControlBlock pcb : kernel.stScheduler.getDeviceQueue(0)) {  //Processes Waiting For Device
+            PCBs.add(pcb);
+        }
+        for (ProcessControlBlock pcb : kernel.ltScheduler.getStandByQueue()) {  //Standby Processes
+            PCBs.add(pcb);
+        }
+        return PCBs;
     }
     
     private String pcbSummary(ProcessControlBlock pcb) {
