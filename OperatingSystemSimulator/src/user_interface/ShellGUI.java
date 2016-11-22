@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
@@ -17,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
 import kernel.ProcessControlBlock;
+import kernel.ProcessState;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -81,7 +79,7 @@ public class ShellGUI extends Application {
 
         programCounterColumn = new TableColumn();
         programCounterColumn.setText("Program Counter");
-        programCounterColumn.setMinWidth(120);
+        programCounterColumn.setMinWidth(130);
         programCounterColumn.setCellValueFactory(new PropertyValueFactory("programCounter"));
 
         cpuUsedColumn = new TableColumn();
@@ -90,9 +88,49 @@ public class ShellGUI extends Application {
 
         processStateColumn = new TableColumn();
         processStateColumn.setText("State");
+        programCounterColumn.setMinWidth(130);
         processStateColumn.setCellValueFactory(new PropertyValueFactory("state"));
 
         procTable = new TableView();
+        procTable.setRowFactory(Row -> new TableRow<ProcessControlBlock>(){
+            @Override
+            public void updateItem(ProcessControlBlock pcb, boolean empty){
+                super.updateItem(pcb, empty);
+
+                if(pcb == null || empty){
+                    setStyle("");
+                } else {
+                    ProcessState state = pcb.getState();
+                    String style = "";
+                    switch(state){
+                        case NEW:
+                            style = "-fx-background-color: white";
+                            break;
+                        case READY:
+                            style = "-fx-background-color: cornflowerblue";
+                            break;
+                        case WAITING:
+                            style = "-fx-background-color: khaki";
+                            break;
+                        case RUNNING:
+                            style = "-fx-background-color: lawngreen";
+                            break;
+                        case TERMINATED:
+                            style = "-fx-background-color: hotpink";
+                            break;
+                        case STANDBY:
+                            style = "-fx-background-color: darkorange";
+                            break;
+                        default:
+                            break;
+                    }
+                    for(int i = 0; i < getChildren().size(); i++){
+                        Labeled children = (Labeled) getChildren().get(i);
+                        children.setStyle(style);
+                    }
+                }
+            }
+        });
         procTableData = FXCollections.observableArrayList();
         procTable.setItems(procTableData);
         procTable.getColumns().addAll(pIDColumn,programNameColumn,memoryAllocationColumn,programCounterColumn,cpuUsedColumn,processStateColumn);
@@ -196,6 +234,7 @@ public class ShellGUI extends Application {
         consoleInWrapper.getChildren().addAll(consoleIn,consoleInSuggestions);
         consoleInWrapper.setAlignment(Pos.CENTER_LEFT);
         consoleInSuggestions.setTranslateX(fontSize/2+4);
+        consoleInSuggestions.setMouseTransparent(true);
         VBox consoleBox = new VBox();
 
         consoleBox.getChildren().addAll(consoleOut,consoleInWrapper);
@@ -221,7 +260,7 @@ public class ShellGUI extends Application {
             }
         };
 
-        Scene scene = new Scene (borderPane,600,600);
+        Scene scene = new Scene (borderPane,800,600);
 
         primaryStage.setTitle("The Console");
         primaryStage.setScene(scene);
@@ -259,15 +298,13 @@ public class ShellGUI extends Application {
                 procTableData.add(data.get(i));
             }
             procTable.setItems(procTableData);
-            procTable.getColumns().removeAll(pIDColumn,programNameColumn,memoryAllocationColumn,programCounterColumn,cpuUsedColumn,processStateColumn);
-            procTable.getColumns().addAll(pIDColumn,programNameColumn,memoryAllocationColumn,programCounterColumn,cpuUsedColumn,processStateColumn);
         });
     }
     private void moveSBToConsole(){
         if(outputSB.length()>0) {
             consoleOut.appendText(outputSB.toString());
-            consoleOut.setScrollTop(consoleOut.getHeight());
             outputSB = new StringBuilder();
+            consoleOut.setScrollTop(consoleOut.getHeight());
         }
     }
     private String existingToSpaces(String input){
