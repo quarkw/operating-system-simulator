@@ -162,7 +162,6 @@ public class Shell extends Thread {
     }
 
     private String[] getProgramList(){
-        //TODO list files in the program files directory and let user input program to load
         String[] programs = programFiles.list((File dir, String name) ->  name.endsWith(programExtension));
         return programs;
     }
@@ -179,9 +178,8 @@ public class Shell extends Thread {
     }
 
     private String[] getJobList(){
-        //TODO list files in the program files directory and let user input program to load
-        String[] programs = programFiles.list((File dir, String name) ->  name.endsWith(jobExtension));
-        return programs;
+        String[] jobs = programFiles.list((File dir, String name) ->  name.endsWith(jobExtension));
+        return jobs;
     }
 
     private void printJobList(){
@@ -236,18 +234,17 @@ public class Shell extends Thread {
                 if(filename.contains("."))
                     suggestCorrections(filename,getFileList(),"files",false,5);
             }
-            //TODO Load file using systemCall
         }
     }
 
     private void exe(){
-        //TODO start executing what we've loaded
+        //Start executing what's been loaded until end
         while(cpu.advanceClock());
         programLoaded = false;
     }
 
     private void exe(String[] parameters){
-        //TODO
+        //Start executing what's been loaded for X cycles
         if(!programLoaded){
             System.out.println("ERROR: You must LOAD a program before starting the simulation");
             return;
