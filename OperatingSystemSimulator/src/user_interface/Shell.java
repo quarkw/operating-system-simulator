@@ -1,5 +1,6 @@
 package user_interface;
 
+import kernel.ProcessControlBlock;
 import kernel.SystemCalls;
 import simulator.CPU;
 import utilities.BootLoader;
@@ -17,6 +18,7 @@ public class Shell extends Thread {
     private LinkedList<String> history;
     private ListIterator<String> historyIterator;
     private Boolean lastHistoryDirectionUp = true;
+    private LineFinishedListener lineFinishedListener;
     private CPU cpu;
     private Kernel kernel;
     private SystemCalls systemCalls;
@@ -29,7 +31,9 @@ public class Shell extends Thread {
     private static final String jobExtension = ".job";
     private static final Charset encoding = StandardCharsets.UTF_8;
 
-
+    public interface LineFinishedListener {
+        void onLineFinished();
+    }
     public Shell(){
         this(System.in);
     }
@@ -58,7 +62,13 @@ public class Shell extends Thread {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            if(this.lineFinishedListener != null)
+                this.lineFinishedListener.onLineFinished();
         }
+    }
+
+    public void setLineFinishedListener(LineFinishedListener listener){
+        this.lineFinishedListener = listener;
     }
 
     public String getLastInput(){
@@ -140,7 +150,7 @@ public class Shell extends Thread {
         else if (!cpu.isRunning())
             System.out.println("ERROR: All processes have terminated. Please LOAD another program and start the simulation (EXE)");
         else
-            System.out.println(systemCalls.processSummary());
+            System.out.println(systemCalls.processSummaryByQueue());
     }
 
     private void mem(){

@@ -25,6 +25,7 @@ public class ShellGUI extends Application {
     private PipedOutputStream commands;
     private PipedInputStream inputStream;
     private OutputStream outputStream;
+    private StringBuilder outputSB;
 
     public static void main(String[] args) {
         launch(args);
@@ -44,6 +45,12 @@ public class ShellGUI extends Application {
 //        primaryStage.setTitle("Hello World!");
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
+
+
+        //Right Pane (Process List)
+
+
+        //Bottom Pane (Console)
         consoleOut  = new TextArea("");
         consoleOut.setWrapText(true);
         consoleOut.setEditable(false);
@@ -60,7 +67,9 @@ public class ShellGUI extends Application {
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+            System.out.println(">" + consoleIn.getText());
             consoleIn.setText("");
+            disableInput();
         });
 
         consoleIn.setOnKeyPressed( (e) ->{
@@ -80,14 +89,23 @@ public class ShellGUI extends Application {
 
         consoleBox.getChildren().addAll(consoleOut,consoleIn);
 
+
+
+
         BorderPane borderPane = new BorderPane();
         borderPane.setBottom(consoleBox);
 
         inputStream = new PipedInputStream(commands);
 
+
+        outputSB = new StringBuilder();
         outputStream = new OutputStream(){
             public void write(int b) throws IOException {
-                Platform.runLater( () -> consoleOut.appendText(String.valueOf((char) b))); consoleOut.setScrollTop(consoleOut.getHeight());
+                Platform.runLater(() -> {
+                    outputSB.append((char) b);
+                    if(((char) b) == '\n')
+                        moveSBToConsole();
+                });
             }
         };
 
@@ -103,7 +121,22 @@ public class ShellGUI extends Application {
         consoleIn.requestFocus();
         Platform.runLater(() -> {
             shell = new Shell(inputStream,outputStream);
+            shell.setLineFinishedListener(()-> enableInput());
             shell.start();
         });
+    }
+    private void enableInput(){
+        Platform.runLater( () -> {
+            consoleIn.setDisable(false);
+            consoleIn.requestFocus();
+        });
+    }
+    private void disableInput(){
+        consoleIn.setDisable(true);
+    }
+    private void moveSBToConsole(){
+        consoleOut.appendText(outputSB.toString());
+        consoleOut.setScrollTop(consoleOut.getHeight());
+        outputSB = new StringBuilder();
     }
 }
