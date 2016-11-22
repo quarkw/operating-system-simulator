@@ -394,6 +394,9 @@ public class Shell extends Thread {
         this.cpu = new CPU();
         this.kernel = BootLoader.boot(cpu);
         this.systemCalls = kernel.systemCalls;
+        this.cycleFinishedListener.onCycleFinished(FXCollections.observableArrayList());
+        this.hasRun = false;
+        this.programLoaded = false;
         System.out.println("Reset complete");
     }
 
