@@ -15,13 +15,15 @@ import kernel.Kernel;
 public class Shell extends Thread {
     private Scanner sc;
     private LinkedList<String> history;
+    private ListIterator<String> historyIterator;
+    private Boolean lastHistoryDirectionUp = true;
     private CPU cpu;
     private Kernel kernel;
     private SystemCalls systemCalls;
     private File workingDirectory, programFiles;
     private Boolean hasRun = false;
     private Boolean programLoaded = false;
-    private static final String[] commands = {"PROC","MEM","LOAD","EXE","TEST","RESET","EXIT"};
+    public static final String[] commands = {"PROC","MEM","LOAD","EXE","RESET","EXIT"};
     private static final String programFilesDirectoryName = "ProgramFiles";
     private static final String programExtension = ".prgrm";
     private static final String jobExtension = ".job";
@@ -34,6 +36,7 @@ public class Shell extends Thread {
     public Shell(InputStream input){
         this.sc = new Scanner(input);
         this.history = new LinkedList<>();
+        this.historyIterator = history.listIterator();
         this.cpu = new CPU();
         this.kernel = BootLoader.boot(cpu);
         this.systemCalls = kernel.systemCalls;
@@ -51,6 +54,7 @@ public class Shell extends Thread {
                 String line = sc.nextLine();
                 executeInput(line);
                 history.add(line);
+                historyIterator = history.listIterator(history.size());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -60,6 +64,32 @@ public class Shell extends Thread {
     public String getLastInput(){
         if(history.isEmpty()) return "";
         return history.getLast();
+    }
+
+    public String getPreviousInput(){   //Up
+        if(history.isEmpty()) return "";
+        if(!lastHistoryDirectionUp)
+            if(historyIterator.hasPrevious()) historyIterator.previous();
+        lastHistoryDirectionUp = true;
+        if(historyIterator.hasPrevious())
+            return historyIterator.previous();
+        else {
+            lastHistoryDirectionUp = false;
+            return historyIterator.next();
+        }
+    }
+
+    public String getNextInput(){       //Down
+        if(history.isEmpty()) return "";
+        if(lastHistoryDirectionUp)
+            if(historyIterator.hasNext()) historyIterator.next();
+        lastHistoryDirectionUp = false;
+        if(historyIterator.hasNext())
+            return historyIterator.next();
+        else {
+            lastHistoryDirectionUp = true;
+            return historyIterator.previous();
+        }
     }
 
     public void executeInput(String input) throws IOException {
@@ -90,7 +120,7 @@ public class Shell extends Thread {
                 exit();
                 break;
             default:
-                System.out.printf("Command \"%s\" not found\n", inputArray[0]);
+                System.out.printf("ERROR: Command \"%s\" not found\n", inputArray[0]);
                 suggestCommands(inputArray[0]);
         }
 
@@ -106,9 +136,9 @@ public class Shell extends Thread {
         // priority (if relevant),
         // number of I/O requests performed.
         if(!hasRun)
-            System.out.println("You must LOAD a program and start the simulation (EXE) before running PROC");
+            System.out.println("ERROR: You must LOAD a program and start the simulation (EXE) before running PROC");
         else if (!cpu.isRunning())
-            System.out.println("All processes have terminated. Please LOAD another program and start the simulation");
+            System.out.println("ERROR: All processes have terminated. Please LOAD another program and start the simulation (EXE)");
         else
             System.out.println(systemCalls.processSummary());
     }
@@ -117,6 +147,18 @@ public class Shell extends Thread {
         //TODO
         // Shows the current usage of memory space
 
+    }
+
+    private String[] getFileList(){
+        String[] programs = getProgramList();
+        String[] jobs = getJobList();
+        String[] files = new String[programs.length + jobs.length];
+        int cursor = 0;
+        for(String program : programs)
+            files[cursor++] = program;
+        for(String job : jobs)
+            files[cursor++] = job;
+        return files;
     }
 
     private String[] getProgramList(){
@@ -145,20 +187,21 @@ public class Shell extends Thread {
     private void printJobList(){
         String[] jobs = getJobList();
         if(jobs.length==0) {
-            System.out.printf("There are no jobs inside the \"%s\" directory\n", programFilesDirectoryName);
+            System.out.printf("ERROR: There are no jobs inside the \"%s\" directory\n", programFilesDirectoryName);
             System.out.printf("Jobs have the extension \"%s\" and are located in \"%s\"\n",jobExtension,programFiles.getAbsolutePath());
         }
         else {
-            System.out.println("Programs: " + Arrays.toString(jobs));
+            System.out.println("Jobs: " + Arrays.toString(jobs));
         }
     }
 
     private void load(String[] filenames) throws IOException {
         if(!programFiles.exists()){
-            System.out.printf("Error: There is no folder called \"%s\" inside: \"%s\"\n",programFilesDirectoryName,workingDirectory.getAbsolutePath());
+            System.out.printf("ERROR: There is no folder called \"%s\" inside: \"%s\"\n",programFilesDirectoryName,workingDirectory.getAbsolutePath());
             return;
         }
         if(filenames.length==0){
+            System.out.printf("LOAD takes any number of files as parameters in the form: \"LOAD file1.ext file2.ext\" and can load files with extensions \"%s\" and\"%s\"\n",programExtension,jobExtension);
             printProgramList();
             printJobList();
         }
@@ -173,6 +216,9 @@ public class Shell extends Thread {
                     programLoaded = true;
                     systemCalls.loadProgram(file.getName(),readFile(file));
                     System.out.printf("Loaded Program \"%s\"\n",filename);
+                } else {
+                    System.out.printf("ERROR: Unable to find program \"%s\"\n",filename);
+                    suggestCorrections(filename,getProgramList(),"programs",false,2);
                 }
             } else if (filename.endsWith(jobExtension)) {
                 file = new File(programFiles.getAbsoluteFile() + "/" + filename);
@@ -181,7 +227,14 @@ public class Shell extends Thread {
                     List<String> lines = Files.readAllLines(Paths.get(file.getAbsolutePath()),encoding);
                     for(String line : lines)
                         executeInput(line);
+                } else {
+                    System.out.printf("ERROR: Unable to find job \"%s\"\n",filename);
+                    suggestCorrections(filename,getJobList(),"jobs",false,2);
                 }
+            } else {
+                System.out.printf("ERROR: File name \"%s\" must have extension \"%s\" or \"%s\"\n",filename,programExtension,jobExtension);
+                if(filename.contains("."))
+                    suggestCorrections(filename,getFileList(),"files",false,5);
             }
             //TODO Load file using systemCall
         }
@@ -196,7 +249,7 @@ public class Shell extends Thread {
     private void exe(String[] parameters){
         //TODO
         if(!programLoaded){
-            System.out.println("You must LOAD a program before starting the simulation");
+            System.out.println("ERROR: You must LOAD a program before starting the simulation");
             return;
         }
         hasRun = true;
@@ -231,19 +284,21 @@ public class Shell extends Thread {
     }
 
     private void suggestCommands(String input){
-        suggestCorrections(input, commands);
+        suggestCorrections(input, commands, "commands", true, 2);
     }
 
-    private void suggestCorrections(String input, String[] commands){
+    private void suggestCorrections(String input, String[] commands, String inputType, Boolean caseSensitive, int tolerance){
         String inputToLower = input.toLowerCase();
         LinkedList<String> suggestions = new LinkedList<>();
-        for(String command : commands){
-            if(inputToLower.equals(command.toLowerCase()))
-                suggestions.add(command);
+        if(caseSensitive) {
+            for (String command : commands) {
+                if (inputToLower.equals(command.toLowerCase()))
+                    suggestions.add(command);
+            }
+            if (!suggestions.isEmpty())
+                System.out.printf("Remember, %s are case sensitive\n", inputType);
         }
-        if(!suggestions.isEmpty())
-            System.out.println("Remember Commands are case sensitive");
-        //Suggest command that share two n-2 letters, (minimum 2)
+        //Suggest command that share two n-tolerance letters, (minimum 2)
         for(String command : commands){
             //Find number of shared characters
             int numSharedCharacters = 0;
@@ -265,10 +320,11 @@ public class Shell extends Thread {
                     numSharedCharacters--;
                 }
             }
-            //if shared characters < n && >= n-2 && >= 2;
-            if(numSharedCharacters >= command.length()-2
+            //if shared characters < n && >= n-tolerance && >= 2;
+            if(numSharedCharacters >= command.length()-tolerance
                     && numSharedCharacters >= 2
-                    && numSharedCharacters < command.length()
+                    && numSharedCharacters <= command.length()
+                    && !command.toLowerCase().equals(inputToLower)
                     ){
                 suggestions.add(command);
             }
@@ -277,7 +333,7 @@ public class Shell extends Thread {
         if(!suggestions.isEmpty())
             System.out.println("Did you mean: " + linkedListToHumanReadableOrList(suggestions));
         else
-            System.out.println("Here is a list of available commands: " + Arrays.toString(commands));
+            System.out.printf("Here is a list of available %s:\n%s\n", inputType,Arrays.toString(commands));
     }
 
     private String linkedListToHumanReadableOrList(LinkedList list){

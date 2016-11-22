@@ -7,11 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class ShellGUI extends Application {
@@ -51,17 +53,29 @@ public class ShellGUI extends Application {
         consoleIn.setOnAction ( (e) -> {
             if(consoleIn.getText().equals(""))
                 consoleIn.setText(shell.getLastInput());
-            else {
-                try {
-                    commands.write(consoleIn.getText().getBytes());
-                    commands.write("\n".getBytes());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                consoleIn.setText("");
+            if(consoleIn.getText().equals("")) return;
+            try {
+                commands.write(consoleIn.getText().getBytes());
+                commands.write("\n".getBytes());
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
+            consoleIn.setText("");
         });
-//        consoleIn.setOnKeyPressed( (e) -> System.out.println(e));
+
+        consoleIn.setOnKeyPressed( (e) ->{
+
+            if(e.getCode().equals(KeyCode.UP)){
+                consoleIn.setText(shell.getPreviousInput());
+                consoleIn.positionCaret(consoleIn.getLength());
+                e.consume();
+            } else if (e.getCode().equals(KeyCode.DOWN)){
+                consoleIn.setText(shell.getNextInput());
+                consoleIn.positionCaret(consoleIn.getLength());
+                e.consume();
+            }
+
+        });
         VBox consoleBox = new VBox();
 
         consoleBox.getChildren().addAll(consoleOut,consoleIn);
@@ -73,7 +87,7 @@ public class ShellGUI extends Application {
 
         outputStream = new OutputStream(){
             public void write(int b) throws IOException {
-                Platform.runLater( () -> consoleOut.appendText(String.valueOf((char) b)));
+                Platform.runLater( () -> consoleOut.appendText(String.valueOf((char) b))); consoleOut.setScrollTop(consoleOut.getHeight());
             }
         };
 
@@ -83,7 +97,9 @@ public class ShellGUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        consoleOut.appendText("Welcome to the OS-Simulator Shell. Please type your commands in the box below.\n");
+        consoleOut.appendText("Welcome to the OS-Simulator Shell. Please type one of the following commands in the box below.\n");
+        consoleOut.appendText(Arrays.toString(shell.commands));
+        consoleOut.appendText("\n");
         consoleIn.requestFocus();
         Platform.runLater(() -> {
             shell = new Shell(inputStream,outputStream);
