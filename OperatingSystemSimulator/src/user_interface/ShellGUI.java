@@ -201,10 +201,10 @@ public class ShellGUI extends Application {
                         case READY:
                             baseColor = "cornflowerblue";
                             break;
-                        case WAIT_FOR_DEVICE:
+                        case WAIT_AQUIRE:
                             baseColor = "darkkhaki";
                             break;
-                        case WAIT_FOR_SIGNAL:
+                        case WAIT_IO:
                             baseColor = "salmon";
                             break;
                         case RUNNING:

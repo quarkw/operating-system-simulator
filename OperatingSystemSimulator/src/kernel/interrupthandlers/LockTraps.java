@@ -49,7 +49,7 @@ public class LockTraps {
                     
         } else {
             System.out.println("Process " + cpu.runningPcbPointer.processID + " waiting for resource");
-            runningPcb.state = ProcessState.WAIT_FOR_DEVICE;
+            runningPcb.state = ProcessState.WAIT_AQUIRE;
             //cpu.interruptProcessor.setFlag(InterruptProcessor.YIELD); //TODO perform context switch here       
             
             //yield

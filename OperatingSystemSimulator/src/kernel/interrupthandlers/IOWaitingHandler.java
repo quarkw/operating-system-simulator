@@ -25,7 +25,7 @@ public class IOWaitingHandler {
     
     //Context switch from oldPCB to newPCB
     public void handleBlocking() {
-        kernel.cpu.runningPcbPointer.state = ProcessState.WAIT_FOR_SIGNAL;
+        kernel.cpu.runningPcbPointer.state = ProcessState.WAIT_IO;
         ProcessControlBlock nextInLine = kernel.stScheduler.getNextPcb();
         if (nextInLine != null) {
             busyWaiting = false;
