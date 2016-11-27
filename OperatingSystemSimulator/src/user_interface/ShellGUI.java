@@ -143,8 +143,11 @@ public class ShellGUI extends Application {
                         case READY:
                             baseColor = "cornflowerblue";
                             break;
-                        case WAITING:
+                        case WAIT_FOR_DEVICE:
                             baseColor = "darkkhaki";
+                            break;
+                        case WAIT_FOR_SIGNAL:
+                            baseColor = "salmon";
                             break;
                         case RUNNING:
                             baseColor = "forestgreen";

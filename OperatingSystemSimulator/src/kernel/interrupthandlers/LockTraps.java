@@ -48,25 +48,30 @@ public class LockTraps {
             cpu.operationCounter = 0;
                     
         } else {
-            System.out.println("!!!Process " + cpu.runningPcbPointer.processID + " failed to aquire resource");
-            runningPcb.state = ProcessState.WAITING;
+            System.out.println("Process " + cpu.runningPcbPointer.processID + " waiting for resource");
+            runningPcb.state = ProcessState.WAIT_FOR_DEVICE;
             //cpu.interruptProcessor.setFlag(InterruptProcessor.YIELD); //TODO perform context switch here       
             
             //yield
             ProcessControlBlock nextInLine = kernel.stScheduler.getNextPcb();
-            if (nextInLine == null) System.out.println("Fatal error in Locktraps.aquire()");
-            ProcessControlBlock oldPCB = kernel.contextSwitchHandler.switchContext(nextInLine);
-            kernel.stScheduler.insertPCB(oldPCB);
+            if (nextInLine == null) {
+                kernel.ioWaitingHandler.busyWait();
+            } else {
+               ProcessControlBlock oldPCB = kernel.contextSwitchHandler.switchContext(nextInLine);
+               kernel.stScheduler.insertPCB(oldPCB);
+            }
         }
                 
     }
     
     public void release() {
+        System.out.println("Process " + cpu.runningPcbPointer.processID + " released resource");
         int deviceNumber = cpu.runningPcbPointer.requestedDevice;
         LinkedList<ProcessControlBlock> deviceQueue = 
                 kernel.stScheduler.getDeviceQueue(deviceNumber);
         if (!deviceQueue.isEmpty()) {
             ProcessControlBlock nextInLine = deviceQueue.poll();
+            System.out.println("Process " + nextInLine.processID + " aquired resource");
             nextInLine.state = ProcessState.READY;
             kernel.stScheduler.insertPCB(nextInLine);
         }
