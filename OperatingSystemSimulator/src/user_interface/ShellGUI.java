@@ -2,8 +2,11 @@ package user_interface;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
@@ -15,6 +18,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import kernel.ProcessControlBlock;
 import kernel.ProcessState;
 
@@ -39,6 +43,8 @@ public class ShellGUI extends Application {
     private ObservableList<AreaChart.Series> memoryChartData;
     private AreaChart memoryChart;
     private AreaChart.Series memoryUsageData, swapUsageData, memoryLimitData;
+
+    private Slider delaySlider;
 
     public TextArea consoleOut;
     public TextField consoleIn;
@@ -92,8 +98,61 @@ public class ShellGUI extends Application {
         memoryChart = new AreaChart(memoryXAxis, memoryYAxis, memoryChartData);
         memoryChart.setAnimated(false);
 
+        //Delay slider
+        delaySlider = new Slider();
+        //No delay, 10ms, 50ms, 100ms, 1000ms, Hold
+        delaySlider.setMin(0);
+        delaySlider.setMax(5);
+        delaySlider.setValue(3);
+        delaySlider.setMinorTickCount(0);
+        delaySlider.setMajorTickUnit(1);
+        delaySlider.setSnapToTicks(true);
+        delaySlider.setShowTickMarks(true);
+        delaySlider.setShowTickLabels(true);
+
+        delaySlider.setLabelFormatter(new StringConverter<Double>() {
+            @Override
+            public String toString(Double n) {
+                if (n < 0.5) return "0ms";
+                if (n < 1.5) return "10ms";
+                if (n < 2.5) return "50ms";
+                if (n < 3.5) return "100ms";
+                if (n < 4.5) return "1000ms";
+
+                return "Hold";
+            }
+
+            @Override
+            public Double fromString(String s) {
+                switch (s) {
+                    case "0ms":
+                        return 0d;
+                    case "10ms":
+                        return 1d;
+                    case "50ms":
+                        return 2d;
+                    case "100ms":
+                        return 3d;
+                    case "1000ms":
+                        return 4d;
+                    default:
+                        return 5d;
+                }
+            }
+        });
+        delaySlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                double n = (double) newValue;
+                shell.sleepDelay = getDelayFromDelaySliderValue(n);
+            }
+        });
+
         VBox controlPane = new VBox();
-        controlPane.getChildren().addAll(memoryChart);
+        delaySlider.setPadding(new Insets(30));
+        controlPane.getChildren().addAll(memoryChart, delaySlider);
+
+
         //Right Pane (Process Table)
         pIDColumn = new TableColumn();
         pIDColumn.setText("Process ID");
@@ -308,6 +367,7 @@ public class ShellGUI extends Application {
         consoleIn.requestFocus();
         Platform.runLater(() -> {
             shell = new Shell(inputStream,outputStream);
+            reset();    //Initialize defaults
             shell.setLineFinishedListener((s,b)-> enableInput(s,b));
             shell.setCycleFinishedListener((d,c) -> updateGraphics(d,c));
             shell.start();
@@ -358,14 +418,7 @@ public class ShellGUI extends Application {
                 ));
             }
             if(currentCycle == -1){
-                memoryXAxis.setUpperBound(currentCycle-1);
-                memoryXAxis.setLowerBound(currentCycle-61);
-                memoryUsageData.setData(FXCollections.observableArrayList());
-                swapUsageData.setData(FXCollections.observableArrayList());
-                memoryLimitData.setData(FXCollections.observableArrayList(
-                        new AreaChart.Data(0,shell.cpu.memory),
-                        new AreaChart.Data(60,shell.cpu.memory)
-                ));
+                reset();
             }
 
             //Reset Memory Graph
@@ -386,6 +439,16 @@ public class ShellGUI extends Application {
             procTable.setItems(procTableData);
         });
     }
+    private int getDelayFromDelaySliderValue(double n){
+        int delay;
+        if (n < 0.5) delay = 0;
+        else if (n < 1.5) delay = 10;
+        else if (n < 2.5) delay = 50;
+        else if (n < 3.5) delay = 100;
+        else if (n < 4.5) delay = 1000;
+        else delay = -1;
+        return delay;
+    }
     private void moveSBToConsole(){
         if(outputSB.length()>0) {
             consoleOut.appendText(outputSB.toString());
@@ -401,6 +464,17 @@ public class ShellGUI extends Application {
             }
         }
         return sb.toString();
+    }
+    private void reset(){
+        memoryXAxis.setUpperBound(60);
+        memoryXAxis.setLowerBound(0);
+        memoryUsageData.setData(FXCollections.observableArrayList(new AreaChart.Data(0,0)));
+        swapUsageData.setData(FXCollections.observableArrayList(new AreaChart.Data(0,0)));
+        memoryLimitData.setData(FXCollections.observableArrayList(
+                new AreaChart.Data(0,shell.cpu.memory),
+                new AreaChart.Data(60,shell.cpu.memory)
+        ));
+        shell.sleepDelay = getDelayFromDelaySliderValue(delaySlider.getValue());
     }
     /**
      * Return a list of all the mono-spaced fonts on the system.
