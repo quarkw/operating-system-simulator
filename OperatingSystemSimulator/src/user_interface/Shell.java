@@ -23,7 +23,7 @@ public class Shell extends Thread {
     private LineFinishedListener lineFinishedListener;
     private CycleFinishedListener cycleFinishedListener;
     public CPU cpu;
-    private int sleepDelay = 10;
+    public int sleepDelay = 10;
     private Kernel kernel;
     private SystemCalls systemCalls;
     private File workingDirectory, programFiles;
@@ -276,6 +276,7 @@ public class Shell extends Thread {
         //Start executing what's been loaded until end
         while(true){
             int totalSleeptime = 0;
+            while(sleepDelay == -1) {}
             try {
                 Thread.sleep(sleepDelay);
             } catch (InterruptedException e) {
@@ -286,6 +287,7 @@ public class Shell extends Thread {
                 break;
             }
             passCycleInfoThroughListener();
+            while(sleepDelay == -1) {}
         };
     }
 
@@ -304,13 +306,18 @@ public class Shell extends Thread {
             int execLength = Integer.parseInt(parameters[0]);
             int i;
             for(i = 0;i < execLength; i++){
-                passCycleInfoThroughListener();
+                while(sleepDelay == -1) {}
                 try {
                     Thread.sleep(sleepDelay);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(!cpu.attemptToCycle()) break;
+                if(!cpu.attemptToCycle()) {
+                    passCycleInfoThroughListener();
+                    break;
+                }
+                passCycleInfoThroughListener();
+                while(sleepDelay == -1) {}
             }
             System.out.printf("Completed %s of %s requested cycles\n", i, execLength);
         } catch(NumberFormatException e) {
