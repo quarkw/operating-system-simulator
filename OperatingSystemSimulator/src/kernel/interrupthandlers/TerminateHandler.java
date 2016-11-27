@@ -21,7 +21,6 @@ public class TerminateHandler {
     
     //Context switch from oldPCB to newPCB
     public void handleInterrupt() {
-        System.out.println("Terminate handler called");
         ProcessControlBlock nextInLine = kernel.stScheduler.getNextPcb();
         if (nextInLine != null) {
             ProcessControlBlock oldPCB = kernel.contextSwitchHandler.switchContext(nextInLine);

@@ -31,19 +31,8 @@ public class ContextSwitchHandler {
             }
             oldPCB.programCounter = cpu.programCounter;
             oldPCB.operationCounter = cpu.operationCounter;
-            //System.out.println("Interrupted " + oldPCB.processID
-            //        + " at " + cpu.programCounter + "/"
-            //        + oldPCB.operationCounter);
-            //if (oldPCB.state == ProcessState.TERMINATED) {
-            //    kernel.allProcesses.remove(oldPCB);
-            //} else {
-            //    kernel.stScheduler.insertPCB(oldPCB);
-            //}
         }
 
-        //if (kernel.stScheduler.getReadyQueue().isEmpty()) {
-        //    System.out.println("BSOD: No ready processes");
-        //}
         
         nextPcb.state = ProcessState.RUNNING;
         cpu.runningPcbPointer = nextPcb;

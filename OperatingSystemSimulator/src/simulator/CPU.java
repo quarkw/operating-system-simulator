@@ -9,11 +9,12 @@ import kernel.ProcessControlBlock;
 import kernel.ProcessState;
 import java.util.Random;
 import kernel.Kernel;
-import kernel.SystemCalls;
 
 public class CPU {
     
-    public InterruptProcessor interruptProcessor;
+    public final InterruptProcessor interruptProcessor;
+    public final IODevice ioDevice;
+    
     public int memory;
     public Kernel kernel;
     public long clockTime;
@@ -21,13 +22,13 @@ public class CPU {
     /*Simulated registers */
     public ProcessControlBlock runningPcbPointer;
     public int interruptTimer;
+    public boolean blocked = false;
     
     /*Registers to be saved in PCB */
     public int operationCounter;
     public int programCounter;
 
     private static final int defaultMemory = 256;
-    
     
     private Random rand = new Random();
     
@@ -36,6 +37,7 @@ public class CPU {
     }
     public CPU(int memory){
         this.interruptProcessor = new InterruptProcessor();
+        this.ioDevice = new IODevice(this);
         this.memory = defaultMemory;
         this.clockTime = 0;
     }
@@ -61,9 +63,14 @@ public class CPU {
     
     private void cycle() {
         clockTime++;
+        ioDevice.cycle();
+        
         if (interruptProcessor.isInterruptPending()) {
             interruptProcessor.signalInterrupt();
-        } else if (interruptTimer <= 0 ) {
+        } else if (blocked){
+            System.out.println("Blocked " + clockTime);
+            return;
+        }else if (interruptTimer <= 0 ) {
             interruptProcessor.setFlag(InterruptProcessor.YIELD);
             interruptProcessor.signalInterrupt();
         } else {
@@ -86,7 +93,8 @@ public class CPU {
                 operationCounter = op.getParameter();
                 break;
             case Operation.IO:
-                operationCounter = 25 + rand.nextInt(25);
+                //operationCounter = 25 + rand.nextInt(25);
+                operationCounter = 0;
                 break;
             case Operation.AQUIRE:
                 operationCounter = 1;
@@ -107,10 +115,12 @@ public class CPU {
                 operationCounter--;
                 break;
             case Operation.IO:
-                operationCounter--;
+                //operationCounter--;
+                ioDevice.executeIO();
+                interruptProcessor.setFlag(InterruptProcessor.BLOCK_FOR_IO);
                 break;
             case Operation.END_OF_PROGRAM:
-                System.out.println("Terminating! " + runningPcbPointer.processID);
+                System.out.println("Terminating process " + runningPcbPointer.processID);
                 runningPcbPointer.state = ProcessState.TERMINATED;
                 interruptProcessor.setFlag(InterruptProcessor.TERMINATE);
                 break;

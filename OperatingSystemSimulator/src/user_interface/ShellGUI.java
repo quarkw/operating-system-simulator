@@ -109,7 +109,7 @@ public class ShellGUI extends Application {
                         case READY:
                             style = "-fx-background-color: cornflowerblue";
                             break;
-                        case WAITING:
+                        case WAIT_FOR_DEVICE:
                             style = "-fx-background-color: khaki";
                             break;
                         case RUNNING:
