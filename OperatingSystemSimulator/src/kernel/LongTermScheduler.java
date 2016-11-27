@@ -7,6 +7,7 @@ package kernel;
 
 import java.util.LinkedList;
 import simulator.CPU;
+import simulator.Operation;
 
 public class LongTermScheduler {
     
@@ -75,17 +76,28 @@ public class LongTermScheduler {
     
     //TODO this needs to be optimized to take out lowest priority processes
     private void forceSwapIn(ProcessControlBlock pcb) { //TODO this whole method is crap
-        while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory 
-                && !stScheduler.getReadyQueue().isEmpty()) {
-            swapOut(stScheduler.getReadyQueue().remove());
+        //while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory 
+        //        && !stScheduler.getReadyQueue().isEmpty()) {
+        //    swapOut(stScheduler.getReadyQueue().remove());
+        //}
+        for (ProcessControlBlock victim : stScheduler.getReadyQueue()) {
+            if ( victim.programCounter >= 0
+               && victim.program.get(victim.programCounter).getType() != Operation.IO) {
+                stScheduler.getReadyQueue().remove(victim);
+                swapOut(victim);
+            }
+            
+            if (pcb.memoryAllocation + getMemoryUsage() <= cpu.memory) {
+                break;
+            }
         }
+        
         if (pcb.memoryAllocation + getMemoryUsage() > cpu.memory) {
             //System.out.println("***Force Swap in failed****");
             swapOut(pcb);
             return;
         }
-        
-        
+
         swapIn(pcb);
     }
     
