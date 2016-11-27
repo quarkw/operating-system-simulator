@@ -66,6 +66,7 @@ public class ProcessControlBlock {
     public final int memoryAllocation;
     public final long startTime;
     public final int priority;
+    public final long maxCycles;
     
     public int cpuUsed;
     public ProcessState state;
@@ -76,7 +77,7 @@ public class ProcessControlBlock {
     public int requestedDevice = 0;
     
     public ProcessControlBlock(int processID, String programName, ArrayList<Operation> program, 
-            int memoryRequirement, int priority, long startTime) {
+            int memoryRequirement, int priority, long startTime, long maxCycles) {
         this.processID = processID;
         this.programName = programName;
         this.memoryAllocation = memoryRequirement;
@@ -87,7 +88,7 @@ public class ProcessControlBlock {
         this.startTime = startTime;
         this.state = ProcessState.NEW;
         this.priority = priority;
-        
+        this.maxCycles = maxCycles;
     } 
 
 }

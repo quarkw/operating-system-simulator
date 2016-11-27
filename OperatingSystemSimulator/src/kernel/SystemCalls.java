@@ -21,9 +21,17 @@ public class SystemCalls {
         int memoryRequirement = Assembler.memoryRequirement(programText);
         int priority = Assembler.programPriority(programText);
         long startTime = kernel.cpu.clockTime;
+        long maxCycles = 0;
+        for(Operation op : program){
+            if(op.getType()==Operation.CALCULATE){
+                maxCycles += op.getParameter();
+            } else {
+                maxCycles++;
+            }
+        }
         ProcessControlBlock pcb = 
                 new ProcessControlBlock(nextPid++, programName, program, 
-                        memoryRequirement, priority, startTime);
+                        memoryRequirement, priority, startTime, maxCycles);
         kernel.ltScheduler.insertNewPcb(pcb);
         kernel.allProcesses.add(pcb);
     }
