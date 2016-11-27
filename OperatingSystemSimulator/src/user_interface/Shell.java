@@ -22,7 +22,7 @@ public class Shell extends Thread {
     private Boolean lastHistoryDirectionUp = true;
     private LineFinishedListener lineFinishedListener;
     private CycleFinishedListener cycleFinishedListener;
-    private CPU cpu;
+    public CPU cpu;
     private int sleepDelay = 10;
     private Kernel kernel;
     private SystemCalls systemCalls;
@@ -39,7 +39,7 @@ public class Shell extends Thread {
         void onLineFinished(String suggestion, Boolean setAutoSuggestOn);
     }
     public interface CycleFinishedListener {
-        void onCycleFinished(ObservableList<ProcessControlBlock> procTable);
+        void onCycleFinished(ObservableList<ProcessControlBlock> procTable, long currentCycle);
     }
     public Shell(){
         this(System.in);
@@ -82,7 +82,7 @@ public class Shell extends Thread {
     }
     private void passCycleInfoThroughListener(){
         if(this.cycleFinishedListener!=null){
-            this.cycleFinishedListener.onCycleFinished(procTable());
+            this.cycleFinishedListener.onCycleFinished(procTable(), cpu.clockTime);
         }
     }
 
@@ -275,6 +275,7 @@ public class Shell extends Thread {
     private void exe(){
         //Start executing what's been loaded until end
         while(true){
+            int totalSleeptime = 0;
             try {
                 Thread.sleep(sleepDelay);
             } catch (InterruptedException e) {
@@ -392,7 +393,7 @@ public class Shell extends Thread {
         this.cpu = new CPU();
         this.kernel = BootLoader.boot(cpu);
         this.systemCalls = kernel.systemCalls;
-        this.cycleFinishedListener.onCycleFinished(FXCollections.observableArrayList());
+        this.cycleFinishedListener.onCycleFinished(FXCollections.observableArrayList(), -1);
         this.hasRun = false;
         this.programLoaded = false;
         System.out.println("Reset complete");

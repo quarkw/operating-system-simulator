@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -19,18 +21,24 @@ import kernel.ProcessState;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ShellGUI extends Application {
 
     private Shell shell;
 
-    BorderPane borderPane;
+    private BorderPane borderPane;
 
-    TableView procTable;
-    ObservableList procTableData;
-    TableColumn pIDColumn, programNameColumn, memoryAllocationColumn, programCounterColumn, cpuUsedColumn, processStateColumn;
+    private TableView procTable;
+    private ObservableList procTableData;
+    private TableColumn pIDColumn, programNameColumn, memoryAllocationColumn, programCounterColumn, cpuUsedColumn, processStateColumn;
+    private Boolean waterFallEffect = true;
+
+    private NumberAxis memoryXAxis, memoryYAxis;
+    private int yAxisMajorTickLength = 32;
+    private ObservableList<AreaChart.Series> memoryChartData;
+    private AreaChart memoryChart;
+    private AreaChart.Series memoryUsageData, swapUsageData, memoryLimitData;
 
     public TextArea consoleOut;
     public TextField consoleIn;
@@ -61,7 +69,31 @@ public class ShellGUI extends Application {
 //        primaryStage.setTitle("Hello World!");
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
+        //Left Pane (Memory graph and controls)
+        memoryXAxis = new NumberAxis("Cycles", 0, 60, 0);
 
+        memoryYAxis = new NumberAxis("Memory Usage (kB)", 0, 256 + yAxisMajorTickLength - 256% yAxisMajorTickLength, yAxisMajorTickLength);
+        memoryYAxis.setMinorTickCount(4);
+        memoryYAxis.setAutoRanging(true);
+
+        memoryUsageData = new AreaChart.Series("Memory Usage", FXCollections.observableArrayList());
+        swapUsageData = new AreaChart.Series("Total Memory Usage (incl. swapped)", FXCollections.observableArrayList());
+        memoryLimitData = new AreaChart.Series("Memory Limit", FXCollections.observableArrayList(
+                new AreaChart.Data(0,256),
+                new AreaChart.Data(60,256)
+        ));
+
+        memoryChartData = FXCollections.observableArrayList(
+                memoryLimitData,
+                swapUsageData,
+                memoryUsageData
+        );
+
+        memoryChart = new AreaChart(memoryXAxis, memoryYAxis, memoryChartData);
+        memoryChart.setAnimated(false);
+
+        VBox controlPane = new VBox();
+        controlPane.getChildren().addAll(memoryChart);
         //Right Pane (Process Table)
         pIDColumn = new TableColumn();
         pIDColumn.setText("Process ID");
@@ -98,7 +130,8 @@ public class ShellGUI extends Application {
                 super.updateItem(pcb, empty);
 
                 if(pcb == null || empty){
-                    setStyle("");
+                    if(!waterFallEffect)
+                        setStyle("");
                 } else {
                     ProcessState state = pcb.getState();
                     String style = "";
@@ -245,6 +278,7 @@ public class ShellGUI extends Application {
         borderPane = new BorderPane();
         borderPane.setBottom(consoleBox);
         borderPane.setCenter(procTable);
+        borderPane.setLeft(controlPane);
 
         inputStream = new PipedInputStream(commands);
 
@@ -272,7 +306,7 @@ public class ShellGUI extends Application {
         Platform.runLater(() -> {
             shell = new Shell(inputStream,outputStream);
             shell.setLineFinishedListener((s,b)-> enableInput(s,b));
-            shell.setCycleFinishedListener((d) -> updateTable(d));
+            shell.setCycleFinishedListener((d,c) -> updateGraphics(d,c));
             shell.start();
         });
     }
@@ -291,11 +325,60 @@ public class ShellGUI extends Application {
     private void disableInput(){
         consoleIn.setDisable(true);
     }
-    private void updateTable(ObservableList<ProcessControlBlock> data){
+    private void updateGraphics(ObservableList<ProcessControlBlock> pcbs, long currentCycle){
         Platform.runLater( () -> {
+            //Update memory graph
+            int totalMemory = 0;
+            int currentMemory = 0;
+            for(ProcessControlBlock pcb : pcbs){
+                if(pcb.state != ProcessState.NEW && pcb.state != ProcessState.TERMINATED) {
+                    if (pcb.state != ProcessState.STANDBY)
+                        currentMemory += pcb.getMemoryAllocation();
+                    totalMemory += pcb.getMemoryAllocation();
+                }
+            }
+
+            memoryUsageData.getData().addAll(new AreaChart.Data(currentCycle, currentMemory));
+            swapUsageData.getData().addAll(new AreaChart.Data(currentCycle, totalMemory));
+
+            if(memoryUsageData.getData().size()>65)
+                memoryUsageData.getData().remove(0);
+            if(swapUsageData.getData().size()>65)
+                swapUsageData.getData().remove(0);
+
+            if(currentCycle > 60) {
+                memoryXAxis.setUpperBound(currentCycle-1);
+                memoryXAxis.setLowerBound(currentCycle-61);
+                memoryLimitData.setData(FXCollections.observableArrayList(
+                        new AreaChart.Data(currentCycle-61,shell.cpu.memory),
+                        new AreaChart.Data(currentCycle-1,shell.cpu.memory)
+                ));
+            }
+            if(currentCycle == -1){
+                memoryXAxis.setUpperBound(currentCycle-1);
+                memoryXAxis.setLowerBound(currentCycle-61);
+                memoryUsageData.setData(FXCollections.observableArrayList());
+                swapUsageData.setData(FXCollections.observableArrayList());
+                memoryLimitData.setData(FXCollections.observableArrayList(
+                        new AreaChart.Data(0,shell.cpu.memory),
+                        new AreaChart.Data(60,shell.cpu.memory)
+                ));
+            }
+
+            //Reset Memory Graph
+//            if(currentCycle == 0){
+//                memoryUsageData = new AreaChart.Series("Memory Usage", FXCollections.observableArrayList());
+//                swapUsageData = new AreaChart.Series("Total Memory Usage (incl. swapped)", FXCollections.observableArrayList());
+//                memoryLimitData = new AreaChart.Series("Memory Limit", FXCollections.observableArrayList(
+//                        new AreaChart.Data(0,shell.cpu.memory),
+//                        new AreaChart.Data(60,shell.cpu.memory)
+//                ));
+//            }
+
+            //Update Table
             procTableData.removeAll(procTableData);
-            for(int i = 0; i < data.size(); i++){
-                procTableData.add(data.get(i));
+            for(int i = 0; i < pcbs.size(); i++){
+                procTableData.add(pcbs.get(i));
             }
             procTable.setItems(procTableData);
         });
