@@ -144,7 +144,9 @@ public class ShellGUI extends Application {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 double n = (double) newValue;
-                shell.sleepDelay = getDelayFromDelaySliderValue(n);
+                Platform.runLater( () -> {
+                    shell.sleepDelay = getDelayFromDelaySliderValue(n);
+                });
             }
         });
 
@@ -361,6 +363,7 @@ public class ShellGUI extends Application {
         primaryStage.setTitle("The Console");
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setOnCloseRequest(e -> System.exit(0));
 
         consoleOut.appendText("Welcome to the OS-Simulator Shell. Please type one of the following commands in the box below.\n");
         consoleOut.appendText(Arrays.toString(shell.commands) + "\n");
