@@ -219,7 +219,7 @@ public class ShellGUI extends Application {
                         default:
                             break;
                     }
-                    double percent = .56;
+                    double percent = (double) pcb.cpuUsed / pcb.maxCycles;
                     if(!baseColor.equals(""))
                         style = String.format("-fx-background-color: linear-gradient(to right, %1$s %2$s%% , derive(%1$s, 50%%) 1%% );", baseColor, percent*100);
                     setStyle(style);
