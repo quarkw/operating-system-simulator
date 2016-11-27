@@ -12,6 +12,8 @@ import java.util.Random;
  * @author pjhud
  */
 public class IODevice {
+    private static final int MAX_IO_WAITING_TIME = 50;
+    
     public final CPU cpu;
     
     private Random rand = new Random();
@@ -25,7 +27,7 @@ public class IODevice {
     
     public void executeIO() {
         inUse = true;
-        completionTime = cpu.clockTime + rand.nextInt(25);
+        completionTime = cpu.clockTime + 2 + rand.nextInt(MAX_IO_WAITING_TIME);
     }
     
     public void cycle() {

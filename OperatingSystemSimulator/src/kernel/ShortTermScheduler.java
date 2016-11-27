@@ -32,10 +32,12 @@ public class ShortTermScheduler {
     public void insertPCB(ProcessControlBlock pcb) {
         if (pcb.state == ProcessState.READY) {
            readyQueue.add(pcb);
-        } else if (pcb.state == ProcessState.WAIT_FOR_DEVICE) {
+        } else if (pcb.state == ProcessState.WAIT_AQUIRE) {
             deviceQueues[0].add(pcb); //TODO check which device it is waiting for
+        } else if (pcb.state == ProcessState.WAIT_IO) {
+            waitingQueue.add(pcb); //TODO check which device it is waiting for
         } else {
-            throw new UnsupportedOperationException(); //TODO
+            kernel.BSOD();
         }
     }
     

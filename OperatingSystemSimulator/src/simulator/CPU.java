@@ -72,7 +72,6 @@ public class CPU {
         if (interruptProcessor.isInterruptPending()) {
             interruptProcessor.signalInterrupt();
         } else if (blocked){
-            System.out.println("Blocked " + clockTime);
             return;
         }else if (interruptTimer <= 0 ) {
             interruptProcessor.setFlag(InterruptProcessor.YIELD);
