@@ -103,7 +103,7 @@ public class ShellGUI extends Application {
         //No delay, 10ms, 50ms, 100ms, 1000ms, Hold
         delaySlider.setMin(0);
         delaySlider.setMax(5);
-        delaySlider.setValue(3);
+        delaySlider.setValue(1);
         delaySlider.setMinorTickCount(0);
         delaySlider.setMajorTickUnit(1);
         delaySlider.setSnapToTicks(true);
@@ -189,8 +189,7 @@ public class ShellGUI extends Application {
                 super.updateItem(pcb, empty);
 
                 if(pcb == null || empty){
-                    if(!waterFallEffect)
-                        setStyle("");
+                    setStyle("");
                 } else {
                     ProcessState state = pcb.getState();
                     String style = "";
@@ -221,7 +220,8 @@ public class ShellGUI extends Application {
                             break;
                     }
                     double percent = .56;
-                    style = String.format("-fx-background-color: linear-gradient(to right, %1$s %2$s%% , derive(%1$s, 50%%) 1%% );", baseColor, percent*100);
+                    if(!baseColor.equals(""))
+                        style = String.format("-fx-background-color: linear-gradient(to right, %1$s %2$s%% , derive(%1$s, 50%%) 1%% );", baseColor, percent*100);
                     setStyle(style);
                 }
             }
@@ -356,7 +356,7 @@ public class ShellGUI extends Application {
             }
         };
 
-        Scene scene = new Scene (borderPane,800,600);
+        Scene scene = new Scene (borderPane);
 
         primaryStage.setTitle("The Console");
         primaryStage.setScene(scene);
