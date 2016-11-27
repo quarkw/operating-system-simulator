@@ -15,12 +15,12 @@ import simulator.CPU;
  */
 public class Kernel {
     public static final int NUM_IO_DEVICES = 1;
-    
     public final CPU cpu;
     
     public final SystemCalls systemCalls;
     public final ShortTermScheduler stScheduler;
     public final LongTermScheduler ltScheduler;
+    public final LinkedList<ProcessControlBlock> allProcesses;
     
     public final LockTraps lockTraps;
     public final YieldHandler yieldHandler;
@@ -28,7 +28,9 @@ public class Kernel {
     public final ContextSwitchHandler contextSwitchHandler;
     public final IOWaitingHandler ioWaitingHandler;
     
-    public LinkedList<ProcessControlBlock> allProcesses;
+    
+    
+    private boolean bsodFlag = false;
     
     @SuppressWarnings("LeakingThisInConstructor")
     public Kernel(CPU cpu) {
@@ -37,6 +39,7 @@ public class Kernel {
         this.systemCalls = new SystemCalls(this);
         this.stScheduler = new ShortTermScheduler(this);
         this.ltScheduler = new LongTermScheduler(this);
+        this.allProcesses = new LinkedList<>();
         
         
         this.yieldHandler = new YieldHandler(this);
@@ -51,15 +54,30 @@ public class Kernel {
         this.cpu.interruptProcessor.ioWaitingHandler = this.ioWaitingHandler;
         this.cpu.kernel = this;
         
-        this.allProcesses = new LinkedList<>();
     }
     
     public void BSOD() {
-        System.out.println("***Blue Screen of Death***");
-        System.out.println(systemCalls.processSummary());
-        System.out.println(systemCalls.processSummaryByQueue());
-        new Exception().printStackTrace();
-        assert false;
+        bsodFlag = true;
+        System.out.println("******Blue Screen of Death******");
+        System.out.println("*PROCESSES:");
+        for (String line : systemCalls.processSummary().split("\n")) {
+            System.out.println("* " + line);
+        }
+        System.out.println("*PROCESSES BY QUEUE:");
+        for (String line : systemCalls.processSummaryByQueue().split("\n")) {
+            System.out.println("* " + line);
+        }
+        System.out.println("*\n*STACK TRACE:");
+        StackTraceElement[] st = Thread.currentThread().getStackTrace();
+        for (StackTraceElement ste : st) {
+            System.out.println("*   " + ste.toString());
+        }
+        System.out.println("******Blue Screen of Death******");
+        //assert false;
+    }
+    
+    public boolean isBSOD() {
+        return bsodFlag;
     }
     
 }

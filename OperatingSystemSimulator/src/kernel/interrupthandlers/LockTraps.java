@@ -69,7 +69,7 @@ public class LockTraps {
         int deviceNumber = cpu.runningPcbPointer.requestedDevice;
         LinkedList<ProcessControlBlock> deviceQueue = 
                 kernel.stScheduler.getDeviceQueue(deviceNumber);
-        if (!deviceQueue.isEmpty()) {
+        if (!deviceQueue.isEmpty()) {            
             ProcessControlBlock nextInLine = deviceQueue.poll();
             System.out.println("Process " + nextInLine.processID + " aquired resource");
             nextInLine.state = ProcessState.READY;
