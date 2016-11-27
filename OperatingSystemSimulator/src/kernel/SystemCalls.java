@@ -45,6 +45,10 @@ public class SystemCalls {
         for (ProcessControlBlock pcb : kernel.stScheduler.getDeviceQueue(0)) {
             summary.append(pcbSummary(pcb));
         }
+        summary.append("Processes Waiting for Signal:\n");
+        for (ProcessControlBlock pcb : kernel.stScheduler.getWaitingQueue()) {
+            summary.append(pcbSummary(pcb));
+        }
         summary.append("Standby Processes:\n");
         for (ProcessControlBlock pcb : kernel.ltScheduler.getStandByQueue()) {
             summary.append(pcbSummary(pcb));

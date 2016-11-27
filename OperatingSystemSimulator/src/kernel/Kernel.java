@@ -26,6 +26,7 @@ public class Kernel {
     public final YieldHandler yieldHandler;
     public final TerminateHandler terminateHandler;
     public final ContextSwitchHandler contextSwitchHandler;
+    public final IOWaitingHandler ioWaitingHandler;
     
     public LinkedList<ProcessControlBlock> allProcesses;
     
@@ -42,13 +43,23 @@ public class Kernel {
         this.lockTraps = new LockTraps(this);
         this.terminateHandler = new TerminateHandler(this);
         this.contextSwitchHandler = new ContextSwitchHandler(this);
+        this.ioWaitingHandler = new IOWaitingHandler(this);
         
         this.cpu.interruptProcessor.yieldHandler = this.yieldHandler;
         this.cpu.interruptProcessor.lockTraps = this.lockTraps;
         this.cpu.interruptProcessor.terminateHandler = this.terminateHandler;
+        this.cpu.interruptProcessor.ioWaitingHandler = this.ioWaitingHandler;
         this.cpu.kernel = this;
         
         this.allProcesses = new LinkedList<>();
+    }
+    
+    public void BSOD() {
+        System.out.println("***Blue Screen of Death***");
+        System.out.println(systemCalls.processSummary());
+        System.out.println(systemCalls.processSummaryByQueue());
+        new Exception().printStackTrace();
+        assert false;
     }
     
 }

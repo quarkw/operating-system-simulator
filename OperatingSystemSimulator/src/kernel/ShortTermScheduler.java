@@ -32,10 +32,10 @@ public class ShortTermScheduler {
     public void insertPCB(ProcessControlBlock pcb) {
         if (pcb.state == ProcessState.READY) {
            readyQueue.add(pcb);
-        } else if (pcb.state == ProcessState.WAITING) {
+        } else if (pcb.state == ProcessState.WAIT_FOR_DEVICE) {
             deviceQueues[0].add(pcb); //TODO check which device it is waiting for
         } else {
-            System.out.println("Error invalid state"); //TODO
+            throw new UnsupportedOperationException(); //TODO
         }
     }
     
@@ -62,5 +62,8 @@ public class ShortTermScheduler {
         return deviceQueues[deviceNumber];
     }
     
+    public LinkedList<ProcessControlBlock> getWaitingQueue() {
+        return waitingQueue;
+    }
     
 }
