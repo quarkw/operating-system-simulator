@@ -16,6 +16,7 @@ public class CPU {
     public InterruptProcessor interruptProcessor;
     public int memory;
     public Kernel kernel;
+    public long clockTime;
     
     /*Simulated registers */
     public ProcessControlBlock runningPcbPointer;
@@ -36,6 +37,7 @@ public class CPU {
     public CPU(int memory){
         this.interruptProcessor = new InterruptProcessor();
         this.memory = defaultMemory;
+        this.clockTime = 0;
     }
     public boolean isRunning(){
         for(ProcessControlBlock pcb : kernel.allProcesses){
@@ -43,24 +45,14 @@ public class CPU {
         }
         return false;
     }
-    public boolean advanceClock() {
+    public boolean attemptToCycle() {
         if(runningPcbPointer == null) { //No program is running, we must bootsrap
             this.runningPcbPointer = kernel.stScheduler.getNextPcb();
             if (runningPcbPointer == null) return false;
             this.runningPcbPointer.state = ProcessState.RUNNING;
             this.programCounter = -1;
             this.operationCounter = 0;
-
-        }
-        //if (runningPcbPointer != null
-        //        && runningPcbPointer.state == ProcessState.TERMINATED) {//Terminate program safely
-        //    //Release resources
-        //    interruptProcessor.setFlag(InterruptProcessor.RELEASE);
-        //    interruptProcessor.signalInterrupt();   //TODO get rid of this non-cycle cycle. Should PCB have a holdsResources() method?
-        //    //Remove terminated process;
-        //    kernel.allProcesses.remove(runningPcbPointer);
-        //    runningPcbPointer = null;
-        //}        
+        } 
         
         cycle();
 
@@ -68,6 +60,7 @@ public class CPU {
     }
     
     private void cycle() {
+        clockTime++;
         if (interruptProcessor.isInterruptPending()) {
             interruptProcessor.signalInterrupt();
         } else if (interruptTimer <= 0 ) {
@@ -79,9 +72,6 @@ public class CPU {
                 programCounter++;
                 loadOperation();
             }
-            //System.out.println("Executing: " + runningPcbPointer.processID
-            //    + " Program Ctr: " + programCounter
-            //    + " OpCounter: " + operationCounter);
             
             executeOperation();
             runningPcbPointer.cpuUsed++;

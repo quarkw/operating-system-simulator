@@ -34,7 +34,7 @@ public class DummyIntegrationTest {
         
         System.out.println("Loading process 1");
         systemCalls.loadProgram("IOprogram", program);
-        cpu.advanceClock();
+        cpu.attemptToCycle();
         exec(25, cpu, systemCalls);
         
         System.out.println("Loading process 2");
@@ -61,7 +61,7 @@ public class DummyIntegrationTest {
         for (int i = 0; i < n; i += 25) {
             System.out.println(system.processSummary());
             for (int j = 0; j < 25; j++) {
-               if (!cpu.advanceClock()) return;
+               if (!cpu.attemptToCycle()) return;
             }
         }
         System.out.println(system.processSummary());

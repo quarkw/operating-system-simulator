@@ -55,12 +55,17 @@ public class ProcessControlBlock {
     public void setRequestedDevice(int requestedDevice) {
         this.requestedDevice = requestedDevice;
     }
+    
+    public int getPriority() {
+        return priority;
+    }
 
     //Just used public fields because this is simulating a methodless block of data
     public final int processID;
     public final String programName;
     public final int memoryAllocation;
     public final long startTime;
+    public final int priority;
     
     public int cpuUsed;
     public ProcessState state;
@@ -71,7 +76,7 @@ public class ProcessControlBlock {
     public int requestedDevice = 0;
     
     public ProcessControlBlock(int processID, String programName, ArrayList<Operation> program, 
-            int memoryRequirement) {
+            int memoryRequirement, int priority, long startTime) {
         this.processID = processID;
         this.programName = programName;
         this.memoryAllocation = memoryRequirement;
@@ -79,8 +84,9 @@ public class ProcessControlBlock {
         this.programCounter = -1;
         this.operationCounter = 0;
         this.cpuUsed = 0;
-        this.startTime = System.currentTimeMillis();
+        this.startTime = startTime;
         this.state = ProcessState.NEW;
+        this.priority = priority;
         
     } 
 

@@ -5,6 +5,7 @@
  */
 package kernel;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import simulator.CPU;
 import simulator.Operation;
@@ -80,10 +81,12 @@ public class LongTermScheduler {
         //        && !stScheduler.getReadyQueue().isEmpty()) {
         //    swapOut(stScheduler.getReadyQueue().remove());
         //}
-        for (ProcessControlBlock victim : stScheduler.getReadyQueue()) {
+        Iterator<ProcessControlBlock> iter = stScheduler.getReadyQueue().iterator();
+        while (iter.hasNext()) {
+            ProcessControlBlock victim = iter.next();
             if ( victim.programCounter >= 0
                && victim.program.get(victim.programCounter).getType() != Operation.IO) {
-                stScheduler.getReadyQueue().remove(victim);
+                iter.remove();
                 swapOut(victim);
             }
             

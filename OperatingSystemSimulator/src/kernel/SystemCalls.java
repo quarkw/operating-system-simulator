@@ -4,7 +4,6 @@ import simulator.CPU;
 import simulator.Operation;
 import utilities.Assembler;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SystemCalls {
     
@@ -20,8 +19,11 @@ public class SystemCalls {
     public void loadProgram(String programName, String programText) {
         ArrayList<Operation> program = Assembler.assembleProgram(programText);
         int memoryRequirement = Assembler.memoryRequirement(programText);
+        int priority = Assembler.programPriority(programText);
+        long startTime = kernel.cpu.clockTime;
         ProcessControlBlock pcb = 
-                new ProcessControlBlock(nextPid++, programName, program, memoryRequirement);
+                new ProcessControlBlock(nextPid++, programName, program, 
+                        memoryRequirement, priority, startTime);
         kernel.ltScheduler.insertNewPcb(pcb);
         kernel.allProcesses.add(pcb);
     }
