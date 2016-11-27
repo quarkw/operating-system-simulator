@@ -35,7 +35,7 @@ public class CPU {
     }
     public CPU(int memory){
         this.interruptProcessor = new InterruptProcessor();
-        this.memory = defaultMemory;
+        this.memory = memory;
     }
     public boolean isRunning(){
         for(ProcessControlBlock pcb : kernel.allProcesses){

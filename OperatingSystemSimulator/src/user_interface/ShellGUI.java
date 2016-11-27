@@ -102,32 +102,32 @@ public class ShellGUI extends Application {
                 } else {
                     ProcessState state = pcb.getState();
                     String style = "";
+                    String baseColor = "";
                     switch(state){
                         case NEW:
-                            style = "-fx-background-color: white";
+                            baseColor = "white";
                             break;
                         case READY:
-                            style = "-fx-background-color: cornflowerblue";
+                            baseColor = "cornflowerblue";
                             break;
                         case WAITING:
-                            style = "-fx-background-color: khaki";
+                            baseColor = "darkkhaki";
                             break;
                         case RUNNING:
-                            style = "-fx-background-color: lawngreen";
+                            baseColor = "forestgreen";
                             break;
                         case TERMINATED:
-                            style = "-fx-background-color: hotpink";
+                            baseColor = "hotpink";
                             break;
                         case STANDBY:
-                            style = "-fx-background-color: darkorange";
+                            baseColor = "darkorange";
                             break;
                         default:
                             break;
                     }
-                    for(int i = 0; i < getChildren().size(); i++){
-                        Labeled children = (Labeled) getChildren().get(i);
-                        children.setStyle(style);
-                    }
+                    double percent = .56;
+                    style = String.format("-fx-background-color: linear-gradient(to right, %1$s %2$s%% , derive(%1$s, 50%%) 1%% );", baseColor, percent*100);
+                    setStyle(style);
                 }
             }
         });
