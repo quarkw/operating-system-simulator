@@ -23,7 +23,7 @@ public class ContextSwitchHandler {
         this.cpu = kernel.cpu;
     }
     
-    public void switchContextTo(ProcessControlBlock nextPcb) {
+    public ProcessControlBlock switchContext(ProcessControlBlock nextPcb) {
         ProcessControlBlock oldPCB = cpu.runningPcbPointer;
         if(oldPCB != null) {
             if (oldPCB.state == ProcessState.RUNNING) {
@@ -34,22 +34,23 @@ public class ContextSwitchHandler {
             //System.out.println("Interrupted " + oldPCB.processID
             //        + " at " + cpu.programCounter + "/"
             //        + oldPCB.operationCounter);
-            if (oldPCB.state == ProcessState.TERMINATED) {
-                kernel.allProcesses.remove(oldPCB);
-            } else {
-                kernel.stScheduler.insertPCB(oldPCB);
-            }
+            //if (oldPCB.state == ProcessState.TERMINATED) {
+            //    kernel.allProcesses.remove(oldPCB);
+            //} else {
+            //    kernel.stScheduler.insertPCB(oldPCB);
+            //}
         }
 
         //if (kernel.stScheduler.getReadyQueue().isEmpty()) {
         //    System.out.println("BSOD: No ready processes");
         //}
         
-        //ProcessControlBlock nextPCB = kernel.stScheduler.getNextPcb();
         nextPcb.state = ProcessState.RUNNING;
         cpu.runningPcbPointer = nextPcb;
         cpu.programCounter = nextPcb.programCounter;
         cpu.operationCounter = nextPcb.operationCounter;
         cpu.interruptTimer = kernel.stScheduler.getTimeLimit(nextPcb.processID);
+        
+        return oldPCB;
     }
 }

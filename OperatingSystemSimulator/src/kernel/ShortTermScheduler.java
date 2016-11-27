@@ -1,6 +1,7 @@
 package kernel;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 public class ShortTermScheduler {
     public static final int LT_SCHEDULE_INTERVAL = 10;
@@ -8,7 +9,8 @@ public class ShortTermScheduler {
     
     
     private final Kernel kernel;
-    private final LinkedList<ProcessControlBlock> readyQueue = new LinkedList<>();
+    private final PriorityQueue<ProcessControlBlock> readyQueue;
+    private final LinkedList<ProcessControlBlock> waitingQueue; 
     
     private final LinkedList<ProcessControlBlock>[] deviceQueues = new LinkedList[Kernel.NUM_IO_DEVICES];
     
@@ -22,6 +24,8 @@ public class ShortTermScheduler {
         for (int i = 0; i < Kernel.NUM_IO_DEVICES; i++) {
             deviceQueues[i] = new LinkedList<>();
         }
+        this.readyQueue = new PriorityQueue(11, new ProcessComparator(kernel));
+        this.waitingQueue = new LinkedList<>();
     }
     
     
@@ -50,7 +54,7 @@ public class ShortTermScheduler {
         return readyQueue.poll();
     }
     
-    public LinkedList<ProcessControlBlock> getReadyQueue() {
+    public PriorityQueue<ProcessControlBlock> getReadyQueue() {
         return readyQueue;
     }
     

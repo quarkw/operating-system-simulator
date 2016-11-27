@@ -48,9 +48,15 @@ public class LockTraps {
             cpu.operationCounter = 0;
                     
         } else {
-            System.out.println("Process " + cpu.runningPcbPointer.processID + " failed to aquire resource");
+            System.out.println("!!!Process " + cpu.runningPcbPointer.processID + " failed to aquire resource");
             runningPcb.state = ProcessState.WAITING;
-            cpu.interruptProcessor.setFlag(InterruptProcessor.YIELD); //TODO perform context switch here       
+            //cpu.interruptProcessor.setFlag(InterruptProcessor.YIELD); //TODO perform context switch here       
+            
+            //yield
+            ProcessControlBlock nextInLine = kernel.stScheduler.getNextPcb();
+            if (nextInLine == null) System.out.println("Fatal error in Locktraps.aquire()");
+            ProcessControlBlock oldPCB = kernel.contextSwitchHandler.switchContext(nextInLine);
+            kernel.stScheduler.insertPCB(oldPCB);
         }
                 
     }

@@ -17,7 +17,8 @@ public class YieldHandler {
     public void handleInterrupt() {
         ProcessControlBlock nextInLine = kernel.stScheduler.getNextPcb();
         if (nextInLine != null) {
-            kernel.contextSwitchHandler.switchContextTo(nextInLine);
+            ProcessControlBlock oldPCB = kernel.contextSwitchHandler.switchContext(nextInLine);
+            kernel.stScheduler.insertPCB(oldPCB);
         } else {
             kernel.cpu.interruptTimer = kernel.stScheduler.getTimeLimit(0);
         }

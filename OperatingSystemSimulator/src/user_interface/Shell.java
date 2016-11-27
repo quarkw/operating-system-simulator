@@ -23,7 +23,7 @@ public class Shell extends Thread {
     private LineFinishedListener lineFinishedListener;
     private CycleFinishedListener cycleFinishedListener;
     private CPU cpu;
-    private int sleepDelay = 100;
+    private int sleepDelay = 10;
     private Kernel kernel;
     private SystemCalls systemCalls;
     private File workingDirectory, programFiles;
@@ -280,7 +280,7 @@ public class Shell extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(!cpu.advanceClock()) {
+            if(!cpu.attemptToCycle()) {
                 passCycleInfoThroughListener();
                 break;
             }
@@ -309,7 +309,7 @@ public class Shell extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(!cpu.advanceClock()) break;
+                if(!cpu.attemptToCycle()) break;
             }
             System.out.printf("Completed %s of %s requested cycles\n", i, execLength);
         } catch(NumberFormatException e) {

@@ -24,10 +24,12 @@ public class Kernel {
     
     public final LockTraps lockTraps;
     public final YieldHandler yieldHandler;
+    public final TerminateHandler terminateHandler;
     public final ContextSwitchHandler contextSwitchHandler;
     
     public LinkedList<ProcessControlBlock> allProcesses;
     
+    @SuppressWarnings("LeakingThisInConstructor")
     public Kernel(CPU cpu) {
         this.cpu = cpu;
         
@@ -38,7 +40,13 @@ public class Kernel {
         
         this.yieldHandler = new YieldHandler(this);
         this.lockTraps = new LockTraps(this);
+        this.terminateHandler = new TerminateHandler(this);
         this.contextSwitchHandler = new ContextSwitchHandler(this);
+        
+        this.cpu.interruptProcessor.yieldHandler = this.yieldHandler;
+        this.cpu.interruptProcessor.lockTraps = this.lockTraps;
+        this.cpu.interruptProcessor.terminateHandler = this.terminateHandler;
+        this.cpu.kernel = this;
         
         this.allProcesses = new LinkedList<>();
     }

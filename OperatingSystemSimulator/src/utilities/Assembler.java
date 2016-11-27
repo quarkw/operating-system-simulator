@@ -30,4 +30,14 @@ public class Assembler {
         String memRequirementString = programText.substring(0, programText.indexOf('\n')).trim();
         return Integer.valueOf(memRequirementString);
     }
+    
+    public static int programPriority(String programText) {
+        String priorityLine = programText.split("\n")[1];
+        if (priorityLine.startsWith("PRIORITY")) {
+            String priorityString = priorityLine.substring(1 + priorityLine.indexOf(' ')).trim();
+            return Integer.valueOf(priorityString);
+        } else {
+            return 0;
+        }
+    }
 }

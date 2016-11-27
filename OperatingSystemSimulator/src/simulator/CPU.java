@@ -16,6 +16,7 @@ public class CPU {
     public InterruptProcessor interruptProcessor;
     public int memory;
     public Kernel kernel;
+    public long clockTime;
     
     /*Simulated registers */
     public ProcessControlBlock runningPcbPointer;
@@ -36,6 +37,7 @@ public class CPU {
     public CPU(int memory){
         this.interruptProcessor = new InterruptProcessor();
         this.memory = memory;
+        this.clockTime = 0;
     }
     public boolean isRunning(){
         for(ProcessControlBlock pcb : kernel.allProcesses){
@@ -43,48 +45,33 @@ public class CPU {
         }
         return false;
     }
-    public boolean advanceClock() {
+    public boolean attemptToCycle() {
         if(runningPcbPointer == null) { //No program is running, we must bootsrap
             this.runningPcbPointer = kernel.stScheduler.getNextPcb();
             if (runningPcbPointer == null) return false;
             this.runningPcbPointer.state = ProcessState.RUNNING;
             this.programCounter = -1;
             this.operationCounter = 0;
-
-        }
-        if (runningPcbPointer != null
-                && runningPcbPointer.state == ProcessState.TERMINATED) {//Terminate program safely
-            //Release resources
-            interruptProcessor.setFlag(InterruptProcessor.RELEASE);
-            interruptProcessor.signalInterrupt();   //TODO get rid of this non-cycle cycle. Should PCB have a holdsResources() method?
-            //Remove terminated process;
-            kernel.allProcesses.remove(runningPcbPointer);
-            runningPcbPointer = null;
-        }
-
+        } 
+        
         cycle();
 
         return true;
     }
     
     private void cycle() {
-        if (interruptTimer > 0 ) {
-            interruptTimer--;
-        } else {
-           interruptProcessor.setFlag(InterruptProcessor.YIELD);
-        }
-        
+        clockTime++;
         if (interruptProcessor.isInterruptPending()) {
             interruptProcessor.signalInterrupt();
+        } else if (interruptTimer <= 0 ) {
+            interruptProcessor.setFlag(InterruptProcessor.YIELD);
+            interruptProcessor.signalInterrupt();
         } else {
+            interruptTimer--;
             if (operationCounter == 0) {
                 programCounter++;
                 loadOperation();
             }
-
-            //System.out.println("Executing: " + runningPcbPointer.processID
-            //    + " Program Ctr: " + programCounter
-            //    + " OpCounter: " + operationCounter);
             
             executeOperation();
             runningPcbPointer.cpuUsed++;
@@ -123,9 +110,9 @@ public class CPU {
                 operationCounter--;
                 break;
             case Operation.END_OF_PROGRAM:
-                System.out.println("Terminating " + runningPcbPointer.processID);
+                System.out.println("Terminating! " + runningPcbPointer.processID);
                 runningPcbPointer.state = ProcessState.TERMINATED;
-                interruptProcessor.setFlag(InterruptProcessor.YIELD);
+                interruptProcessor.setFlag(InterruptProcessor.TERMINATE);
                 break;
             case Operation.AQUIRE:
                 interruptProcessor.setFlag(InterruptProcessor.AQUIRE);
