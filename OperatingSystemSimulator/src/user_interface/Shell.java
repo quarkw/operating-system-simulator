@@ -199,6 +199,8 @@ public class Shell extends Thread {
 
     private String[] getProgramList(){
         String[] programs = programFiles.list((File dir, String name) ->  name.endsWith(programExtension));
+        if(programs == null)
+            programs = new String[0];
         return programs;
     }
 
@@ -215,6 +217,8 @@ public class Shell extends Thread {
 
     private String[] getJobList(){
         String[] jobs = programFiles.list((File dir, String name) ->  name.endsWith(jobExtension));
+        if(jobs == null)
+            jobs = new String[0];
         return jobs;
     }
 
