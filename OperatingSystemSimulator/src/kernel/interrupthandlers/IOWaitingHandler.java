@@ -31,7 +31,7 @@ public class IOWaitingHandler {
             busyWaiting = false;
             ProcessControlBlock oldPCB = kernel.contextSwitchHandler.switchContext(nextInLine);
             if (!kernel.stScheduler.getWaitingQueue().isEmpty()) {
-                throw new UnsupportedOperationException();
+                kernel.BSOD();
             }
             kernel.stScheduler.getWaitingQueue().add(oldPCB);
         } else {

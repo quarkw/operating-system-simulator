@@ -34,8 +34,10 @@ public class ShortTermScheduler {
            readyQueue.add(pcb);
         } else if (pcb.state == ProcessState.WAIT_FOR_DEVICE) {
             deviceQueues[0].add(pcb); //TODO check which device it is waiting for
+        } else if (pcb.state == ProcessState.WAIT_FOR_SIGNAL) {
+            waitingQueue.add(pcb); //TODO check which device it is waiting for
         } else {
-            throw new UnsupportedOperationException(); //TODO
+            kernel.BSOD();
         }
     }
     
