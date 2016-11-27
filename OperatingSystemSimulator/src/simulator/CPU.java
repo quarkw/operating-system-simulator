@@ -42,12 +42,16 @@ public class CPU {
         this.clockTime = 0;
     }
     public boolean isRunning(){
+        if (kernel.isBSOD()) return false;
+        
         for(ProcessControlBlock pcb : kernel.allProcesses){
             if(!pcb.getState().equals(ProcessState.TERMINATED)) return true;
         }
         return false;
     }
     public boolean attemptToCycle() {
+        if (kernel.isBSOD()) return false;
+        
         if(runningPcbPointer == null) { //No program is running, we must bootsrap
             this.runningPcbPointer = kernel.stScheduler.getNextPcb();
             if (runningPcbPointer == null) return false;

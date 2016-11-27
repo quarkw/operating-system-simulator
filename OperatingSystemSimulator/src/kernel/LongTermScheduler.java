@@ -57,6 +57,9 @@ public class LongTermScheduler {
         for (ProcessControlBlock pcb : stScheduler.getReadyQueue()) {
             usage += pcb.memoryAllocation;
         }
+        for (ProcessControlBlock pcb : stScheduler.getWaitingQueue()) {
+            usage += pcb.memoryAllocation;
+        }
         for (int i = 0; i < Kernel.NUM_IO_DEVICES; i++) {
             for (ProcessControlBlock pcb : stScheduler.getDeviceQueue(i)) {
                 usage += pcb.memoryAllocation;
