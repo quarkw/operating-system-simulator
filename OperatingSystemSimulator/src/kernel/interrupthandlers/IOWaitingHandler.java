@@ -18,6 +18,7 @@ public class IOWaitingHandler {
     private final Kernel kernel;
     
     private boolean busyWaiting;
+    private boolean blockingForIO;
     
     public IOWaitingHandler(Kernel kernel) {
         this.kernel = kernel;
@@ -25,6 +26,7 @@ public class IOWaitingHandler {
     
     //Context switch from oldPCB to newPCB
     public void handleBlocking() {
+        blockingForIO = true;
         kernel.cpu.runningPcbPointer.state = ProcessState.WAIT_IO;
         ProcessControlBlock nextInLine = kernel.stScheduler.getNextPcb();
         if (nextInLine != null) {
@@ -40,7 +42,7 @@ public class IOWaitingHandler {
     }
     
     public void busyWait() {
-        if (kernel.cpu.ioDevice.isInUse()) {
+        if (blockingForIO) {//kernel.cpu.ioDevice.isInUse()) {
             busyWaiting = true;
             kernel.cpu.interruptTimer = kernel.stScheduler.getTimeLimit(0);
             kernel.cpu.blocked = true;
@@ -50,6 +52,7 @@ public class IOWaitingHandler {
     }
     
     public void signalIOCompletion() {
+        blockingForIO = false;
         if (busyWaiting) {
             kernel.cpu.blocked = false;
             kernel.cpu.runningPcbPointer.state = ProcessState.RUNNING;

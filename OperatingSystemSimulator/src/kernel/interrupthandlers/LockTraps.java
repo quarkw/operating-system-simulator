@@ -75,7 +75,7 @@ public class LockTraps {
                 kernel.stScheduler.getDeviceQueue(deviceNumber);
         if (!deviceQueue.isEmpty()) {            
             ProcessControlBlock nextInLine = deviceQueue.poll();
-            System.out.println("Process " + nextInLine.processID + " aquired resource");
+            System.out.println("Process " + nextInLine.processID + " aquired resource after waiting");
             nextInLine.state = ProcessState.READY;
             kernel.stScheduler.insertPCB(nextInLine);
         }

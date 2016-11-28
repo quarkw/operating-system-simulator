@@ -40,7 +40,10 @@ public class InterruptProcessor {
     }
     
     public void signalInterrupt() {
-        if (interruptFlags[AQUIRE]) {
+        if (interruptFlags[TERMINATE]) {
+            interruptFlags[TERMINATE] = false;
+            terminateHandler.handleInterrupt();
+        }else if (interruptFlags[AQUIRE]) {
             interruptFlags[AQUIRE] = false;
             lockTraps.aquire();
         } else if (interruptFlags[RELEASE]) {
@@ -51,10 +54,7 @@ public class InterruptProcessor {
             ioWaitingHandler.handleBlocking();
         } else if (interruptFlags[IO_COMPLETE]) {
             interruptFlags[IO_COMPLETE] = false;
-            ioWaitingHandler.signalIOCompletion();
-        } else if (interruptFlags[TERMINATE]) {
-            interruptFlags[TERMINATE] = false;
-            terminateHandler.handleInterrupt();
+            ioWaitingHandler.signalIOCompletion();       
         } else if (interruptFlags[YIELD]) {
             interruptFlags[YIELD] = false;
             yieldHandler.handleInterrupt();
