@@ -92,12 +92,15 @@ public class LongTermScheduler {
     private void forceSwapIn(ProcessControlBlock pcb) { //TODO this whole method is crap
         //Iterator<ProcessControlBlock> iter = stScheduler.getReadyQueue().iterator();
         //while (iter.hasNext()) {
+
         while(!stScheduler.getReadyQueue().isEmpty()) {
             ProcessControlBlock victim = stScheduler.peekVictim();
             if ( victim.programCounter >= 0
                && victim.program.get(victim.programCounter).getType() != Operation.IO) {
                 stScheduler.getReadyQueue().remove(victim);
                 swapOut(victim);
+            } else {
+                break;
             }
             
             if (pcb.memoryAllocation + getMemoryUsage() <= cpu.memory) {
