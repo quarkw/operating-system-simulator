@@ -63,4 +63,8 @@ public class IOWaitingHandler {
         }
     }
     
+    public boolean isBlocking() {
+        return blockingForIO; 
+    }
+    
 }

@@ -35,7 +35,7 @@ public class ShellGUI extends Application {
 
     private TableView procTable;
     private ObservableList procTableData;
-    private TableColumn pIDColumn, programNameColumn, memoryAllocationColumn, programCounterColumn, cpuUsedColumn, processStateColumn;
+    private TableColumn pIDColumn, programNameColumn, memoryAllocationColumn, programCounterColumn, cpuUsedColumn, priorityColumn, processStateColumn;
     private Boolean waterFallEffect = true;
 
     private NumberAxis memoryXAxis, memoryYAxis;
@@ -178,6 +178,10 @@ public class ShellGUI extends Application {
         cpuUsedColumn = new TableColumn();
         cpuUsedColumn.setText("CPU Used");
         cpuUsedColumn.setCellValueFactory(new PropertyValueFactory("cpuUsed"));
+        
+        priorityColumn = new TableColumn();
+        priorityColumn.setText("Aged Priority");
+        priorityColumn.setCellValueFactory(new PropertyValueFactory("effectivePriority"));
 
         processStateColumn = new TableColumn();
         processStateColumn.setText("State");
@@ -230,7 +234,7 @@ public class ShellGUI extends Application {
         });
         procTableData = FXCollections.observableArrayList();
         procTable.setItems(procTableData);
-        procTable.getColumns().addAll(pIDColumn,programNameColumn,memoryAllocationColumn,programCounterColumn,cpuUsedColumn,processStateColumn);
+        procTable.getColumns().addAll(pIDColumn,programNameColumn,memoryAllocationColumn,programCounterColumn,cpuUsedColumn,priorityColumn,processStateColumn);
 
 
 

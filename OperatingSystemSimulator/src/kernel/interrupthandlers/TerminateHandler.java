@@ -22,17 +22,26 @@ public class TerminateHandler {
     //Context switch from oldPCB to newPCB
     public void handleInterrupt() {
         ProcessControlBlock nextInLine = kernel.stScheduler.getNextPcb();
-        if (nextInLine != null) {
+        if (nextInLine == null) {
+            nextInLine = kernel.stScheduler.getWaitingQueue().poll();
+            if (nextInLine == null) {
+                if (kernel.allProcesses.size() == 1) {
+                    kernel.allProcesses.remove(kernel.cpu.runningPcbPointer);
+                    kernel.cpu.runningPcbPointer = null;
+                    System.out.println("All processes terminated.");
+                } else {
+                    System.out.println("Fatal error on process termination.");
+                    kernel.BSOD();
+                }
+            } else {
+                ProcessControlBlock oldPCB = kernel.contextSwitchHandler.switchContext(nextInLine);
+                kernel.allProcesses.remove(oldPCB);
+                kernel.ioWaitingHandler.busyWait();
+            }
+        } else {
             ProcessControlBlock oldPCB = kernel.contextSwitchHandler.switchContext(nextInLine);
             kernel.allProcesses.remove(oldPCB);
-        } else {
-           kernel.allProcesses.remove(kernel.cpu.runningPcbPointer);
-           kernel.cpu.runningPcbPointer = null;
-           if (kernel.allProcesses.isEmpty()) {
-               System.out.println("All processes terminated.");
-           } else {
-               System.out.println("Fatal error on process termination.");
-           }
         }
+           
     }
 }

@@ -24,7 +24,7 @@ public class LockTraps {
     private final Kernel kernel;
     private final CPU cpu;
     
-    private final MutexLock[] locks;
+    public final MutexLock[] locks;
     
     
     public LockTraps(Kernel kernel) {

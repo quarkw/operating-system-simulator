@@ -72,6 +72,9 @@ public class Kernel {
         for (StackTraceElement ste : st) {
             System.out.println("*   " + ste.toString());
         }
+        System.out.println(String.format("* Lock in use: %b, IoHandler waiting: %b",
+                lockTraps.locks[0].inUse(),
+                ioWaitingHandler.isBlocking()));
         System.out.println("******Blue Screen of Death******");
         //assert false;
     }

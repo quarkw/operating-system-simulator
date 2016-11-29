@@ -1,0 +1,19 @@
+LOAD ioCalc.prgrm
+EXE 10
+LOAD ioCalc.prgrm
+EXE 10
+LOAD ioCalc.prgrm
+EXE 10
+LOAD ioCalc.prgrm
+EXE 10
+LOAD ioCalc.prgrm
+EXE 10
+LOAD calc.prgrm
+EXE 10
+LOAD calc.prgrm
+EXE 10
+LOAD calc.prgrm
+EXE 10
+LOAD lpCalc.prgrm
+LOAD hpIO.prgrm
+EXE

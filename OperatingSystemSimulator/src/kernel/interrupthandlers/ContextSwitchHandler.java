@@ -31,6 +31,7 @@ public class ContextSwitchHandler {
             }
             oldPCB.programCounter = cpu.programCounter;
             oldPCB.operationCounter = cpu.operationCounter;
+            oldPCB.timeOfLastBurst = cpu.clockTime;
         }
 
         

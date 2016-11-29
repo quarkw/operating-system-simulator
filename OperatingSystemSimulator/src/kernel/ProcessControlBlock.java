@@ -16,7 +16,7 @@ public class ProcessControlBlock {
         return memoryAllocation;
     }
 
-    public int getCpuUsed() {
+    public long getCpuUsed() {
         return cpuUsed;
     }
 
@@ -68,11 +68,15 @@ public class ProcessControlBlock {
     public final int priority;
     public final long maxCycles;
     
-    public int cpuUsed;
+    public long cpuUsed;
+    public long timeOfLastBurst;
     public ProcessState state;
     public int programCounter;
     public int operationCounter; //Would not exist in a real machine, necessary because of simulator language.
     public ArrayList<Operation> program;
+    
+    public long effectivePriority;
+    
     
     public int requestedDevice = 0;
     
@@ -85,10 +89,19 @@ public class ProcessControlBlock {
         this.programCounter = -1;
         this.operationCounter = 0;
         this.cpuUsed = 0;
+        this.timeOfLastBurst = 0;
         this.startTime = startTime;
         this.state = ProcessState.NEW;
         this.priority = priority;
         this.maxCycles = maxCycles;
     } 
+
+    public long getEffectivePriority() {
+        return effectivePriority;
+    }
+
+    public void setEffectivePriority(long effectivePriority) {
+        this.effectivePriority = effectivePriority;
+    }
 
 }

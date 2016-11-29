@@ -21,15 +21,24 @@ public class ProcessComparator implements Comparator<ProcessControlBlock>{
     
     @Override
     public int compare(ProcessControlBlock p1, ProcessControlBlock p2) {
-        long p1Age = kernel.cpu.clockTime - p1.startTime;
-        long p2Age = kernel.cpu.clockTime - p2.startTime;
-        if (p1.priority > p2.priority) {
+        //long p1Age = kernel.cpu.clockTime - p1.startTime;
+        //long p2Age = kernel.cpu.clockTime - p2.startTime;
+        long p1Age = kernel.cpu.clockTime - p1.timeOfLastBurst;
+        long p2Age = kernel.cpu.clockTime - p2.timeOfLastBurst;
+        p1.effectivePriority = p1.priority + (p1Age/50);
+        p2.effectivePriority = p2.priority + (p2Age/50);
+        
+        /*if (p1.priority > p2.priority) {
             return 1;
         } else if (p1.priority < p2.priority) {
-            return -1;
-        } else if (p1.processID < p2.processID) {
+            return -1;*/
+        if (p1.effectivePriority < p2.effectivePriority) {
             return 1;
+        } else if (p1.effectivePriority > p2.effectivePriority) {
+            return -1;
         } else if (p1.processID > p2.processID) {
+            return 1;
+        } else if (p1.processID < p2.processID) {
             return -1;
         } else {
             return 0;

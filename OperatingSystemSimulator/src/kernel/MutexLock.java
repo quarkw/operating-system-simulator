@@ -22,4 +22,8 @@ public class MutexLock {
         inUse = false;
     }
     
+    public boolean inUse() {
+        return inUse;
+    }
+    
 }
