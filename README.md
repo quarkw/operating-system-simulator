@@ -203,7 +203,7 @@ where it is waiting for a response signal from the IO device.
 GUI
 ===
 
-![image](tex/images/Demo.png){width="\textwidth"}
+![A screenshot of the GUI](tex/images/Demo.png)
 
 Overview
 --------
