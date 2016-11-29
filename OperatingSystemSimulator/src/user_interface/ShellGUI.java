@@ -24,9 +24,7 @@ import kernel.ProcessControlBlock;
 import kernel.ProcessState;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ShellGUI extends Application {
 
@@ -46,6 +44,9 @@ public class ShellGUI extends Application {
     private AreaChart.Series memoryUsageData, swapUsageData, memoryLimitData;
 
     private Slider delaySlider;
+    private LinkedHashMap<String,Integer> delays;
+    private int[] delayTimes = {0,10,50,200,500,1000};
+
 
     public TextArea consoleOut;
     public TextField consoleIn;
@@ -64,19 +65,16 @@ public class ShellGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-//        Button btn = new Button();
-//        btn.setText("Hello World!");
-//        btn.setOnAction( (event) -> {System.out.println("Hello World!");});
-//
-//        StackPane root = new StackPane();
-//        root.getChildren().add(btn);
-//
-//        Scene scene = new Scene(root,400,300);
-//
-//        primaryStage.setTitle("Hello World!");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
+        delays = new LinkedHashMap<>();
+        for(int delay: delayTimes){
+            delays.put(delay + "ms", delay);
+        }
+
+        delays.put("Hold",-1);
+
         //Left Pane (Memory graph and controls)
+
+
         memoryXAxis = new NumberAxis("Cycles", 0, 60, 0);
 
         memoryYAxis = new NumberAxis("Memory Usage (kB)", 0, 256 + yAxisMajorTickLength - 256% yAxisMajorTickLength, yAxisMajorTickLength);
@@ -103,7 +101,7 @@ public class ShellGUI extends Application {
         delaySlider = new Slider();
         //No delay, 10ms, 50ms, 100ms, 1000ms, Hold
         delaySlider.setMin(0);
-        delaySlider.setMax(5);
+        delaySlider.setMax(delays.size()-1);
         delaySlider.setValue(1);
         delaySlider.setMinorTickCount(0);
         delaySlider.setMajorTickUnit(1);
@@ -114,31 +112,18 @@ public class ShellGUI extends Application {
         delaySlider.setLabelFormatter(new StringConverter<Double>() {
             @Override
             public String toString(Double n) {
-                if (n < 0.5) return "0ms";
-                if (n < 1.5) return "10ms";
-                if (n < 2.5) return "50ms";
-                if (n < 3.5) return "100ms";
-                if (n < 4.5) return "1000ms";
+                double comp = .5;
+                for(String key : delays.keySet()){
+                    if(n<comp++) return key;
+                }
 
                 return "Hold";
             }
 
             @Override
             public Double fromString(String s) {
-                switch (s) {
-                    case "0ms":
-                        return 0d;
-                    case "10ms":
-                        return 1d;
-                    case "50ms":
-                        return 2d;
-                    case "100ms":
-                        return 3d;
-                    case "1000ms":
-                        return 4d;
-                    default:
-                        return 5d;
-                }
+                int val = delays.get(s);
+                return val == -1 ? delaySlider.getMax() : val;
             }
         });
         delaySlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -448,14 +433,11 @@ public class ShellGUI extends Application {
         });
     }
     private int getDelayFromDelaySliderValue(double n){
-        int delay;
-        if (n < 0.5) delay = 0;
-        else if (n < 1.5) delay = 10;
-        else if (n < 2.5) delay = 50;
-        else if (n < 3.5) delay = 100;
-        else if (n < 4.5) delay = 1000;
-        else delay = -1;
-        return delay;
+        double comp = .5;
+        for(String key : delays.keySet()){
+            if(n<comp++) return delays.get(key);
+        }
+        return -1;
     }
     private void moveSBToConsole(){
         if(outputSB.length()>0) {
