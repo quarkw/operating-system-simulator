@@ -410,6 +410,11 @@ public class Shell extends Thread {
 
     private void exit(){
         System.out.println("Goodbye :)");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 

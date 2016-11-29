@@ -44,7 +44,11 @@
 \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 
+\usepackage{parskip}
 \setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+\usepackage{graphicx}
+\graphicspath{ {images/} }
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -75,10 +79,13 @@
 
 \section{Usage}
 
-The command line interface will auto-complete arguments to the LOAD command. The previous command can be repeated by pressing the Enter key. All previous commands can be accessed with the Up arrow.
+The command line interface will auto-suggest while you type. Suggestions can be completed by pressing the Tab key. The previous command can be repeated by pressing the Enter key. All previous commands can be accessed with the Up arrow.
 
+The \textit{Executable} directory contains the simulator as an executable jar, and the \textit{Program Files} subdirectory contains program and job files for testing. All job and program files must be placed in the \textit{Program Files} directory to be used, and must have the file extensions \textit{.prgrm} and \textit{.job}, respectively.
 
-The \textit{Executable} directory contains the simulator as an executable jar, and the \textit{Program Files} subdirectory contains program and job files for testing. The all job and program files must be placed in the \textit{Program Files} directory to be used.
+The \textit{LOAD} command is used to load \textit{jobs} and \textit{programs}, allowing for multiple inputs/parameters at a time, but is also used to list all loadable files if no parameters are passed in.
+
+The command-line interface implements most features of cat, which allows for redirection into an output file. This means you can create and view the contents of program and job files on the fly!
 
 \subsection{Program Files}
 
@@ -143,5 +150,11 @@ The long-term scheduler swaps processes in and out of memory, ensuring that the 
 \subsection{Priority and Aging}
 Each program can be assigned a priority in the second line of the program file, with the command PRIORITY and an integer argument. Scheduling queues are implemented as priority heaps. The effective priority of a process is its base priority plus a constant fraction of its age. Age is defined as the time since the end of the last CPU burst.
 
+\section{GUI}
+
+\subsection{Overview}
+The GUI features a live memory usage graph, process viewer, simulation speed control slider, and a console emulator for the simulated operating system. 
+
+\includegraphics[width=\textwidth]{Demo.png} 
 
 \end{document}
