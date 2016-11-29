@@ -8,7 +8,7 @@ public class InterruptProcessor {
     public static final int AQUIRE = 1;
     public static final int RELEASE = 2;
     public static final int TERMINATE = 3;
-    public static final int BLOCK_FOR_IO = 4;
+    public static final int WAIT_FOR_IO = 4;
     public static final int IO_COMPLETE = 5;
     
     public static final int NUM_FLAGS = 6;
@@ -49,8 +49,8 @@ public class InterruptProcessor {
         } else if (interruptFlags[RELEASE]) {
             interruptFlags[RELEASE] = false;
             lockTraps.release();
-        } else if (interruptFlags[BLOCK_FOR_IO]) {
-            interruptFlags[BLOCK_FOR_IO] = false;
+        } else if (interruptFlags[WAIT_FOR_IO]) {
+            interruptFlags[WAIT_FOR_IO] = false;
             ioWaitingHandler.handleBlocking();
         } else if (interruptFlags[IO_COMPLETE]) {
             interruptFlags[IO_COMPLETE] = false;

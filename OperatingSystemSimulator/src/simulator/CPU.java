@@ -120,7 +120,7 @@ public class CPU {
             case Operation.IO:
                 //operationCounter--;
                 ioDevice.executeIO();
-                interruptProcessor.setFlag(InterruptProcessor.BLOCK_FOR_IO);
+                interruptProcessor.setFlag(InterruptProcessor.WAIT_FOR_IO);
                 break;
             case Operation.END_OF_PROGRAM:
                 System.out.println("Terminating process " + runningPcbPointer.processID);

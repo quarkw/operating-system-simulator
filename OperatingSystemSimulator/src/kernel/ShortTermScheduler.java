@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class ShortTermScheduler {
-    public static final int LT_SCHEDULE_INTERVAL = 10;
+    public static final int LT_SCHEDULE_INTERVAL = 20;
     public static final int ST_SCHEDULE_INTERVAL = 5;
     
     
