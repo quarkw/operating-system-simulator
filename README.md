@@ -10,7 +10,7 @@ title: |
 Summary
 =====
 
-The Operating System Simulator runs with a limitation of 256kB, and implements round robin for the short-term scheduler and a priority/aging queue for the long-term scheduler.
+The Operating System Simulator runs with a limitation of 256kB, and implements a priority/aging queue for the short-term and long-term scheduler.
 The simulator simulates processes that compete for resources such as the CPU and I/O.  
 "Programs" are first loaded by the simulator, and then the EXE command is used to execute the programs. 
 If the amount of memory required by all loaded programs is greater than the limit, some programs will be swapped out of memory.  
@@ -203,7 +203,7 @@ where it is waiting for a response signal from the IO device.
 GUI
 ===
 
-![image](tex/images/Demo.png){width="\textwidth"}
+![A screenshot of the GUI](tex/images/Demo.png)
 
 Overview
 --------
