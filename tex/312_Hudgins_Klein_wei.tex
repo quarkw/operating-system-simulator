@@ -60,7 +60,8 @@
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
-\author{Paul Hudgins, Emily Klein, Quark Wei} % Your name
+\author{Paul Hudgins, Emily Klein, Quark Wei%} % Your name
+\\ \normalsize V70270484, V00374656, V00687866}
 
 \date{\normalsize November 29, 2016}%\today} % Today's date or a custom date
 
@@ -106,18 +107,18 @@ The hardware will blindly continue execution of the current process in user mode
 	\item YIELD: Triggered by expiration of the burst timer set by the short term scheduler
           \item IO\_COMPLETE: Signals that an IO event needs to be handled
            \item TERMINATE: Terminates the current process
-	\item ACQUIRE: Requests access to a resource, blocking if the resource is not available
+	\item ACQUIRE: Requests access to a resource, blocking if the resource is not available, so that busy waiting is avoided
 	\item RELEASE: Releases a resource
 	\item WAIT\_FOR\_IO: Blocks until an IO\_COMPLETE signal is received
 \end{itemize}
 
 \section{Scheduling}
 
-The system consists of a short-term scheduler, which schedules processes that are in memory, and a long-term scheduler, which swaps processes in and out of memory. The short-term scheduler executes at the end of every CPU burst. The long-term scheduler executes after 20 calls to the short-term scheduler, or if the short-term scheduler is unable to select a process for execution.
+The system uses a short-term scheduler and a long-term scheduler. The short-term scheduler executes at the end of every CPU burst. The long-term scheduler executes after 20 calls to the short-term scheduler, or if the short-term scheduler is unable to select a process for execution.
 
 \subsection{Short-term Scheduler}
 
-The short-term scheduler utilizes the following queues:
+The short-term scheduler schedules CPU bursts and IO for processes that are in memory. It utilizes the following queues:
 \begin{itemize}
 	\item Ready Queue: There is one priority queue of processes waiting for CPU time.
            \item Device Queues: There is one queue of processes waiting for accesses for each IO device. 
@@ -129,50 +130,18 @@ simulator, there is no Event Queue. The running process will be preempted and th
 
 \end{itemize}
 
+\subsection{Long-term Scheduler}
 
-
-
-%------------------------------------------------
-
-\subsubsection{Heading on level 3 (subsubsection)}
-
-\lipsum[3] % Dummy text
-
-\paragraph{Heading on level 4 (paragraph)}
-
-\lipsum[6] % Dummy text
-
-%----------------------------------------------------------------------------------------
-%	PROBLEM 2
-%----------------------------------------------------------------------------------------
-
-\section{Lists}
-
-%------------------------------------------------
-
-\subsection{Example of list (3*itemize)}
+The long-term scheduler swaps processes in and out of memory, ensuring that the memory limit is not exceeded. Each time the long-term scheduler executes, it does the following:
 \begin{itemize}
-	\item First item in a list 
-		\begin{itemize}
-		\item First item in a list 
-			\begin{itemize}
-			\item First item in a list 
-			\item Second item in a list 
-			\end{itemize}
-		\item Second item in a list 
-		\end{itemize}
-	\item Second item in a list 
+	\item Pulls all new processes off of the New Process Queue
+           \item If space is available in memory, processes from the Standby Queue are swapped into memory until there is no more space available.
+	\item If processes remain in Standby Queue, some processes are swapped out of memory to make room for the processes that are standing by.
+
 \end{itemize}
 
-%------------------------------------------------
+\subsection{Priority and Aging}
+Each program can be assigned a priority in the second line of the program file, with the command PRIORITY and an integer argument. Scheduling queues are implemented as priority heaps. The effective priority of a process is its base priority plus a constant fraction of its age. Age is defined as the time since the end of the last CPU burst.
 
-\subsection{Example of list (enumerate)}
-\begin{enumerate}
-\item First item in a list 
-\item Second item in a list 
-\item Third item in a list
-\end{enumerate}
-
-%----------------------------------------------------------------------------------------
 
 \end{document}
