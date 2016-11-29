@@ -19,11 +19,13 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+\usepackage[margin=1in]{geometry}
 
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{float}
 
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
 
@@ -151,10 +153,66 @@ The long-term scheduler swaps processes in and out of memory, ensuring that the 
 Each program can be assigned a priority in the second line of the program file, with the command PRIORITY and an integer argument. Scheduling queues are implemented as priority heaps. The effective priority of a process is its base priority plus a constant fraction of its age. Age is defined as the time since the end of the last CPU burst.
 
 \section{GUI}
-
+\includegraphics[width=\textwidth]{Demo.png}
 \subsection{Overview}
-The GUI features a live memory usage graph, process viewer, simulation speed control slider, and a console emulator for the simulated operating system. 
+The GUI features a live memory usage graph, process viewer, simulation speed control slider, and a terminal emulator for the simulated operating system. 
 
-\includegraphics[width=\textwidth]{Demo.png} 
+
+\subsection{Memory Graph}
+The memory graph shows the system memory limit, the amount of memory currently being used, and the amount of total memory (including swapped out memory that isn't being used, but is ready to be swapped in by processes).
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=.5]{MemoryGraph.png}
+  \caption{The memory graph showing that some processes are swapped out}
+\end{figure}
+
+\subsection{Delay Slider}
+The slider changes the amount of delay between each CPU cycle. Moving this all the way to the right will temporarily pause execution. If the simulator is in the middle of an execution block, the block must be completely run before any other commands must be input. Thus, the slider may not be used to inject commands.
+
+The slider can be used as a "step" button by quickly sliding from \textit{hold}, to \textit{1000ms}, and back to \textit{hold}.
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=.5]{DelaySlider.png}
+  \caption{The delay slider in the 'Hold' position}
+\end{figure}
+
+\subsection{Process Table}
+The process table shows a complete list of processes, and is sortable by any column. Each row represents a process and is colored based on process state. The background color for each row also serves as a progress bar to hint at when the process will be finished executing.
+
+\subsection{Terminal Emulator}
+The terminal emulator supports the following commands: "PROC", "MEM", "LOAD", "EXE", "CAT", "RESET", and "EXIT".
+
+Auto-suggest supports all commands, including parameters (file names) for LOAD and CAT. Auto-suggest even supports multiple parameters, and will not suggest file names that have already been typed.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=.5]{AutoSuggest.png}
+  \caption{\textit{test.prgrm} comes before \textit{test2.prgrm} in lexicographic order, but is not suggested because it is already used in a previous parameter }
+\end{figure}
+
+The terminal emulator supports the Enter key to repeat the last command, the Tab key to auto-complete suggestions, and the up and down arrow keys to browse command history.
+
+If an typo is entered, the terminal emulator will try and figure out your desired command, and display it for you to type correctly.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=.5]{Typo.png}
+  \caption{ \textit{EX} is similar to commands \textit{EXE} and \textit{EXIT}, so both are suggested}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{PROC} is used to display info on all processes in plain-text. This is useful if you want to copy and paste process info, but is otherwise redundant (because of the process table)
+	\item \textbf{MEM} is used to display the amount of memory currently being used, as well as the amount of memory that is swapped out.
+	\item \textbf{LOAD}
+		\begin{itemize}
+			\item If no parameters are passed in, a list of loadable programs and jobs will be shown.
+			\item One or more file names can be passed into be loaded by the simulator, in order of appearance. Job files are run on read, and are functionally equivalent to typing the contents of the job file into the terminal emulator.
+		\end{itemize}
+	\item \textbf{EXE} will run any program files that have been loaded. An integer can be passed in as a parameter to limit execution to a certain number of cycles. Otherwise, all loaded programs are run until termination.
+	\item \textbf{CAT} behaves very similarly to its bash counterpart. If run without any parameters, some help text will be output to the terminal.
+	\item \textbf{RESET} resets the simulator.
+	\item \textbf{EXIT} exits the program.
+\end{itemize}
+
 
 \end{document}
