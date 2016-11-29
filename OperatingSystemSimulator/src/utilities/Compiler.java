@@ -3,7 +3,7 @@ package utilities;
 import simulator.Operation;
 import java.util.ArrayList;
 
-public class Assembler {
+public class Compiler {
     
     public static ArrayList<Operation> assembleProgram(String programText) {
         ArrayList<Operation> newProgram = new ArrayList<>();

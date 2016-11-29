@@ -2,7 +2,7 @@ package kernel;
 
 import simulator.CPU;
 import simulator.Operation;
-import utilities.Assembler;
+import utilities.Compiler;
 import java.util.ArrayList;
 
 public class SystemCalls {
@@ -17,9 +17,9 @@ public class SystemCalls {
     }
     
     public void loadProgram(String programName, String programText) {
-        ArrayList<Operation> program = Assembler.assembleProgram(programText);
-        int memoryRequirement = Assembler.memoryRequirement(programText);
-        int priority = Assembler.programPriority(programText);
+        ArrayList<Operation> program = Compiler.assembleProgram(programText);
+        int memoryRequirement = Compiler.memoryRequirement(programText);
+        int priority = Compiler.programPriority(programText);
         long startTime = kernel.cpu.clockTime;
         long maxCycles = 0;
         for(Operation op : program){

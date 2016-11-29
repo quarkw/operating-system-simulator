@@ -1,0 +1,8 @@
+LOAD IO_Bound_Process.prgrm
+LOAD IO_Bound_Process.prgrm
+LOAD IO_Bound_Process.prgrm
+LOAD IO_Bound_Process.prgrm
+LOAD High_Priority_CPU_Bound_Process.prgrm
+LOAD Low_Priority_Background.prgrm
+
+EXE

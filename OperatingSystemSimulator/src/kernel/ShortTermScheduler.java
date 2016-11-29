@@ -1,5 +1,6 @@
 package kernel;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
@@ -57,7 +58,17 @@ public class ShortTermScheduler {
     }
     
     public ProcessControlBlock peekVictim() {
-        return readyQueue.peek();
+        //return readyQueue.peek();
+        if (readyQueue.isEmpty()) {
+            return null;
+        } else {
+            Iterator<ProcessControlBlock> iter = readyQueue.iterator();
+            ProcessControlBlock last = null;
+            while(iter.hasNext()) {
+                last = iter.next();
+            }
+            return last;
+        }
     }
     
     public PriorityQueue<ProcessControlBlock> getReadyQueue() {

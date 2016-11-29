@@ -79,30 +79,41 @@
 
 \section{Usage}
 
-The command line interface will auto-suggest while you type. Suggestions can be completed by pressing the Tab key. The previous command can be repeated by pressing the Enter key. All previous commands can be accessed with the Up arrow.
-
 The \textit{Executable} directory contains the simulator as an executable jar, and the \textit{Program Files} subdirectory contains program and job files for testing. All job and program files must be placed in the \textit{Program Files} directory to be used, and must have the file extensions \textit{.prgrm} and \textit{.job}, respectively.
+
+The command line interface will auto-suggest while you type. Suggestions can be completed by pressing the Tab key. The previous command can be repeated by pressing the Enter key. All previous commands can be accessed with the Up arrow.
 
 The \textit{LOAD} command is used to load \textit{jobs} and \textit{programs}, allowing for multiple inputs/parameters at a time, but is also used to list all loadable files if no parameters are passed in.
 
-The command-line interface implements most features of cat, which allows for redirection into an output file. This means you can create and view the contents of program and job files on the fly!
+The command-line interface implements most features of cat, which allows for redirection into an output file. This means you can create and view the contents of program and job files on-the-fly.
 
-\subsection{Program Files}
-
+\subsection{shortTermSchedulerTest.job}
+The following features can be observed when running shortTermSchedulerTest.job.
 \begin{itemize}
-	\item First item in a list 
-	\item Second item in a list 
+	\item The most CPU time is given to a High\_Priority\_CPU\_Bound\_Process.
+	\item IO utilization is indicated by a process being in the pink WAIT\_FOR\_IO state. Utilization is higher than would be expected based on priorities and aging alone. This is because a waiting process is given preference for the burst after the IO device is released. Frequently, a process can be observed in the WAIT\_FOR\_IO state with an aged priority of 1 or 0, which is lower than the high-priority process' base priority of 2.
+	\item The Low\_Priority\_Background process receives the least CPU time, but does not undergo starvation.
 \end{itemize}
 
-\subsection{Job Files}
+\subsection{longTermSchedulerTest.job}
+The following features can be observed when running longTermSchedulerTest.job.
+\begin{itemize}
+	\item Memory usage never exceeds 256kb. Processes that are in the Orange STANDBY or White NEW states consume memory on the backing store, but not in main memory.
+	\item The long-term scheduler is executed at least once for every 20 cycles of the short term scheduler. Execution of the long-term-scheduler can be observed when there is a change in which processes are in the Orange STANDBY state.
+	\item Processes that have not yet been executed are given an age based on the start-time of the system. Ensures that new processes have the highest priority, and are swapped into memory first.
+\end{itemize}
 
 
 \section{Simulation Architecture}
 
 The simulator consists of three main packages. The \textit{simulator} package simulates hardware operation, including CPU execution and IO. The \textit{kernel} package contains the operating system which controls the simulated hardware. The \textit{user\_interface} package contains the shell and GUI.
 
+
+\subsection{Compiler and Critical Sections}
+The Compiler in the \textit{utilities} package reads program files and compiles them into an array of Operation objects, which are machine code instructions for our simulator. In addition to creating the appropriate parameters for CALCULATE operations, the Compiler will also insert an ACQUIRE operation before and a RELEASE operation after each IO operation, creating a critical section in the code. When a process is executing in its critical section, no other process will be able to acquire the IO device in use.
+
 \subsection{Execution}
-Programs are read as a text file and then assembled as an array of operations. Because the CALCULATE operation consumes a variable number of cycles, the CPU uses an Operation Counter as well as a Program Counter. The Program Counter, as usual, indicates which operation is currently being executed, and the Operation Counter indicates how many cycles are remaining for that operation.
+Because the CALCULATE operation consumes a variable number of cycles, the CPU uses an Operation Counter as well as a Program Counter. The Program Counter, as usual, indicates which operation is currently being executed, and the Operation Counter indicates how many cycles are remaining for that operation.
 Because kernel methods are executed on the JVM and not on the simulated processor, kernel methods do not consume CPU cycles. All operations on the simulated CPU can be considered to execute in ``user mode'' and all methods from the \textit{kernel} package can be considered to execute in ``kernel mode''. The only way to go from user mode to kernel mode is to signal an interrupt.
 
 \subsection{Interrupts}
@@ -143,12 +154,14 @@ The long-term scheduler swaps processes in and out of memory, ensuring that the 
 \begin{itemize}
 	\item Pulls all new processes off of the New Process Queue
            \item If space is available in memory, processes from the Standby Queue are swapped into memory until there is no more space available.
-	\item If processes remain in Standby Queue, some processes are swapped out of memory to make room for the processes that are standing by.
+	\item If processes remain in Standby Queue, some processes are swapped out of memory to make room for processes that are standing by.
 
 \end{itemize}
 
-\subsection{Priority and Aging}
-Each program can be assigned a priority in the second line of the program file, with the command PRIORITY and an integer argument. Scheduling queues are implemented as priority heaps. The effective priority of a process is its base priority plus a constant fraction of its age. Age is defined as the time since the end of the last CPU burst.
+\subsection{Scheduling Algorithm}
+Both the long-term scheduler and short-term scheduler use highest-priority first, with aging. Each program can be assigned a priority in the second line of the program file, with the command PRIORITY and an integer argument. Scheduling queues are implemented as priority heaps. The effective priority of a process is its base priority plus one fiftieth of its age. Age is defined as the time since the end of the last CPU burst. 
+
+To maximize IO utilization, the RELEASE handler will immediately schedule the next process waiting for the device, even if there are higher priority processes in the waiting queue. This gives the IO-bound process one ``free'' CPU burst, so that it can attempt to enter a state where it is waiting for a response signal from the IO device.
 
 \section{GUI}
 

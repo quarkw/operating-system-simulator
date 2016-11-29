@@ -1,0 +1,30 @@
+LOAD IO_Bound_Process.prgrm
+EXE 10
+LOAD IO_Bound_Process.prgrm
+EXE 10
+LOAD CPU_Bound_Process.prgrm
+EXE 10
+LOAD CPU_Bound_Process.prgrm
+EXE 100
+
+LOAD CPU_Bound_Process.prgrm
+EXE 10
+LOAD IO_Bound_Process.prgrm
+EXE 10
+LOAD IO_Bound_Process.prgrm
+EXE 10
+LOAD IO_Bound_Process.prgrm
+EXE 10
+LOAD IO_Bound_Process.prgrm
+EXE 100
+
+LOAD CPU_Bound_Process.prgrm
+EXE 10
+LOAD CPU_Bound_Process.prgrm
+EXE 10
+LOAD CPU_Bound_Process.prgrm
+EXE 10
+
+LOAD Low_Priority_Background.prgrm
+LOAD High_Priority_IO_Bound_Process.prgrm
+EXE
