@@ -79,9 +79,13 @@
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
 
+The Operating System Simulator runs with a memory limitation of 256kB, handles six traps and interrupts, and implements both a short-term and long-term scheduler with priorities and aging. The simulator simulates processes that compete for resources such as the CPU and I/O. I/O access is controlled but mutex locks and device queues that prevent busy waiting.
+
+ The simulator features a terminal emulator with auto-complete, command history, and a limited implementation of the `cat' shell command. The GUI also as visuals to help the user understand the current state of the simulator.
+
 \section{Usage}
 
-The \textit{Executable} directory contains the simulator as an executable jar, and the \textit{Program Files} subdirectory contains program and job files for testing. All job and program files must be placed in the \textit{Program Files} directory to be used, and must have the file extensions \textit{.prgrm} and \textit{.job}, respectively.
+ All job and program files must be placed in the \textit{Program Files} directory to be used, and must have the file extensions \textit{.prgrm} and \textit{.job}, respectively.
 
 The command line interface will auto-suggest while you type. Suggestions can be completed by pressing the Tab key. The previous command can be repeated by pressing the Enter key. All previous commands can be accessed with the Up arrow.
 
