@@ -6,6 +6,7 @@
 package kernel.interrupthandlers;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import kernel.Kernel;
 import kernel.MutexLock;
 import kernel.ProcessControlBlock;
@@ -71,7 +72,7 @@ public class LockTraps {
     public void release() {
         System.out.println("Process " + cpu.runningPcbPointer.processID + " released resource");
         int deviceNumber = cpu.runningPcbPointer.requestedDevice;
-        LinkedList<ProcessControlBlock> deviceQueue = 
+        PriorityQueue<ProcessControlBlock> deviceQueue = 
                 kernel.stScheduler.getDeviceQueue(deviceNumber);
         if (!deviceQueue.isEmpty()) {            
             ProcessControlBlock nextInLine = deviceQueue.poll();

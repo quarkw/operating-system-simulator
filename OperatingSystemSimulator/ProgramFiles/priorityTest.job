@@ -2,12 +2,20 @@ LOAD ioCalc.prgrm
 EXE 10
 LOAD ioCalc.prgrm
 EXE 10
-LOAD ioCalc.prgrm
+LOAD calc.prgrm
+EXE 10
+LOAD calc.prgrm
+EXE 10
+
+LOAD calc.prgrm
 EXE 10
 LOAD ioCalc.prgrm
 EXE 10
 LOAD ioCalc.prgrm
 EXE 10
+LOAD ioCalc.prgrm
+EXE 100
+
 LOAD calc.prgrm
 EXE 10
 LOAD calc.prgrm

@@ -7,6 +7,7 @@ package kernel;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import simulator.CPU;
 import simulator.Operation;
 
@@ -18,14 +19,16 @@ public class LongTermScheduler {
     private final CPU cpu;
     private final ShortTermScheduler stScheduler;
     
-    private final LinkedList<ProcessControlBlock> standByQueue = new LinkedList<>();
+    private final PriorityQueue<ProcessControlBlock> standByQueue;
     private final LinkedList<ProcessControlBlock> newProcessQueue = new LinkedList<>();
-    
+    private final ProcessComparator ltProcessComparator;
     
     public LongTermScheduler(Kernel kernel) {
         this.kernel = kernel;
         this.cpu = kernel.cpu;
         this.stScheduler = kernel.stScheduler;
+        this.ltProcessComparator = new ProcessComparator(kernel);
+        this.standByQueue = new PriorityQueue(11, ltProcessComparator);
     }
     
     public void insertNewPcb(ProcessControlBlock pcb) {
@@ -44,8 +47,15 @@ public class LongTermScheduler {
             swapOut(newProcess);
         }
         swapInIfAble();
-        if (!standByQueue.isEmpty()) {
+        
+        ProcessControlBlock nextInStandBy = standByQueue.peek();
+        ProcessControlBlock victim = stScheduler.getReadyQueue().peek();
+        while (nextInStandBy != null
+            && victim != null
+            && ltProcessComparator.compare(victim, nextInStandBy) > 0) {
             forceSwapIn(standByQueue.poll());
+            nextInStandBy = standByQueue.peek();
+            victim = stScheduler.getReadyQueue().peek();
         }
     }
     
@@ -108,7 +118,7 @@ public class LongTermScheduler {
     }
     
     
-    public LinkedList<ProcessControlBlock> getStandByQueue() {
+    public PriorityQueue<ProcessControlBlock> getStandByQueue() {
         return standByQueue;
     }
     

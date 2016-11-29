@@ -12,7 +12,7 @@ public class ShortTermScheduler {
     private final PriorityQueue<ProcessControlBlock> readyQueue;
     private final LinkedList<ProcessControlBlock> waitingQueue; 
     
-    private final LinkedList<ProcessControlBlock>[] deviceQueues = new LinkedList[Kernel.NUM_IO_DEVICES];
+    private final PriorityQueue<ProcessControlBlock>[] deviceQueues = new PriorityQueue[Kernel.NUM_IO_DEVICES];
     
     
     private int longTermScheduleTimer = 0;
@@ -22,7 +22,7 @@ public class ShortTermScheduler {
     public ShortTermScheduler(Kernel kernel) {
         this.kernel = kernel;
         for (int i = 0; i < Kernel.NUM_IO_DEVICES; i++) {
-            deviceQueues[i] = new LinkedList<>();
+            deviceQueues[i] = new PriorityQueue(11, new ProcessComparator(kernel));
         }
         this.readyQueue = new PriorityQueue(11, new ProcessComparator(kernel));
         this.waitingQueue = new LinkedList<>();
@@ -60,7 +60,7 @@ public class ShortTermScheduler {
         return readyQueue;
     }
     
-    public LinkedList<ProcessControlBlock> getDeviceQueue(int deviceNumber){
+    public PriorityQueue<ProcessControlBlock> getDeviceQueue(int deviceNumber){
         return deviceQueues[deviceNumber];
     }
     
