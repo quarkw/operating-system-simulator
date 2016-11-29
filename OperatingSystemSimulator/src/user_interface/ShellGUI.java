@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import kernel.ProcessControlBlock;
@@ -363,7 +364,7 @@ public class ShellGUI extends Application {
         };
 
         Scene scene = new Scene (borderPane);
-
+        primaryStage.setHeight(Math.min(Screen.getPrimary().getVisualBounds().getHeight(),scene.getHeight()));
         primaryStage.setTitle("The Console");
         primaryStage.setScene(scene);
         primaryStage.show();
