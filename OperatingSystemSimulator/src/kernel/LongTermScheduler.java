@@ -49,13 +49,13 @@ public class LongTermScheduler {
         swapInIfAble();
         
         ProcessControlBlock nextInStandBy = standByQueue.peek();
-        ProcessControlBlock victim = stScheduler.getReadyQueue().peek();
+        ProcessControlBlock victim = stScheduler.peekVictim();
         while (nextInStandBy != null
             && victim != null
             && ltProcessComparator.compare(victim, nextInStandBy) > 0) {
             forceSwapIn(standByQueue.poll());
             nextInStandBy = standByQueue.peek();
-            victim = stScheduler.getReadyQueue().peek();
+            victim = stScheduler.peekVictim();
         }
     }
     
@@ -90,16 +90,13 @@ public class LongTermScheduler {
     
     //TODO this needs to be optimized to take out lowest priority processes
     private void forceSwapIn(ProcessControlBlock pcb) { //TODO this whole method is crap
-        //while (pcb.memoryAllocation + getMemoryUsage() > cpu.memory 
-        //        && !stScheduler.getReadyQueue().isEmpty()) {
-        //    swapOut(stScheduler.getReadyQueue().remove());
-        //}
-        Iterator<ProcessControlBlock> iter = stScheduler.getReadyQueue().iterator();
-        while (iter.hasNext()) {
-            ProcessControlBlock victim = iter.next();
+        //Iterator<ProcessControlBlock> iter = stScheduler.getReadyQueue().iterator();
+        //while (iter.hasNext()) {
+        while(!stScheduler.getReadyQueue().isEmpty()) {
+            ProcessControlBlock victim = stScheduler.peekVictim();
             if ( victim.programCounter >= 0
                && victim.program.get(victim.programCounter).getType() != Operation.IO) {
-                iter.remove();
+                stScheduler.getReadyQueue().remove(victim);
                 swapOut(victim);
             }
             

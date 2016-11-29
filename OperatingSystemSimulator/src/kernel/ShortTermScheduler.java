@@ -56,6 +56,10 @@ public class ShortTermScheduler {
         return readyQueue.poll();
     }
     
+    public ProcessControlBlock peekVictim() {
+        return readyQueue.peek();
+    }
+    
     public PriorityQueue<ProcessControlBlock> getReadyQueue() {
         return readyQueue;
     }
